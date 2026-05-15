@@ -1,0 +1,14 @@
+<?php
+require_once('lib/vite.php');
+require_once('lib/helpers.php');
+require_once('inc/customizer.php');
+require_once('inc/customizer-footer.php');
+require_once('inc/widgets.php');
+require_once('inc/login.php');
+require_once('inc/menus.php');
+require_once('inc/formats.php');
+require_once('inc/libraries.php');
+require_once('inc/seo.php');
+require_once('inc/acf-modules.php');
+require_once('inc/schema.php');
+require_once('inc/etc.php');

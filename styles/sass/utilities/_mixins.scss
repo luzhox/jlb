@@ -1,0 +1,9 @@
+// Prefijos de vendor eliminados — soportados nativamente desde 2012+
+
+@mixin border-radius($number) {
+    border-radius: $number;
+}
+
+@mixin transition($number) {
+    transition: all $number ease-in-out;
+}

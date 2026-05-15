@@ -1,0 +1,67 @@
+*{box-sizing: border-box;
+ margin: 0px;
+ border:0px;}
+
+body.login { background: transparent; padding-top: 70px; box-sizing: border-box;}
+body.login div#login {
+	background-color: rgba(255,255,255,0.9);
+	padding: 0px 0px;
+	width: 700px;
+	height: 310px;
+	margin: auto;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	bottom: 0px;
+	right: 0px;
+	box-sizing: border-box;
+	border-radius:13px;
+	/* position: relative; */
+	}
+
+
+body.login div#login h1 {float: left;width: 50%;}
+body.login div#login h1 a {width: 100%;background: url(../../images/logo.svg);background-size: 80%;background-repeat: no-repeat;background-position: 30px center;margin-top: 40px;margin: 0px auto;margin-top: 92px;box-sizing: border-box;height: 110px;}
+body.login div#login form#loginform {width: 50%;float: right;margin-top: 0px;background-color: #ffffff;color: #16181b;height: 100%;box-shadow: none;border-radius: 0px 25px 25px 0px;padding-top: 50px;}
+body.login div#login form#loginform p {color:#212c4b;  }
+body.login div#login form#loginform p label {color: #212c4b;}
+body.login div#login form#loginform input { outline: 0px; }
+body.login div#login form#loginform input#user_login {box-shadow: none;border: 1px solid #e0e0e0;}
+body.login div#login form#loginform input#user_pass {box-shadow: none; border:1px solid #e0e0e0;}
+body.login div#login form#loginform p.forgetmenot {}
+body.login div#login form#loginform p.forgetmenot input#rememberme {}
+body.login div#login form#loginform p.submit {  }
+body.login div#login form#loginform p.submit input#wp-submit {background-color: #212c4b;color: white;text-shadow: none;box-shadow: none;width: 130px;height: 40px;border-radius: 0px;}
+body.login div#login p#nav {    margin: 0px;
+    position: absolute;
+    right: 0;
+    bottom: 15px;}
+body.login div#login p#nav a {}
+body.login div#login p#backtoblog {left: 0px;
+    bottom: -4px; position: absolute;}
+body.login div#login p#backtoblog a {}
+.message{    top: -30px;
+    width: 100%;
+position: absolute;}
+
+#login_error{    top: -30px;
+    width: 100%;
+position: absolute;}
+.grupo{
+
+}
+.grupo::after{
+	visibility: hidden;
+	display: block;
+	height: 0;
+	content: "";
+	clear: both;
+}
+@media screen and(min-width:768px){
+
+body.login div#login {
+	width: 600px;height: 330px;margin: auto;position: absolute;	
+	top: 0px;left: 0px;bottom: 0px;right: 0px;
+
+}	
+}

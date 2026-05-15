@@ -1,0 +1,62 @@
+{
+  "window.menuBarVisibility": "default",
+  "window.zoomLevel": 0,
+  "terminal.integrated.shell.windows": "",
+  "editor.fontSize": 16,
+  "git.autorefresh": false,
+  "editor.tabSize": 2,
+  "editor.renderLineHighlight": "none",
+  "java.errors.incompleteClasspath.severity": "ignore",
+  "workbench.startupEditor": "newUntitledFile",
+  "editor.suggestSelection": "first",
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "prettier.printWidth": 500,
+  "workbench.sideBar.location": "left",
+  "gitlens.views.repositories.location": "gitlens",
+  "gitlens.views.fileHistory.location": "gitlens",
+  "gitlens.views.lineHistory.location": "gitlens",
+  "gitlens.views.compare.location": "gitlens",
+  "gitlens.views.search.location": "gitlens",
+  "java.configuration.checkProjectSettingsExclusions": false,
+  "files.trimTrailingWhitespace": true,
+  "editor.wordWrap": "off",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+},
+  "diffEditor.ignoreTrimWhitespace": false,
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact"
+  },
+  "emmet.triggerExpansionOnTab": true,
+  "editor.foldingStrategy": "indentation",
+  "editor.minimap.enabled": true,
+  "prettier.singleQuote": true,
+  "prettier.jsxSingleQuote": true,
+  "prettier.semi": false,
+  "prettier.arrowParens": "always",
+  "prettier.trailingComma": "es5",
+  "prettier.htmlWhitespaceSensitivity": "ignore",
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "java.requirements.JDK11Warning": false,
+  "workbench.colorTheme": "One Dark Pro",
+  "java.semanticHighlighting.enabled": true,
+  "launch": {},
+  "java.jdt.ls.vmargs": "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx1G -Xms100m -javaagent:\"/Users/luismorales/.vscode/extensions/gabrielbb.vscode-lombok-1.0.1/server/lombok.jar\"",
+  "[json]": {},
+  "eslint.alwaysShowStatus": true,
+  "eslint.enable": true,
+  "eslint.format.enable": true,
+  "eslint.lintTask.enable": true,
+  "editor.formatOnSave": true,
+  "gitlens.defaultDateFormat": "",
+  "liveSassCompile.settings.formats": [
+    {
+      "format": "compressed",
+      "extensionName": ".min.css",
+      "savePath": "~/../css/"
+    }
+  ],
+  "http.proxyAuthorization": null
+}

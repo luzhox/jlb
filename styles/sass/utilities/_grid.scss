@@ -1,0 +1,46 @@
+/// get column width on percent
+@function col($columns, $total) {
+    @return calc((100% / $total) * $columns);
+}
+
+$breakpoint-tablet: 744px;
+$breakpoint-desktop: 1240px;
+
+/// Show only on desktop screens
+@mixin desktop {
+    @media only screen and (min-width: $breakpoint-desktop) {
+        @content;
+    }
+}
+
+/// Show on tablet screens
+@mixin tablet {
+    @media only screen and (min-width: ($breakpoint-tablet + 1)) {
+        @content;
+    }
+}
+
+/// Show only on mobile screens
+@mixin mobile {
+    @media only screen and (max-width: $breakpoint-tablet) {
+        @content;
+    }
+}
+
+.container {
+    max-width: 480px;
+    width: 84%;
+    margin: 0 auto;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    overflow: initial;
+
+    @include tablet {
+        max-width: 750px;
+    }
+
+    @include desktop {
+        max-width: 1184px;
+        box-sizing: border-box;
+    }
+}

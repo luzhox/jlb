@@ -1,0 +1,51 @@
+@charset "UTF-8";
+
+// ─── Cascade layer: legacy ───────────────────────────────────────────────────
+//
+// TODO el SASS legacy se compila DENTRO de @layer legacy {} porque sus reglas
+// universales (* {}, body {}, button {}, h2 {}…) machacaban a las utilities
+// Tailwind v4 cuando estaban fuera de capas (las reglas no-layered SIEMPRE
+// ganan a las layered en CSS cascade order, sin importar especificidad).
+//
+// La capa `legacy` se declara PRIMERO en src/main.css mediante
+//   @layer legacy, theme, base, components, utilities;
+// para que tenga la prioridad MÁS BAJA. Así Tailwind utilities y components
+// ganan; el SASS legacy solo provee reset/base + estilos de módulos viejos.
+//
+// Cuando un módulo legacy se rediseñe, sus estilos se mueven a Tailwind
+// utilities (ganan automáticamente sobre legacy) o a un atom `template-parts/`.
+// ─────────────────────────────────────────────────────────────────────────────
+
+@layer legacy {
+    // ── Utilities (infraestructura) ──────────────────────────────────────────
+    @import "utilities/_variables";
+    @import "utilities/_mixins";
+    @import "utilities/_grid";
+    @import "utilities/_generics";
+
+    // ── Tokens (CSS Custom Properties) ───────────────────────────────────────
+    @import "basics/_tokens";   // legacy path — tokens también en src/main.css @theme
+
+    // ── Atoms ────────────────────────────────────────────────────────────────
+    @import "atoms/_typo";
+    @import "atoms/_button";
+
+    // ── Molecules ────────────────────────────────────────────────────────────
+    @import "molecules/_card";
+
+    // ── Organisms ────────────────────────────────────────────────────────────
+    @import "organisms/_navbar";
+    @import "organisms/_footer";
+    @import "organisms/_hero";
+    @import "organisms/_hero-blog";
+    @import "organisms/_article";
+    @import "organisms/_blog-list";
+    @import "organisms/_modal";
+    @import "organisms/_modules";
+
+    // ── Vendors ──────────────────────────────────────────────────────────────
+    @import "vendors/_colorbox";
+
+    // ── Pages ────────────────────────────────────────────────────────────────
+    @import "pages/_404";
+}

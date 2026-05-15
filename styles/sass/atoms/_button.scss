@@ -1,0 +1,77 @@
+// ── Átomo: Button ────────────────────────────────────────────────────────────
+// Variantes: .btn__primary | .btn__primary--border | .btn__ghost
+// Uso PHP: get_template_part('template-parts/atoms/button', null, ['label' => 'Texto', 'variant' => 'primary'])
+
+.btn {
+    padding: 16px 48px;
+    display: inline-block;
+    font-size: 18px;
+    font-family: $primary-text;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    line-height: 156%;
+    cursor: pointer;
+    @include border-radius(8px);
+    @include transition(.3s);
+
+    &__primary {
+        @extend .btn;
+        background-color: $primary;
+        color: $color-primary-text-button;
+
+        &:hover {
+            background-color: $primary-hover;
+            color: $color-primary-text-button;
+        }
+
+        &:focus-visible {
+            outline: 2px solid $primary-hover;
+            outline-offset: 3px;
+        }
+
+        // Variante outline
+        &--border {
+            @extend .btn;
+            background: transparent;
+            border: 2px solid $primary;
+            color: $primary;
+
+            &:hover {
+                border-color: $primary-hover;
+                color: $primary-hover;
+            }
+
+            &:focus-visible {
+                outline: 2px solid $primary;
+                outline-offset: 3px;
+            }
+        }
+    }
+
+    // Ghost — sin borde, solo texto con color de marca
+    &__ghost {
+        @extend .btn;
+        background: transparent;
+        color: $primary;
+        padding-left: 0;
+        padding-right: 0;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+
+        &:hover {
+            color: $primary-hover;
+        }
+    }
+
+    // Tamaños
+    &--sm {
+        padding: 10px 24px;
+        font-size: 14px;
+    }
+
+    &--lg {
+        padding: 20px 56px;
+        font-size: 20px;
+    }
+}

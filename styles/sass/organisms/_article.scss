@@ -1,0 +1,417 @@
+#articulo {
+    line-height: 24px;
+    font-size: 16px;
+    text-align: justify;
+    font-weight: 400;
+    margin-top: 50px;
+
+    @include tablet {
+        margin-top: 108px;
+    }
+
+    .size-full {
+        width: 100%;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .container {
+        display: flex;
+        flex-flow: column;
+        max-width: 80%;
+
+        @media only screen and (max-width: 321px) {
+            max-width: 85%;
+        }
+
+        @include tablet {
+            flex-flow: wrap;
+            max-width: 1240px;
+        }
+    }
+
+    .wp-block-image {
+        margin-top: 1em;
+    }
+
+    .texto-articulo {
+        line-height: 24px;
+        font-size: 16px;
+        text-align: justify;
+        font-weight: 400;
+        color: #747474;
+    }
+
+    h1 {
+        width: 100%;
+        text-align: left;
+        font-weight: 500;
+        font-size: 40px;
+        line-height: 49px;
+        color: #32394D;
+        margin-bottom: 24px;
+
+        @include mobile {
+            font-size: 30px;
+            line-height: 130%;
+            margin-top: 32px;
+        }
+
+        @media only screen and (max-width:321px) {
+            font-size: 24px;
+            line-height: 130%;
+            margin-top: 28px;
+        }
+    }
+
+    h2 {
+        width: 100%;
+        text-align: left;
+        font-size: 28px;
+        line-height: 120%;
+        font-size: 24px;
+        line-height: 29px;
+        color: $gray;
+        margin-bottom: 24px;
+        margin-top: 32px;
+
+        @include tablet {
+            font-size: 30px;
+            line-height: 120%;
+        }
+    }
+
+    p {
+        line-height: 156%;
+        font-size: 16px;
+        text-align: justify;
+        font-weight: 300;
+        margin-bottom: 20px;
+        font-family: $primary-text;
+
+        @include tablet {
+            font-size: 16px;
+            text-align: justify;
+            color: $gray;
+        }
+    }
+
+    strong {
+        font-weight: 700;
+        color: $gray;
+        display: inline-block;
+    }
+
+    a {
+        color: $primary;
+    }
+
+    .swp_share_link {
+        color: white;
+    }
+
+    .wp-block-quote {
+        font-size: 24px;
+        line-height: 30px;
+        display: inline-block;
+        font-weight: 700;
+        color: $gray;
+
+        &::before {
+            content: "";
+            color: $primary;
+            font-weight: 700;
+            display: inline-block;
+        }
+    }
+
+    .wp-block-image {
+        figure {
+            img {
+                width: 100%;
+                height: auto;
+            }
+        }
+    }
+
+    .wp-block-quote {
+        display: block;
+        margin: 0px 0px;
+    }
+
+    .wp-block-quote p {
+        color: $gray;
+        font-size: 20px;
+        line-height: 130%;
+        font-weight: 300;
+        max-width: 500px;
+        font-family: $primary-text;
+
+        @include tablet {
+            font-size: 24px;
+        }
+    }
+
+    .wp-block-quote p::before {
+        content: "";
+        width: 16px;
+        height: 12px;
+        display: inline-block;
+        font-weight: 300;
+        background-image: url("data:image/svg+xml,%3Csvg width='16' height='12' viewBox='0 0 16 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.98356 11.5254C0.895563 10.154 0.351562 8.77035 0.351562 7.3743C0.351562 6.13885 0.751562 4.959 1.55156 3.83475C2.36756 2.69814 3.54356 1.66037 5.07956 0.721436L6.92756 1.59242C7.08756 1.66655 7.19956 1.75921 7.26356 1.8704C7.32756 1.96923 7.35956 2.06807 7.35956 2.1669C7.35956 2.27809 7.32756 2.38311 7.26356 2.48194C7.19956 2.58078 7.12756 2.66726 7.04756 2.74138C6.83956 2.9267 6.61556 3.1429 6.37556 3.38999C6.15156 3.63708 5.94356 3.90888 5.75156 4.20538C5.55956 4.48954 5.39956 4.80457 5.27156 5.1505C5.14356 5.49642 5.07956 5.86706 5.07956 6.2624C5.07956 6.68245 5.16756 7.13338 5.34356 7.61521C5.51956 8.08468 5.81556 8.57885 6.23156 9.09774C6.37556 9.2707 6.44756 9.44366 6.44756 9.61663C6.44756 10.012 6.15956 10.2899 5.58356 10.4505L1.98356 11.5254ZM9.95156 11.5254C8.86356 10.154 8.31956 8.77035 8.31956 7.3743C8.31956 6.13885 8.71956 4.959 9.51956 3.83475C10.3356 2.69814 11.5116 1.66037 13.0476 0.721436L14.8956 1.59242C15.0556 1.66655 15.1676 1.75921 15.2316 1.8704C15.2956 1.96923 15.3276 2.06807 15.3276 2.1669C15.3276 2.27809 15.2956 2.38311 15.2316 2.48194C15.1676 2.58078 15.0956 2.66726 15.0156 2.74138C14.8076 2.9267 14.5836 3.1429 14.3436 3.38999C14.1196 3.63708 13.9116 3.90888 13.7196 4.20538C13.5276 4.48954 13.3676 4.80457 13.2396 5.1505C13.1116 5.49642 13.0476 5.86706 13.0476 6.2624C13.0476 6.68245 13.1356 7.13338 13.3116 7.61521C13.4876 8.08468 13.7836 8.57885 14.1996 9.09774C14.3436 9.2707 14.4156 9.44366 14.4156 9.61663C14.4156 10.012 14.1276 10.2899 13.5516 10.4505L9.95156 11.5254Z' fill='%23F54C41'/%3E%3C/svg%3E%0A");
+        background-size: 60%;
+        background-position: top;
+        background-repeat: no-repeat;
+        color: $primary;
+        font-size: 28px;
+
+        @include tablet {
+            background-size: 80%;
+            margin-right: 10px;
+        }
+    }
+
+    .wp-block-quote p::after {
+        content: "";
+        width: 15px;
+        height: 11px;
+        display: inline-block;
+        background-image: url("data:image/svg+xml,%3Csvg width='15' height='11' viewBox='0 0 15 11' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M13.344 10.8039C14.432 9.43261 14.976 8.04891 14.976 6.65286C14.976 5.41742 14.576 4.23757 13.776 3.11332C12.96 1.97671 11.784 0.938936 10.248 0L8.4 0.870986C8.24 0.945113 8.128 1.03777 8.064 1.14896C8 1.2478 7.968 1.34663 7.968 1.44547C7.968 1.55666 8 1.66167 8.064 1.76051C8.128 1.85934 8.2 1.94582 8.28 2.01995C8.488 2.20527 8.712 2.42147 8.952 2.66856C9.176 2.91565 9.384 3.18744 9.576 3.48395C9.768 3.7681 9.928 4.08314 10.056 4.42906C10.184 4.77499 10.248 5.14562 10.248 5.54096C10.248 5.96101 10.16 6.41195 9.984 6.89377C9.808 7.36324 9.512 7.85742 9.096 8.3763C8.952 8.54926 8.88 8.72223 8.88 8.89519C8.88 9.29053 9.168 9.56851 9.744 9.72911L13.344 10.8039ZM5.376 10.8039C6.464 9.43261 7.008 8.04891 7.008 6.65286C7.008 5.41742 6.608 4.23757 5.808 3.11332C4.992 1.97671 3.816 0.938936 2.28 0L0.432 0.870986C0.272 0.945113 0.16 1.03777 0.0960002 1.14896C0.0320001 1.2478 0 1.34663 0 1.44547C0 1.55666 0.0320001 1.66167 0.0960002 1.76051C0.16 1.85934 0.232 1.94582 0.312 2.01995C0.52 2.20527 0.744 2.42147 0.984 2.66856C1.208 2.91565 1.416 3.18744 1.608 3.48395C1.8 3.7681 1.96 4.08314 2.088 4.42906C2.216 4.77499 2.28 5.14562 2.28 5.54096C2.28 5.96101 2.192 6.41195 2.016 6.89377C1.84 7.36324 1.544 7.85742 1.128 8.3763C0.984001 8.54926 0.912001 8.72223 0.912001 8.89519C0.912001 9.29053 1.2 9.56851 1.776 9.72911L5.376 10.8039Z' fill='%23F54C41'/%3E%3C/svg%3E%0A");
+        background-size: 60%;
+        background-position: top;
+        background-repeat: no-repeat;
+        color: $primary;
+        font-size: 28px;
+
+        @include tablet {
+            background-size: 80%;
+            margin-left: 10px;
+        }
+    }
+
+    .imagen {
+        width: 100vw;
+        height: 250px;
+        position: relative;
+        overflow: hidden;
+
+        @include tablet {
+            height: 400px;
+        }
+
+        &__bg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: bottom center;
+
+            @include tablet {
+                object-position: center;
+            }
+        }
+    }
+
+    .container {
+        margin-bottom: col(2, 31);
+        padding-top: col(1, 27);
+
+        .post {
+            width: col(37, 37);
+
+            @include desktop {
+                width: col(16, 27);
+                margin-right: col(2, 27);
+                float: left;
+            }
+
+            .textos {
+                .profile {
+                    width: col(16, 16);
+                    height: 50px;
+                    margin-bottom: 20px;
+
+                    @include desktop {
+                        width: col(7, 16);
+                    }
+
+                    .img {
+                        width: 50px;
+                        height: 100%;
+                        float: left;
+                        @include border-radius(50%);
+                        margin-right: 20px;
+                        background-position: center center;
+                        background-size: 60%;
+                        background-repeat: no-repeat;
+                        background-color: $primary;
+                    }
+
+                    p {
+                        padding-top: 12.5px;
+                        font-size: 16px;
+                        line-height: 24px;
+                    }
+                }
+            }
+        }
+
+        .aside {
+            width: col(37, 37);
+            min-height: 300px;
+            margin-top: 30px;
+
+            @include tablet {
+                margin: 0px;
+                width: col(9, 27);
+                float: left;
+            }
+
+            .noticia-referida {
+                height: 205px;
+                width: 100%;
+                position: relative;
+                background-size: cover !important;
+                background-size: center !important;
+                display: flex;
+                align-items: flex-end;
+                margin-bottom: 32px;
+                @include border-radius(8px);
+                overflow: hidden;
+                @include transition(.3s);
+
+                p {
+                    width: 100%;
+                    z-index: 9999;
+                    position: relative;
+                    margin-left: 24px;
+                    margin-bottom: 24px;
+                    display: inline-block;
+                    width: 100%;
+                    font-weight: 500;
+                    font-size: 16px;
+                    line-height: 20px;
+                    color: #FFFFFF;
+                    @include transition(.3s);
+
+                }
+
+                .btn-white {
+                    padding: 10px 20px;
+                    background: $primary;
+                    color: white;
+                    text-align: center;
+                    display: none;
+                    @include transition(.3s);
+
+                }
+
+                .overlay {
+                    width: 100%;
+                    height: 70px;
+                    bottom: 0;
+                    position: absolute;
+                    left: 0;
+                    @include transition(.3s);
+
+                    background: -moz-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.65) 74%, rgba(0, 0, 0, 0.65) 100%);
+                    background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.65) 74%, rgba(0, 0, 0, 0.65) 100%);
+                    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.65) 74%, rgba(0, 0, 0, 0.65) 100%);
+                }
+
+                &:hover {
+                    flex-flow: column;
+                    justify-content: center;
+
+                    p {
+                        text-align: center;
+                        margin: 0;
+                        margin-bottom: 24px;
+                    }
+
+                    .overlay {
+                        height: 100%;
+                        background: rgba(0, 0, 0, 0.5);
+                    }
+
+                    align-items: center;
+
+                    .btn-white {
+                        width: auto;
+                        @include border-radius(20px);
+                        padding: 16px 24px;
+                        font-size: 16px;
+                        display: inline-block;
+                    }
+                }
+            }
+
+            h3 {
+                margin-bottom: 24px;
+                text-align: left;
+                font-size: 24px;
+                line-height: 29px;
+                font-weight: 300;
+                color: #32394d;
+            }
+
+            .ultimasnoticias {
+                .noticia {
+                    width: 100%;
+                    margin-bottom: 24px;
+                    border: 1px solid $gray;
+                    @include border-radius(8px);
+
+                    .image-noticia {
+                        width: col(3, 8);
+                        height: 100%;
+                        padding: 10px;
+                        float: left;
+                        background-size: cover !important;
+                        background-position: center center !important;
+                        background-repeat: no-repeat !important;
+                    }
+
+                    .texto-noticia {
+                        padding: 12px;
+                        height: 100%;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        padding: 20px 24px;
+
+                        p {
+                            font-size: 16px;
+                            font-weight: 300;
+                            line-height: 120%;
+                            margin: 0;
+                            margin-right: 40px;
+                        }
+
+                        a {
+                            display: inline-block;
+                            @include transition(.3s);
+
+                            min-width: 70px;
+                            font-size: 14px;
+                            line-height: 17px;
+                            text-decoration-line: underline;
+                            color: $primary;
+                            text-transform: uppercase;
+
+                            &:hover {
+                                text-decoration: underline;
+                                color: $primary;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.body-noticias {
+    width: 100% !important;
+}

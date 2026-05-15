@@ -1,0 +1,696 @@
+// ── Módulos ACF nuevos ────────────────────────────────────────────────────────
+
+// ── CTA ───────────────────────────────────────────────────────────────────────
+.cta {
+    position: relative;
+    overflow: hidden;
+    padding: 80px 0;
+    background-color: $primary;
+
+    &__bg {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 0;
+    }
+
+    &__overlay {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+    }
+
+    &__inner {
+        position: relative;
+        z-index: 2;
+    }
+
+    &__titulo {
+        font-size: clamp(1.75rem, 4vw, 2.5rem);
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 16px;
+    }
+
+    &__subtitulo {
+        font-size: clamp(1rem, 2vw, 1.25rem);
+        color: rgba(255, 255, 255, 0.85);
+        margin-bottom: 32px;
+        max-width: 640px;
+    }
+
+    &__botones {
+        display: flex;
+        flex-flow: wrap;
+        gap: 16px;
+    }
+
+    // Alineaciones
+    &--center {
+        text-align: center;
+
+        .cta__subtitulo {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta__botones {
+            justify-content: center;
+        }
+    }
+
+    &--left {
+        text-align: left;
+    }
+
+    &--right {
+        text-align: right;
+
+        .cta__subtitulo {
+            margin-left: auto;
+        }
+
+        .cta__botones {
+            justify-content: flex-end;
+        }
+    }
+
+    // Fondos
+    &--light {
+        background-color: #f9fafb;
+
+        .cta__titulo {
+            color: $gray;
+        }
+
+        .cta__subtitulo {
+            color: $gray;
+        }
+    }
+
+    &--dark {
+        background-color: $gray;
+    }
+
+    &--primary {
+        background-color: $primary;
+    }
+}
+
+// ── Testimonios ───────────────────────────────────────────────────────────────
+.testimonios {
+    padding: 80px 0;
+
+    &__titulo {
+        font-size: clamp(1.5rem, 3vw, 2rem);
+        font-weight: 700;
+        color: $gray;
+        text-align: center;
+        margin-bottom: 8px;
+    }
+
+    &__subtitulo {
+        text-align: center;
+        color: $gray;
+        margin-bottom: 48px;
+    }
+
+    &__slider {
+        --swiper-navigation-size: 14px;
+        padding-bottom: 48px;
+    }
+
+    &__item {
+        background: #fff;
+        border: 1px solid $lightgray;
+        border-radius: 12px;
+        padding: 32px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    &__cita {
+        font-size: 1.05rem;
+        line-height: 1.7;
+        color: $gray;
+        font-style: italic;
+        margin: 0;
+
+        &::before {
+            content: '"';
+            font-size: 3rem;
+            color: $primary;
+            line-height: 0;
+            vertical-align: -0.6em;
+        }
+    }
+
+    &__stars {
+        display: flex;
+        gap: 4px;
+    }
+
+    .star {
+        color: #d1d5db;
+        font-size: 1.2rem;
+    }
+
+    .star--on {
+        color: #f59e0b;
+    }
+
+    &__autor {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-top: auto;
+    }
+
+    &__foto {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        object-fit: cover;
+        flex-shrink: 0;
+    }
+
+    &__nombre {
+        display: block;
+        font-weight: 600;
+        color: $gray;
+    }
+
+    &__cargo {
+        font-size: 0.875rem;
+        color: #6b7280;
+    }
+}
+
+// ── Cards de servicios ────────────────────────────────────────────────────────
+.cards-servicios {
+    padding: 80px 0;
+
+    &__titulo {
+        font-size: clamp(1.5rem, 3vw, 2rem);
+        font-weight: 700;
+        color: $gray;
+        text-align: center;
+        margin-bottom: 8px;
+    }
+
+    &__subtitulo {
+        text-align: center;
+        color: $gray;
+        margin-bottom: 48px;
+    }
+
+    &__grid {
+        display: grid;
+        gap: 24px;
+        grid-template-columns: 1fr;
+
+        @include tablet {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        &--col-2 {
+            @include desktop {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        &--col-3 {
+            @include desktop {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        &--col-4 {
+            @include desktop {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+    }
+
+    &__card {
+        background: #fff;
+        border: 1px solid $lightgray;
+        border-radius: 12px;
+        padding: 32px 24px;
+        @include transition(.3s);
+
+        &:hover {
+            box-shadow: var(--shadow-card, 0px 6px 20px rgba(0, 0, 0, .15));
+            border-color: transparent;
+        }
+    }
+
+    &__icono {
+        margin-bottom: 20px;
+
+        img {
+            width: 64px;
+            height: 64px;
+            object-fit: contain;
+        }
+    }
+
+    &__nombre {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: $gray;
+        margin-bottom: 12px;
+    }
+
+    &__desc {
+        color: #6b7280;
+        line-height: 1.6;
+        margin-bottom: 20px;
+    }
+
+    &__link {
+        color: $primary;
+        font-weight: 600;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+
+        &:hover {
+            color: $primary-hover;
+        }
+    }
+}
+
+// ── Acordeón / FAQ ────────────────────────────────────────────────────────────
+.acordeon {
+    padding: 80px 0;
+
+    &__titulo {
+        font-size: clamp(1.5rem, 3vw, 2rem);
+        font-weight: 700;
+        color: $gray;
+        text-align: center;
+        margin-bottom: 8px;
+    }
+
+    &__subtitulo {
+        text-align: center;
+        color: $gray;
+        margin-bottom: 48px;
+    }
+
+    &__lista {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    &__item {
+        border: 1px solid $lightgray;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    &__pregunta {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+        padding: 20px 24px;
+        text-align: left;
+        font-size: 1rem;
+        font-weight: 600;
+        color: $gray;
+        background: #fff;
+        @include transition(.2s);
+
+        &:hover {
+            background: #f9fafb;
+        }
+
+        &[aria-expanded="true"] {
+            color: $primary;
+
+            .acordeon__icono::after {
+                transform: rotate(180deg);
+            }
+        }
+    }
+
+    &__icono {
+        flex-shrink: 0;
+        width: 20px;
+        height: 20px;
+        position: relative;
+
+        &::before,
+        &::after {
+            content: '';
+            position: absolute;
+            background: currentColor;
+            border-radius: 2px;
+            @include transition(.25s);
+        }
+
+        &::before {
+            width: 12px;
+            height: 2px;
+            top: 9px;
+            left: 4px;
+        }
+
+        &::after {
+            width: 2px;
+            height: 12px;
+            top: 4px;
+            left: 9px;
+        }
+    }
+
+    &__respuesta {
+        padding: 0 24px;
+        max-height: 0;
+        overflow: hidden;
+        @include transition(.3s);
+
+        &:not([hidden]) {
+            max-height: 800px;
+            padding: 0 24px 20px;
+        }
+    }
+
+    &__contenido {
+        color: #6b7280;
+        line-height: 1.7;
+    }
+}
+
+// ── Estadísticas ──────────────────────────────────────────────────────────────
+.estadisticas {
+    padding: 80px 0;
+
+    &--primary {
+        background-color: $primary;
+
+        .estadisticas__titulo,
+        .estadisticas__valor,
+        .estadisticas__sufijo,
+        .estadisticas__etiqueta {
+            color: #fff;
+        }
+
+        .estadisticas__subtitulo,
+        .estadisticas__desc {
+            color: rgba(255, 255, 255, .8);
+        }
+    }
+
+    &--dark {
+        background-color: $gray;
+        @extend .estadisticas--primary;
+    }
+
+    &--light {
+        background-color: #f9fafb;
+    }
+
+    &__titulo {
+        font-size: clamp(1.5rem, 3vw, 2rem);
+        font-weight: 700;
+        color: $gray;
+        text-align: center;
+        margin-bottom: 8px;
+    }
+
+    &__subtitulo {
+        text-align: center;
+        color: $gray;
+        margin-bottom: 48px;
+    }
+
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 32px;
+        text-align: center;
+
+        @include desktop {
+            grid-template-columns: repeat(4, 1fr);
+        }
+    }
+
+    &__numero {
+        display: flex;
+        justify-content: center;
+        align-items: baseline;
+        gap: 4px;
+        margin-bottom: 8px;
+    }
+
+    &__valor {
+        font-size: clamp(2.5rem, 6vw, 4rem);
+        font-weight: 800;
+        color: $primary;
+        line-height: 1;
+    }
+
+    &__sufijo {
+        font-size: clamp(1.5rem, 3vw, 2rem);
+        font-weight: 700;
+        color: $primary;
+    }
+
+    &__etiqueta {
+        font-size: 1rem;
+        font-weight: 600;
+        color: $gray;
+    }
+
+    &__desc {
+        font-size: 0.875rem;
+        color: #6b7280;
+        margin-top: 4px;
+    }
+}
+
+// ── Equipo ────────────────────────────────────────────────────────────────────
+.equipo {
+    padding: 80px 0;
+
+    &__titulo {
+        font-size: clamp(1.5rem, 3vw, 2rem);
+        font-weight: 700;
+        color: $gray;
+        text-align: center;
+        margin-bottom: 8px;
+    }
+
+    &__subtitulo {
+        text-align: center;
+        color: $gray;
+        margin-bottom: 48px;
+    }
+
+    &__grid {
+        display: grid;
+        gap: 32px;
+        grid-template-columns: repeat(2, 1fr);
+
+        @include tablet {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        @include desktop {
+            grid-template-columns: repeat(4, 1fr);
+        }
+    }
+
+    &__miembro {
+        text-align: center;
+    }
+
+    &__foto-wrap {
+        width: 128px;
+        height: 128px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin: 0 auto 16px;
+    }
+
+    &__foto {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        @include transition(.4s);
+
+        .equipo__miembro:hover & {
+            transform: scale(1.05);
+        }
+    }
+
+    &__nombre {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: $gray;
+        margin-bottom: 4px;
+    }
+
+    &__cargo {
+        font-size: 0.875rem;
+        color: $primary;
+        font-weight: 500;
+        margin-bottom: 8px;
+    }
+
+    &__bio {
+        font-size: 0.875rem;
+        color: #6b7280;
+        line-height: 1.6;
+        margin-bottom: 12px;
+    }
+
+    &__redes {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    &__red {
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: $primary;
+        text-decoration: underline;
+
+        &:hover {
+            color: $primary-hover;
+        }
+    }
+}
+
+// ── Galería ───────────────────────────────────────────────────────────────────
+.galeria {
+    padding: 80px 0;
+
+    &__titulo {
+        font-size: clamp(1.5rem, 3vw, 2rem);
+        font-weight: 700;
+        color: $gray;
+        text-align: center;
+        margin-bottom: 8px;
+    }
+
+    &__subtitulo {
+        text-align: center;
+        color: $gray;
+        margin-bottom: 48px;
+    }
+
+    &__grid {
+        display: grid;
+        gap: 12px;
+        grid-template-columns: repeat(2, 1fr);
+
+        @include tablet {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        &--col-2 {
+            @include desktop {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        &--col-3 {
+            @include desktop {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        &--col-4 {
+            @include desktop {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+    }
+
+    &__item {
+        margin: 0;
+        position: relative;
+        overflow: hidden;
+        border-radius: 8px;
+        aspect-ratio: 1;
+    }
+
+    &__link {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+
+    &__img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        @include transition(.4s);
+
+        .galeria__item:hover & {
+            transform: scale(1.06);
+        }
+    }
+
+    &__caption {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 8px 12px;
+        background: linear-gradient(to top, rgba(0, 0, 0, .6), transparent);
+        color: #fff;
+        font-size: 0.8rem;
+    }
+}
+
+// ── Formulario ────────────────────────────────────────────────────────────────
+.formulario {
+    padding: 80px 0;
+
+    &__titulo {
+        font-size: clamp(1.5rem, 3vw, 2rem);
+        font-weight: 700;
+        color: $gray;
+        margin-bottom: 8px;
+    }
+
+    &__subtitulo {
+        color: $primary;
+        font-weight: 600;
+        margin-bottom: 16px;
+    }
+
+    &__desc {
+        color: #6b7280;
+        line-height: 1.7;
+        margin-bottom: 32px;
+    }
+
+    // Con imagen lateral
+    &--con-imagen .container {
+        display: grid;
+        gap: 48px;
+
+        @include desktop {
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+        }
+    }
+
+    &__lateral img {
+        width: 100%;
+        height: auto;
+        border-radius: 12px;
+    }
+}

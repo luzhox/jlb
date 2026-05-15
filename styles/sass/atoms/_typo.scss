@@ -1,0 +1,53 @@
+// ─── Tipografía base ─────────────────────────────────────────────────────────
+//
+// IMPORTANTE: usamos `color: inherit` en lugar de fijar un color explícito.
+// Razón: los módulos rediseñados (shadcn × Kresna) ponen el color de texto
+// en el wrapper (text-foreground / text-background / text-white). Si fijamos
+// color aquí en h-tags y p, ganan sobre la herencia del padre y rompen la
+// cascade temática (CTA dark con texto invisible, hero overlay con texto gris).
+//
+// Los módulos legacy (no rediseñados) heredan del body, que ahora usa
+// var(--color-foreground) — visualmente similar al $gray viejo (#383A3F).
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-weight: 700;
+    color: inherit;
+    letter-spacing: -0.4px;
+}
+
+h2 {
+    margin-top: 16px;
+
+    &.title p {
+        font-size: 28px;
+        line-height: 130%;
+        text-align: center;
+        color: inherit;
+        font-weight: 300;
+
+        strong {
+            font-weight: 700;
+        }
+
+        @include tablet {
+            font-size: 44px;
+        }
+    }
+}
+
+p {
+    font-family: $primary-text;
+    font-weight: 300;
+    font-size: 18px;
+    letter-spacing: -0.2px;
+    line-height: 34px;
+    color: inherit;
+
+    @include tablet {
+        font-size: 24px;
+    }
+}

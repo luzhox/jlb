@@ -1,0 +1,36 @@
+# Dependencias
+node_modules/
+vendor/
+
+# Build artifacts (generados por `npm run build`)
+build/
+!build/.gitkeep
+
+# IDE / editores
+.vscode/
+.idea/
+*.sublime-*
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Logs y temporales
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.cache/
+
+# Archivos sensibles
+.env
+.env.local
+.env.*.local
+
+# WordPress
+wp-config.php
+.htaccess
+
+# Lock files de gestores ajenos al proyecto
+yarn.lock
+pnpm-lock.yaml

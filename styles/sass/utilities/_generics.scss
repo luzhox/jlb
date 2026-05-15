@@ -1,0 +1,96 @@
+// Imports movidos a style.scss (Atomic Design — style.scss controla el orden)
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    border: 0;
+    text-decoration: none;
+    font-family: $primary-text;
+    font-weight: 400;
+}
+
+*:focus {
+    outline: none;
+}
+
+*:focus-visible {
+    outline: 2px solid $primary;
+    outline-offset: 3px;
+    border-radius: 2px;
+}
+
+
+
+body {
+    margin: 0;
+    width: 100%;
+}
+
+button {
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
+    border: 0;
+    box-shadow: none;
+    background: none;
+}
+
+input {
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+.hide-on-small-only {
+    display: none !important;
+
+    @include tablet {
+        display: block !important;
+    }
+}
+
+.hide-on-medium-only {
+    display: none;
+
+    @include tablet {
+        display: block;
+    }
+}
+
+.hide-tablet-on-up {
+    display: inline-block;
+
+    @include tablet {
+        display: none !important;
+    }
+}
+
+#contenido {
+
+    @include desktop {
+        overflow: initial;
+    }
+}
+
+.container {
+    @include tablet {
+        padding-top: 32px;
+        padding-bottom: 32px;
+    }
+
+    @include desktop {
+        padding-top: 64px;
+        padding-bottom: 64px;
+    }
+}

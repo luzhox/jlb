@@ -1,0 +1,799 @@
+/* ─── Cascade layer order ────────────────────────────────────────────────────
+   `legacy` se declara PRIMERO (menor prioridad). El SASS legacy
+   (styles/sass/style.scss) está envuelto en @layer legacy {} desde su entrada,
+   así que sus reglas universales (* {}, body {}, etc.) NO machacan utilities
+   Tailwind. Sin esta declaración explícita, capas no-declaradas como `legacy`
+   irían al final del orden y ganarían — exactamente lo opuesto de lo que
+   queremos.
+─────────────────────────────────────────────────────────────────────────────── */
+@layer legacy, theme, base, components, utilities;
+
+/* ─── Tailwind CSS v4 ───────────────────────────────────────────────────────── */
+@import "tailwindcss";
+
+/* Escanear templates PHP para detectar clases utilizadas */
+@source "../**/*.php";
+@source "../modules/**/*.php";
+
+/* ─── Design tokens — Kresna × shadcn ────────────────────────────────────────
+   Sistema dual:
+     · shadcn  = chasis disciplinado (neutros OKLCH, hairlines, foco visible)
+     · Kresna  = capa expresiva (radios 28px, brand saturado, cube, manuscrito)
+   Light por defecto. Dark via [data-theme="dark"] en <html>.
+   Migración legacy: aliases retrocompatibles al final del bloque (no romper SASS).
+   Fuente de verdad: docs/design-system-kresna-shadcn.md (§2)
+─────────────────────────────────────────────────────────────────────────────── */
+@theme {
+
+  /* ── Color: neutros (shadcn-style, OKLCH) ───────────────────────────────── */
+  --color-background:        oklch(1     0      0);
+  --color-foreground:        oklch(0.141 0.005  285.823);
+
+  --color-card:              oklch(1     0      0);
+  --color-card-foreground:   oklch(0.141 0.005  285.823);
+
+  --color-popover:           oklch(1     0      0);
+  --color-popover-foreground:oklch(0.141 0.005  285.823);
+
+  --color-muted:             oklch(0.967 0.001  286.375);
+  --color-muted-foreground:  oklch(0.552 0.016  285.938);
+
+  --color-accent:            oklch(0.967 0.001  286.375);
+  --color-accent-foreground: oklch(0.21  0.006  285.885);
+
+  --color-border:            oklch(0.92  0.004  286.32);
+  --color-input:             oklch(0.92  0.004  286.32);
+  --color-ring:              oklch(0.705 0.015  286);
+
+  /* Override puntual para la card derecha del footer (spec cliente: #f0f1f5) */
+  --color-card-soft:         oklch(0.962 0.003  264);
+
+  /* ── Color: brand Kresna ────────────────────────────────────────────────── */
+  --color-brand-50:          oklch(0.97  0.02   254);
+  --color-brand-100:         oklch(0.93  0.05   254);
+  --color-brand-200:         oklch(0.86  0.10   254);
+  --color-brand-300:         oklch(0.78  0.14   254);
+  --color-brand-400:         oklch(0.69  0.17   254);
+  --color-brand-500:         oklch(0.58  0.20   254);
+  --color-brand-600:         oklch(0.48  0.21   258);   /* #1448BE - hero Kresna */
+  --color-brand-700:         oklch(0.40  0.18   258);
+  --color-brand-800:         oklch(0.33  0.14   258);
+  --color-brand-900:         oklch(0.25  0.10   258);
+
+  --color-primary:           var(--color-brand-600);
+  --color-primary-foreground:oklch(0.985 0      0);
+
+  /* ── Brand-dark (Subscribe button del footer) ──────────────────────────── */
+  --color-brand-dark:           oklch(0.18  0.005 286);   /* #111214 */
+  --color-brand-dark-foreground: oklch(1     0     0);
+
+  /* ── Secundario / accent expresivo (Q1 cerrada: sin acento extra) ──────── */
+  --color-secondary:           var(--color-muted);
+  --color-secondary-foreground: var(--color-accent-foreground);
+
+  /* ── Semantic ──────────────────────────────────────────────────────────── */
+  --color-destructive:           oklch(0.577 0.245  27.325);
+  --color-destructive-foreground: oklch(0.985 0 0);
+  --color-warning:               oklch(0.768 0.171  70);
+  --color-warning-foreground:    oklch(0.141 0.005  285.823);
+  --color-success:               oklch(0.62  0.16   148);
+  --color-success-foreground:    oklch(0.985 0 0);
+  --color-info:                  var(--color-brand-500);
+  --color-info-foreground:       oklch(0.985 0 0);
+
+  /* ── Tipografía ────────────────────────────────────────────────────────── */
+  --font-sans:        'DM Sans', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-display:     'DM Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-handwritten: 'Caveat', 'Brush Script MT', cursive;
+  --font-mono:        'Geist Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* Escala fluid */
+  --text-xs:      clamp(0.75rem,   0.71rem + 0.18vw, 0.8125rem);
+  --text-sm:      clamp(0.8125rem, 0.78rem + 0.18vw, 0.875rem);
+  --text-base:    clamp(0.9375rem, 0.91rem + 0.13vw, 1rem);
+  --text-lg:      clamp(1rem,      0.96rem + 0.22vw, 1.125rem);
+  --text-xl:      clamp(1.125rem,  1.07rem + 0.27vw, 1.25rem);
+  --text-2xl:     clamp(1.25rem,   1.16rem + 0.45vw, 1.5rem);
+  --text-3xl:     clamp(1.5rem,    1.32rem + 0.91vw, 2rem);
+  --text-4xl:     clamp(1.875rem,  1.59rem + 1.45vw, 2.625rem);
+  --text-5xl:     clamp(2.25rem,   1.77rem + 2.36vw, 3.5rem);
+  --text-display: clamp(2.75rem,   2.02rem + 3.64vw, 4.75rem);
+
+  /* ── Espaciado base (Tailwind v4 deriva spacing-N de --spacing × N) ────── */
+  --spacing: 0.25rem;
+
+  /* ── Layout ────────────────────────────────────────────────────────────── */
+  --container-narrow:  43.75rem;  /* 700px  */
+  --container-content: 71.875rem; /* 1150px */
+  --container-wide:    80rem;     /* 1280px */
+
+  /* ── Breakpoints ───────────────────────────────────────────────────────── */
+  --breakpoint-sm:  40rem;
+  --breakpoint-md:  48rem;
+  --breakpoint-lg:  64rem;
+  --breakpoint-xl:  80rem;
+  --breakpoint-2xl: 96rem;
+
+  /* ── Radios ────────────────────────────────────────────────────────────── */
+  --radius-xs:   4px;
+  --radius-sm:   6px;
+  --radius-md:   8px;
+  --radius-lg:   12px;
+  --radius-xl:   16px;
+  --radius-cube: 22px;
+  --radius-2xl:  28px;
+  --radius-full: 9999px;
+
+  /* ── Bordes hairline ───────────────────────────────────────────────────── */
+  --border-hairline:        1px solid var(--color-border);
+  --border-hairline-strong: 1px solid oklch(0.85 0.005 286.32);
+
+  /* ── Sombras ───────────────────────────────────────────────────────────── */
+  --shadow-none:       none;
+  --shadow-hairline:   0 0 0 1px var(--color-border);
+  --shadow-sm:         0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-card:       0 1px 3px 0 rgb(0 0 0 / 0.06), 0 1px 2px -1px rgb(0 0 0 / 0.04);
+  --shadow-elevated:   0 4px 12px -2px rgb(0 0 0 / 0.08), 0 2px 4px -2px rgb(0 0 0 / 0.04);
+  --shadow-dramatic:   0 6px 20px rgb(0 0 0 / 0.28), 0 2px 8px rgb(0 0 0 / 0.15);
+  --shadow-cube:       0 18px 32px -10px rgb(20 72 190 / 0.45),
+                       0 6px 12px -4px rgb(20 72 190 / 0.30),
+                       inset 0 1px 0 rgb(255 255 255 / 0.25),
+                       inset 0 -2px 8px rgb(10 37 102 / 0.35);
+  --shadow-brand-card: 0 12px 40px rgb(21 76 189 / 0.25);
+  --shadow-brand-glow: 0 0 0 4px rgb(20 72 190 / 0.15);
+
+  /* ── Gradientes ────────────────────────────────────────────────────────── */
+  --gradient-cube:      linear-gradient(135deg, #5b9ffb 0%, #1e5dd7 55%, #1448be 100%);
+  --gradient-brand:     linear-gradient(135deg, var(--color-brand-500) 0%, var(--color-brand-700) 100%);
+  --gradient-card-fade: linear-gradient(180deg, transparent 0%, rgb(0 0 0 / 0.55) 100%);
+
+  /* ── Watermark ─────────────────────────────────────────────────────────── */
+  --color-watermark: rgb(0 0 0 / 0.04);
+
+  /* ── Transiciones ──────────────────────────────────────────────────────── */
+  --ease-smooth:   cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out:      cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-fast: 150ms;
+  --duration-base: 250ms;
+  --duration-slow: 400ms;
+
+  /* ── Aliases legacy retrocompatibles (ver §8 design-system) ────────────── */
+  /* No eliminar sin auditar SASS legacy + módulos viejos.                   */
+  --color-primary-hover:  var(--color-brand-700);
+  --color-sandwich:       var(--color-brand-200);
+  --color-gray-dark:      var(--color-foreground);
+  --color-gray-light:     var(--color-muted);
+  --color-active-menu:    var(--color-brand-400);
+  --color-submenu-hover:  var(--color-brand-50);
+  --font-heading:         var(--font-display);
+  --font-body:            var(--font-sans);
+  --shadow-md:            var(--shadow-card);
+  --shadow-lg:            var(--shadow-elevated);
+}
+
+/* ─── Dark mode — espejo de tokens ───────────────────────────────────────────
+   Aplicar con [data-theme="dark"] en <html>. Gestionado por src/darkMode.js
+   (localStorage + prefers-color-scheme). Ver §7 design-system.
+─────────────────────────────────────────────────────────────────────────── */
+:root[data-theme="dark"] {
+  --color-background:         oklch(0.141 0.005 285.823);
+  --color-foreground:         oklch(0.985 0     0);
+
+  --color-card:               oklch(0.18  0.006 286);
+  --color-card-foreground:    oklch(0.985 0     0);
+
+  --color-popover:            oklch(0.18  0.006 286);
+  --color-popover-foreground: oklch(0.985 0     0);
+
+  --color-muted:              oklch(0.21  0.006 285.885);
+  --color-muted-foreground:   oklch(0.705 0.015 286);
+
+  --color-accent:             oklch(0.21  0.006 285.885);
+  --color-accent-foreground:  oklch(0.985 0     0);
+
+  --color-border:             oklch(1     0     0 / 0.10);
+  --color-input:              oklch(1     0     0 / 0.15);
+  --color-ring:               oklch(0.552 0.016 285.938);
+
+  --color-card-soft:          oklch(0.21  0.006 285.885);
+
+  --color-primary:            var(--color-brand-400);
+  --color-primary-foreground: oklch(0.141 0.005 285.823);
+
+  --color-brand-dark:            oklch(0.985 0 0);
+  --color-brand-dark-foreground: oklch(0.141 0.005 285.823);
+
+  --color-destructive:        oklch(0.704 0.191 22.216);
+  --color-warning:            oklch(0.828 0.189 84);
+  --color-success:            oklch(0.72  0.17  148);
+
+  --shadow-card:              0 0 0 1px var(--color-border);
+  --shadow-elevated:          0 8px 24px -8px rgb(0 0 0 / 0.6), 0 0 0 1px var(--color-border);
+  --shadow-dramatic:          0 8px 32px rgb(0 0 0 / 0.5), 0 0 0 1px rgb(255 255 255 / 0.08);
+  --shadow-brand-card:        0 12px 40px rgb(20 72 190 / 0.45);
+  --shadow-cube:              0 18px 32px -10px rgb(91 159 251 / 0.55),
+                              0 6px 12px -4px rgb(20 72 190 / 0.40),
+                              inset 0 1px 0 rgb(255 255 255 / 0.30),
+                              inset 0 -2px 8px rgb(10 37 102 / 0.50);
+
+  --color-watermark:          rgb(255 255 255 / 0.06);
+  --gradient-card-fade:       linear-gradient(180deg, transparent 0%, rgb(0 0 0 / 0.75) 100%);
+}
+
+/* ─── Base layer: aplicar tokens al body ─────────────────────────────────────
+   Sin esto, el <body> queda con su color default del browser (blanco) mientras
+   los componentes shadcn (cards, inputs) usan --color-card / --color-background
+   que cambian con [data-theme="dark"]. Resultado en dark: body blanco + cards
+   negras + texto blanco → texto invisible sobre el body.
+─────────────────────────────────────────────────────────────────────────────── */
+@layer base {
+  html, body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+  }
+
+  /* ── WP admin bar coexistencia con masthead fixed ──────────────────────────
+     SASS legacy define .site-header con position:fixed; top:0; z-index:9999999
+     (este último es un overkill — la admin bar es z-index 99999 y debería ir
+     ENCIMA del header del sitio, no debajo). Aquí:
+       1. Bajamos el z-index del masthead a 100 (suficiente sobre contenido,
+          deja respirar a la admin bar).
+       2. Compensamos el top:0 con los 32px (desktop) / 46px (mobile) de la
+          admin bar cuando body tiene la clase .admin-bar (la añade WP solo
+          a usuarios logueados).
+     Selectores: cubrimos .site-header (legacy menu.php) e #masthead (alias).
+  ──────────────────────────────────────────────────────────────────────────── */
+  .site-header,
+  #masthead {
+    z-index: 100;
+  }
+  body.admin-bar .site-header,
+  body.admin-bar #masthead {
+    top: 32px;
+  }
+  @media screen and (max-width: 782px) {
+    body.admin-bar .site-header,
+    body.admin-bar #masthead {
+      top: 46px;
+    }
+  }
+}
+
+/* ─── Componentes base (@layer components) ───────────────────────────────────
+   Reglas:
+     · Las clases legacy (.btn-primary, .btn-secondary, .card, .overlay) se
+       conservan por compatibilidad con módulos viejos. Apuntan a los nuevos
+       tokens via aliases (color-primary, color-card, etc).
+     · Las nuevas clases .btn-shadcn-*, .input-shadcn, .card-hairline son las
+       que usan los atoms shadcn (button.php, input.php, footer molecules).
+─────────────────────────────────────────────────────────────────────────────── */
+@layer components {
+
+  /* ── Container helpers ─────────────────────────────────────────────────── */
+  .container {
+    @apply mx-auto px-4 sm:px-6 lg:px-8;
+    max-width: var(--container-content);
+  }
+  .container-narrow { max-width: var(--container-narrow); }
+  .container-wide   { max-width: var(--container-wide); }
+
+  /* ── BUTTONS · legacy (compat) ─────────────────────────────────────────── */
+  .btn-primary {
+    @apply inline-block bg-primary text-white font-semibold uppercase
+           px-8 py-4 rounded-lg transition-colors duration-300
+           hover:bg-primary-hover focus-visible:outline-2 focus-visible:outline-primary;
+  }
+  .btn-secondary {
+    @apply inline-block border-2 border-primary text-primary font-semibold uppercase
+           px-8 py-4 rounded-lg transition-colors duration-300
+           hover:bg-primary hover:text-white focus-visible:outline-2 focus-visible:outline-primary;
+  }
+
+  /* ── BUTTONS · shadcn (sistema nuevo) ──────────────────────────────────── */
+  .btn-base {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-family: var(--font-sans);
+    font-weight: 500;
+    letter-spacing: -0.005em;
+    line-height: 1;
+    border-radius: var(--radius-md);
+    transition: background-color var(--duration-fast) var(--ease-out),
+                color            var(--duration-fast) var(--ease-out),
+                box-shadow       var(--duration-fast) var(--ease-out),
+                border-color     var(--duration-fast) var(--ease-out);
+    cursor: pointer;
+    user-select: none;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .btn-base:focus-visible {
+    outline: 2px solid var(--color-ring);
+    outline-offset: 2px;
+  }
+  .btn-base:disabled,
+  .btn-base[aria-disabled="true"] {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+  /* sizes */
+  .btn-size-sm { height: 32px; padding: 0 12px; font-size: var(--text-sm); }
+  .btn-size-md { height: 40px; padding: 0 16px; font-size: var(--text-sm); }
+  .btn-size-lg { height: 48px; padding: 0 20px; font-size: var(--text-base); border-radius: var(--radius-lg); }
+
+  /* shadcn-primary: inverso (negro→blanco light, blanco→negro dark) */
+  .btn-shadcn-primary {
+    background: var(--color-foreground);
+    color: var(--color-background);
+    border: 1px solid transparent;
+  }
+  .btn-shadcn-primary:hover { background: oklch(from var(--color-foreground) calc(l + 0.10) c h); }
+
+  /* shadcn-outline */
+  .btn-shadcn-outline {
+    background: transparent;
+    color: var(--color-foreground);
+    border: 1px solid var(--color-border);
+  }
+  .btn-shadcn-outline:hover { background: var(--color-muted); }
+
+  /* shadcn-ghost */
+  .btn-shadcn-ghost {
+    background: transparent;
+    color: var(--color-foreground);
+    border: 1px solid transparent;
+  }
+  .btn-shadcn-ghost:hover { background: var(--color-muted); }
+
+  /* brand (azul Kresna) */
+  .btn-brand {
+    background: var(--color-primary);
+    color: var(--color-primary-foreground);
+    border: 1px solid transparent;
+  }
+  .btn-brand:hover { background: var(--color-brand-700); }
+  .btn-brand:focus-visible { box-shadow: var(--shadow-brand-glow); }
+
+  /* kresna-dark (Subscribe del footer; fuerte contraste sobre cards) */
+  .btn-kresna-dark {
+    background: var(--color-brand-dark);
+    color: var(--color-brand-dark-foreground);
+    border: 1px solid transparent;
+    box-shadow: var(--shadow-dramatic);
+  }
+  .btn-kresna-dark:hover {
+    box-shadow: var(--shadow-dramatic), var(--shadow-brand-glow);
+  }
+
+  /* destructive */
+  .btn-destructive {
+    background: var(--color-destructive);
+    color: var(--color-destructive-foreground);
+    border: 1px solid transparent;
+  }
+
+  /* ── INPUTS (shadcn) ───────────────────────────────────────────────────── */
+  .input-shadcn {
+    display: block;
+    width: 100%;
+    height: 40px;
+    padding: 0 12px;
+    background: var(--color-background);
+    color: var(--color-foreground);
+    border: 1px solid var(--color-input);
+    border-radius: var(--radius-md);
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    line-height: 1.4;
+    transition: border-color var(--duration-fast) var(--ease-out),
+                box-shadow   var(--duration-fast) var(--ease-out);
+  }
+  .input-shadcn::placeholder { color: var(--color-muted-foreground); }
+  .input-shadcn:focus {
+    outline: none;
+    border-color: var(--color-ring);
+    box-shadow: 0 0 0 3px oklch(from var(--color-ring) l c h / 0.25);
+  }
+  .input-shadcn:disabled { opacity: 0.5; cursor: not-allowed; }
+  .input-shadcn[aria-invalid="true"] {
+    border-color: var(--color-destructive);
+    box-shadow: 0 0 0 3px oklch(from var(--color-destructive) l c h / 0.20);
+  }
+
+  .form-label {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--color-foreground);
+    margin-bottom: 6px;
+  }
+  .form-helper {
+    font-size: var(--text-xs);
+    color: var(--color-muted-foreground);
+    margin-top: 6px;
+  }
+  .form-error {
+    font-size: var(--text-xs);
+    color: var(--color-destructive);
+    margin-top: 6px;
+  }
+
+  /* ── CARDS (shadcn hairline) ───────────────────────────────────────────── */
+  .card-hairline {
+    background: var(--color-card);
+    color: var(--color-card-foreground);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+  }
+  .card-surface {
+    background: var(--color-card);
+    color: var(--color-card-foreground);
+    border-radius: var(--radius-xl);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-card);
+  }
+
+  /* ── Card legacy (compat) ──────────────────────────────────────────────── */
+  .card {
+    @apply bg-white rounded-xl overflow-hidden shadow-card
+           transition-shadow duration-300 hover:shadow-lg;
+  }
+
+  .overlay {
+    @apply absolute inset-0 bg-black/50;
+  }
+
+  /* ── Contact Form 7 overrides → shadcn (Fase 2) ─────────────────────────
+     Reglas: dentro del módulo .formulario (y .wpcf7 en general), los
+     inputs/textareas/selects heredan el styling shadcn. No tocamos PHP
+     ni el shortcode — todo es CSS sobre el HTML que CF7 produce.
+  ─────────────────────────────────────────────────────────────────────── */
+  .formulario .wpcf7 p,
+  .wpcf7 form p {
+    margin: 0 0 1.25rem 0;
+  }
+  .formulario .wpcf7 label,
+  .wpcf7 form label {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--color-foreground);
+    margin-bottom: 6px;
+  }
+  .formulario .wpcf7 input[type="text"],
+  .formulario .wpcf7 input[type="email"],
+  .formulario .wpcf7 input[type="tel"],
+  .formulario .wpcf7 input[type="url"],
+  .formulario .wpcf7 input[type="number"],
+  .formulario .wpcf7 input[type="date"],
+  .formulario .wpcf7 input[type="search"],
+  .formulario .wpcf7 select,
+  .formulario .wpcf7 textarea,
+  .wpcf7 input[type="text"],
+  .wpcf7 input[type="email"],
+  .wpcf7 input[type="tel"],
+  .wpcf7 input[type="url"],
+  .wpcf7 input[type="number"],
+  .wpcf7 input[type="date"],
+  .wpcf7 input[type="search"],
+  .wpcf7 select,
+  .wpcf7 textarea {
+    display: block;
+    width: 100%;
+    height: 40px;
+    padding: 0 12px;
+    background: var(--color-background);
+    color: var(--color-foreground);
+    border: 1px solid var(--color-input);
+    border-radius: var(--radius-md);
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    line-height: 1.4;
+    transition: border-color var(--duration-fast) var(--ease-out),
+                box-shadow   var(--duration-fast) var(--ease-out);
+  }
+  .formulario .wpcf7 textarea,
+  .wpcf7 textarea {
+    height: auto;
+    min-height: 8rem;
+    padding: 12px;
+    line-height: 1.55;
+  }
+  .formulario .wpcf7 input::placeholder,
+  .formulario .wpcf7 textarea::placeholder,
+  .wpcf7 input::placeholder,
+  .wpcf7 textarea::placeholder {
+    color: var(--color-muted-foreground);
+  }
+  .formulario .wpcf7 input:focus,
+  .formulario .wpcf7 textarea:focus,
+  .formulario .wpcf7 select:focus,
+  .wpcf7 input:focus,
+  .wpcf7 textarea:focus,
+  .wpcf7 select:focus {
+    outline: none;
+    border-color: var(--color-ring);
+    box-shadow: 0 0 0 3px oklch(from var(--color-ring) l c h / 0.25);
+  }
+  .formulario .wpcf7 input[aria-invalid="true"],
+  .formulario .wpcf7 textarea[aria-invalid="true"],
+  .wpcf7 input[aria-invalid="true"],
+  .wpcf7 textarea[aria-invalid="true"] {
+    border-color: var(--color-destructive);
+    box-shadow: 0 0 0 3px oklch(from var(--color-destructive) l c h / 0.20);
+  }
+
+  /* CF7 submit → variante brand (Kresna) */
+  .formulario .wpcf7 input[type="submit"],
+  .wpcf7 input[type="submit"] {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 48px;
+    padding: 0 20px;
+    background: var(--color-primary);
+    color: var(--color-primary-foreground);
+    border: 1px solid transparent;
+    border-radius: var(--radius-md);
+    font-family: var(--font-sans);
+    font-weight: 500;
+    font-size: var(--text-base);
+    letter-spacing: -0.005em;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color var(--duration-fast) var(--ease-out),
+                box-shadow       var(--duration-fast) var(--ease-out);
+  }
+  .formulario .wpcf7 input[type="submit"]:hover,
+  .wpcf7 input[type="submit"]:hover { background: var(--color-brand-700); }
+  .formulario .wpcf7 input[type="submit"]:focus-visible,
+  .wpcf7 input[type="submit"]:focus-visible {
+    outline: 2px solid var(--color-ring);
+    outline-offset: 2px;
+    box-shadow: var(--shadow-brand-glow);
+  }
+
+  /* Estados response CF7 → patrón aria-live polite */
+  .wpcf7 form .wpcf7-response-output {
+    margin: 1rem 0 0 0;
+    padding: 12px 16px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    background: var(--color-muted);
+    color: var(--color-foreground);
+    font-size: var(--text-sm);
+  }
+  .wpcf7 form.invalid .wpcf7-response-output,
+  .wpcf7 form.unaccepted .wpcf7-response-output,
+  .wpcf7 form.payment-required .wpcf7-response-output {
+    border-color: var(--color-destructive);
+    color: var(--color-destructive);
+    background: transparent;
+  }
+  .wpcf7 form.sent .wpcf7-response-output {
+    border-color: var(--color-success);
+    color: var(--color-success);
+    background: transparent;
+  }
+  .wpcf7-not-valid-tip {
+    color: var(--color-destructive);
+    font-size: var(--text-xs);
+    margin-top: 6px;
+    display: block;
+  }
+
+  /* ── FOOTER · tradicional administrable ───────────────────────────────── */
+  .site-footer {
+    background: var(--color-muted);
+    border-top: var(--border-hairline);
+    color: var(--color-muted-foreground);
+    font-family: var(--font-sans);
+    margin-top: 5rem;
+  }
+  .site-footer a {
+    color: inherit;
+    text-decoration: none;
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+  .site-footer a:hover,
+  .site-footer a:focus-visible {
+    color: var(--color-foreground);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+  .site-footer a:focus-visible {
+    outline: 2px solid var(--color-ring);
+    outline-offset: 4px;
+  }
+  .site-footer ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .site-footer__inner {
+    max-width: var(--container-wide);
+    margin: 0 auto;
+    padding: 4rem 1rem 1.5rem;
+  }
+  .site-footer__main {
+    display: grid;
+    gap: 2.5rem;
+    grid-template-columns: 1fr;
+  }
+  .site-footer__brand {
+    max-width: 24rem;
+  }
+  .site-footer__logo,
+  .site-footer__site-name {
+    display: inline-flex;
+    align-items: center;
+    color: var(--color-foreground);
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: 700;
+    line-height: 1.1;
+  }
+  .site-footer__logo {
+    max-width: 180px;
+  }
+  .site-footer__logo img {
+    display: block;
+    height: auto;
+    max-height: 56px;
+    object-fit: contain;
+    width: auto;
+  }
+  .site-footer__description {
+    color: var(--color-muted-foreground);
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    line-height: 1.7;
+    margin: 1.25rem 0 0;
+  }
+  .site-footer__title {
+    color: var(--color-foreground);
+    font-family: var(--font-display);
+    font-size: var(--text-base);
+    font-weight: 700;
+    line-height: 1.3;
+    margin: 0 0 1rem;
+  }
+  .site-footer__menu {
+    display: grid;
+    gap: 0.75rem;
+  }
+  .site-footer__menu a {
+    display: inline-flex;
+    font-size: var(--text-sm);
+    line-height: 1.45;
+  }
+  .site-footer__contact {
+    font-style: normal;
+  }
+  .site-footer__contact p {
+    color: var(--color-muted-foreground);
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    line-height: 1.65;
+    margin: 0 0 0.75rem;
+  }
+  .site-footer__contact p:last-child {
+    margin-bottom: 0;
+  }
+  .site-footer__widgets {
+    display: grid;
+    gap: 1.5rem;
+  }
+  .site-footer__widget {
+    color: var(--color-muted-foreground);
+    font-size: var(--text-sm);
+    line-height: 1.65;
+  }
+  .site-footer__widget p {
+    color: inherit;
+    font-family: var(--font-sans);
+    font-size: inherit;
+    line-height: inherit;
+    margin: 0 0 0.75rem;
+  }
+  .site-footer__widget p:last-child {
+    margin-bottom: 0;
+  }
+  .site-footer__socials {
+    margin-top: 1.5rem;
+  }
+  .site-footer__social-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+  .site-footer__social-list a {
+    align-items: center;
+    background: var(--color-background);
+    border: var(--border-hairline);
+    border-radius: var(--radius-full);
+    color: var(--color-foreground);
+    display: inline-flex;
+    font-size: var(--text-xs);
+    font-weight: 700;
+    line-height: 1;
+    min-height: 36px;
+    padding: 0 1rem;
+  }
+  .site-footer__social-list a:hover,
+  .site-footer__social-list a:focus-visible {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: var(--color-primary-foreground);
+    text-decoration: none;
+  }
+  .site-footer__bottom {
+    border-top: var(--border-hairline);
+    font-size: var(--text-xs);
+    line-height: 1.5;
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+  }
+  .site-footer__bottom p {
+    color: var(--color-muted-foreground);
+    font-family: var(--font-sans);
+    font-size: inherit;
+    line-height: inherit;
+    margin: 0;
+  }
+  .site-footer .sr-text {
+    border: 0;
+    clip: rect(0, 0, 0, 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
+  @media (min-width: 48rem) {
+    .site-footer__inner {
+      padding-right: 1.5rem;
+      padding-left: 1.5rem;
+    }
+    .site-footer__main {
+      grid-template-columns: minmax(18rem, 1.3fr) repeat(3, minmax(0, 1fr));
+    }
+    .site-footer__widgets {
+      grid-column: span 2;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (min-width: 80rem) {
+    .site-footer__main {
+      grid-template-columns: minmax(20rem, 1.5fr) repeat(4, minmax(0, 1fr));
+    }
+    .site-footer__widgets {
+      grid-column: span 1;
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+/* ─── Reduced motion (global) ─────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  /* Pausar vídeos decorativos (footer card, hero) */
+  video[data-decorative] {
+    display: none;
+  }
+}
