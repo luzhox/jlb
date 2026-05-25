@@ -52,14 +52,14 @@ add_action('wp_enqueue_scripts', function () {
     $theme_ver = wp_get_theme()->get('Version');
     $is_dev    = bp_is_vite_dev();
 
-    // ── Google Fonts: DM Sans + Caveat (Kresna × shadcn) ─────────────────────
+    // ── Google Fonts: DM Sans + Raleway + DM Serif + Caveat ──────────────────
     // Pesos cargados:
     //   DM Sans  400 / 500 / 600 / 700  (body, labels, headings)
     //   Caveat   500 / 600 / 700        (manuscrito — solo 3 sitios autorizados)
     // display=swap para evitar FOIT y mejorar LCP
     wp_enqueue_style(
         'google-fonts',
-        'https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Caveat:wght@500;600;700&display=swap',
+        'https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Raleway:wght@400;600;700&family=DM+Serif+Display:ital@0;1&family=Caveat:wght@500;600;700&display=swap',
         array(),
         null
     );

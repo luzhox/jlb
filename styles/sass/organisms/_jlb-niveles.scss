@@ -1,0 +1,138 @@
+// Jean Le Boulch — Grid de niveles educativos.
+// 3 columnas; última card opcional con modifier `--wide` que ocupa todo el ancho.
+
+.jlb-levels {
+    position: relative;
+    padding: 84px 0 32px;
+    overflow: hidden;
+
+    h2 {
+        position: relative;
+        margin: 0 0 32px;
+        font-family: "KG Second Chances Solid", "Caveat", cursive;
+        font-size: clamp(36px, 4vw, 44px);
+        line-height: 1;
+        color: var(--jlb-purple);
+        letter-spacing: 0;
+    }
+}
+
+.jlb-levels__grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.jlb-level-card {
+    position: relative;
+    max-height: 400px;
+    overflow: hidden;
+    border-radius: 32px 32px 55px 32px;
+    background: #ddd;
+    box-shadow: 0 18px 44px rgb(22 31 51 / 0.12);
+    transition: transform 280ms ease, box-shadow 280ms ease;
+
+    img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+        transition: transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    // Hover: la card sube un poco, la imagen hace zoom suave y el pill resalta.
+    // El hover se dispara desde el link de cobertura (cubre toda la card).
+    &:hover,
+    &:focus-within {
+        // !important para vencer al transform inline que GSAP (data-gsap fade-up)
+        // deja en la card tras la animación de entrada.
+        transform: translateY(-6px) !important;
+        box-shadow: 0 30px 64px rgb(22 31 51 / 0.22);
+    }
+
+    &:hover img,
+    &:focus-within img {
+        transform: scale(1.06);
+    }
+
+    &:hover .jlb-level-card__pill,
+    &:focus-within .jlb-level-card__pill {
+        box-shadow: 0 12px 26px rgb(22 31 51 / 0.18);
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgb(97 71 148 / 0) 45%, rgb(153 51 86 / 0.72) 74%, rgb(201 35 35 / 0.96) 100%);
+    }
+
+    // Pill visual (título + flecha). Ya no es el link: el click lo captura
+    // .jlb-level-card__link que cubre toda la card.
+    &__pill {
+        position: absolute;
+        left: 14px;
+        right: 14px;
+        bottom: 18px;
+        z-index: 2;
+        min-height: 62px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 16px 24px;
+        border-radius: 13px 13px 44px 13px;
+        background: #fff;
+        color: var(--jlb-purple);
+        font-family: "DM Sans", var(--font-sans);
+        font-size: 18px;
+        font-weight: 700;
+        transition: box-shadow 280ms ease;
+
+        p {
+            margin: 0;
+            font-size: 24px;
+            font-family: 'Raleway', var(--font-sans);
+            color: #14111F;
+        }
+    }
+
+    // Link overlay: toda la card es clickeable.
+    &__link {
+        position: absolute;
+        inset: 0;
+        z-index: 3;
+        border-radius: inherit;
+
+        &:focus-visible {
+            outline: 3px solid #fff;
+            outline-offset: -4px;
+        }
+    }
+}
+
+.jlb-level-card--wide {
+    grid-column: 1 / -1;
+    max-height: 400px;
+    border-radius: 32px 32px 55px 32px;
+}
+
+@media (max-width: 820px) {
+    .jlb-levels__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .jlb-level-card,
+    .jlb-level-card--wide {
+        grid-column: auto;
+        min-height: 260px;
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    .jlb-level-card,
+    .jlb-level-card img,
+    .jlb-level-card__pill {
+        transition: none;
+    }
+}

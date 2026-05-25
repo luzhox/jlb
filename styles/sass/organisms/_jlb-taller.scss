@@ -1,0 +1,332 @@
+// Jean Le Boulch — Formato de Taller (Figma 4131:452). Secciones propias del
+// single-taller.php (el hero y la galería reutilizan jlb_admision_hero / jlb_galeria).
+
+.jlb-taller-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 10px;
+    font-family: "DM Sans", var(--font-sans);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--jlb-purple, #614794);
+    letter-spacing: 0.02em;
+
+    &::before {
+        content: "";
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--jlb-gradient);
+    }
+}
+
+// ── Plan de estudios ─────────────────────────────────────────────────────────
+.jlb-taller-plan {
+    padding: clamp(48px, 7vw, 88px) 0 clamp(32px, 5vw, 56px);
+    background: #fff;
+}
+
+.jlb-taller-plan__title {
+    margin: 0 0 clamp(24px, 4vw, 40px);
+    font-family: "DM Sans", var(--font-sans);
+    font-weight: 700;
+    font-size: clamp(24px, 3vw, 34px);
+    line-height: 1.15;
+    color: #14111f;
+    max-width: 22ch;
+}
+
+// Varios grupos (niveles: "Áreas Curriculares" + "Talleres") se apilan.
+.jlb-taller-plan__grupos {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.jlb-taller-plan__grid {
+    display: grid;
+    grid-template-columns: 64px minmax(0, 1fr);
+    gap: 16px;
+    align-items: stretch;
+}
+
+.jlb-taller-plan__band {
+    display: grid;
+    place-items: center;
+    border-radius: 16px;
+    background: var(--jlb-gradient);
+    color: #fff;
+
+    span {
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+        font-family: "DM Sans", var(--font-sans);
+        font-weight: 700;
+        font-size: 14px;
+        letter-spacing: 0.04em;
+        white-space: nowrap;
+        padding: 16px 0;
+    }
+}
+
+.jlb-taller-plan__cards {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.jlb-taller-plan__card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 18px 24px;
+    border-radius: 14px;
+    background: rgb(114 125 208 / 0.1);
+    font-family: "DM Sans", var(--font-sans);
+    font-size: clamp(15px, 1.4vw, 18px);
+    font-weight: 600;
+    color: #231f20;
+}
+
+.jlb-taller-plan__dot {
+    flex: 0 0 auto;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--jlb-gradient);
+}
+
+// ── Video ────────────────────────────────────────────────────────────────────
+.jlb-taller-video {
+    padding: clamp(24px, 4vw, 48px) 0;
+    background: #fff;
+}
+
+.jlb-taller-video__frame {
+    position: relative;
+    display: block;
+    width: 100%;
+    aspect-ratio: 1147 / 418;
+    border-radius: 28px;
+    overflow: hidden;
+    margin: 0;
+    box-shadow: 0 12px 36px rgb(20 17 31 / 0.14);
+
+    img:not(.jlb-taller-video__play) {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    &.is-video {
+        cursor: pointer;
+
+        &::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgb(26 13 39 / 0.28);
+            transition: background 300ms ease;
+        }
+
+        &:hover::after,
+        &:focus-visible::after {
+            background: rgb(26 13 39 / 0.4);
+        }
+
+        &:hover img:not(.jlb-taller-video__play) {
+            transform: scale(1.03);
+        }
+
+        &:focus-visible {
+            outline: 3px solid var(--jlb-red, #c92323);
+            outline-offset: 3px;
+        }
+    }
+}
+
+.jlb-taller-video__play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 2;
+    width: clamp(72px, 8vw, 110px);
+    height: auto;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    filter: drop-shadow(0 8px 18px rgb(0 0 0 / 0.3));
+}
+
+// Galería full-width (fila inferior de la galería en Niveles).
+.jlb-taller-galfull {
+    padding: 0 0 clamp(8px, 2vw, 24px);
+    background: #fff;
+}
+
+.jlb-taller-galfull__frame {
+    margin: 0;
+    border-radius: 28px;
+    overflow: hidden;
+    aspect-ratio: 1147 / 418;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+}
+
+// ── Objetivos ────────────────────────────────────────────────────────────────
+.jlb-taller-obj {
+    padding: clamp(48px, 7vw, 88px) 0;
+    background: #fff;
+}
+
+.jlb-taller-obj__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 360px);
+    gap: clamp(32px, 5vw, 72px);
+    align-items: start;
+}
+
+.jlb-taller-obj__main {
+    position: relative;
+}
+
+// Garabato decorativo (hatch teal) arriba-derecha del bloque de objetivos.
+.jlb-taller-obj__deco {
+    position: absolute;
+    top: -8px;
+    right: 0;
+    width: clamp(56px, 7vw, 88px);
+    height: auto;
+    pointer-events: none;
+    transform-origin: center;
+    animation: jlb-deco-spin 6s linear infinite;
+}
+
+.jlb-taller-obj__title {
+    margin: 0 0 28px;
+    font-family: "DM Sans", var(--font-sans);
+    font-weight: 700;
+    font-size: clamp(26px, 3.4vw, 40px);
+    line-height: 1.12;
+    color: #109b8c; // Figma: título de objetivos en teal-verde
+    max-width: 16ch;
+}
+
+.jlb-taller-obj__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.jlb-taller-obj__item {
+    display: grid;
+    grid-template-columns: 48px minmax(0, 1fr);
+    align-items: center;
+    gap: 16px;
+    font-family: "DM Sans", var(--font-sans);
+    font-size: clamp(16px, 1.5vw, 20px);
+    line-height: 1.4;
+    color: #231f20;
+}
+
+.jlb-taller-obj__num {
+    font-family: "DM Sans", var(--font-sans);
+    font-weight: 600;
+    font-size: clamp(40px, 4.4vw, 56px);
+    line-height: 1;
+    color: #c7ccdb; // Figma: numeral grande gris claro
+}
+
+// La imagen y la card roja forman UN solo bloque conectado (Figma): imagen con
+// esquinas redondeadas arriba + card roja pegada abajo (sin gap).
+.jlb-taller-obj__aside {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.jlb-taller-obj__img {
+    margin: 0 !important; // vence al figure{margin-bottom} global sin capa
+    border-radius: 20px 20px 0 0;
+    overflow: hidden;
+    aspect-ratio: 341 / 220;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+}
+
+.jlb-taller-obj__cta {
+    border-radius: 0 0 20px 20px;
+    padding: 28px;
+    background: var(--jlb-red, #c92323);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.jlb-taller-obj__cta-text {
+    margin: 0;
+    font-family: "KG Second Chances Solid", "Caveat", cursive;
+    font-size: clamp(20px, 2.2vw, 26px);
+    line-height: 1.15;
+}
+
+.jlb-taller-obj__cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    align-self: flex-start;
+    padding: 12px 20px;
+    border-radius: 16px;
+    background: #fff;
+    color: var(--jlb-red, #c92323);
+    font-family: "DM Sans", var(--font-sans);
+    font-size: 16px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: transform 180ms ease;
+
+    &:hover {
+        transform: translateY(-2px);
+    }
+}
+
+a.jlb-taller-obj__cta-btn,
+.jlb-taller-obj__cta-btn:hover {
+    color: var(--jlb-red, #c92323);
+}
+
+// ── Responsive ───────────────────────────────────────────────────────────────
+@media (max-width: 860px) {
+    .jlb-taller-obj__inner {
+        grid-template-columns: 1fr;
+    }
+
+    .jlb-taller-plan__cards {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .jlb-taller-video__frame img:not(.jlb-taller-video__play) {
+        transition: none;
+    }
+}

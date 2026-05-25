@@ -1,0 +1,198 @@
+// Jean Le Boulch — Footer (3 columnas) + barra inferior con onda y gradiente.
+// Renderiza desde footer-jlb.php.
+//   Col 1: logo · Col 2 (centro): Llámanos + Síguenos + Escríbenos · Col 3: Visítanos.
+
+.jlb-footer {
+    position: relative;
+    overflow: hidden;
+    background: #fff;
+}
+
+.jlb-footer__inner {
+    width: min(1140px, calc(100% - 40px));
+    margin-inline: auto;
+    min-height: 310px;
+    display: grid;
+    grid-template-columns: 260px minmax(0, 1fr) minmax(0, 0.82fr);
+    gap: 48px;
+    align-items: start;
+    padding: 72px 0 60px;
+}
+
+.jlb-footer__logo {
+    width: 260px;
+    height: auto;
+}
+
+// Headings tipo "Llámanos:" / "Visítanos en:" (KG cursive).
+.jlb-footer h2 {
+    margin: 0 0 16px;
+    font-family: "KG Second Chances Solid", "Caveat", cursive;
+    font-size: 22px;
+    color: #231f20;
+    letter-spacing: 0;
+}
+
+.jlb-footer p,
+.jlb-footer a {
+    margin: 0 0 8px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #231f20;
+}
+
+// ── Columna central ──────────────────────────────────────────────────────────
+.jlb-footer__center {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.jlb-footer__phone {
+    margin: 0 0 4px;
+
+    // Números subrayados (como en Figma).
+    a {
+        margin: 0;
+        text-decoration: underline;
+        text-underline-offset: 2px;
+    }
+}
+
+// Label inline ("Síguenos en:", "Escríbenos:") — Raleway bold, NO heading.
+.jlb-footer__inline {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.jlb-footer__label {
+    font-family: "Raleway", var(--font-sans);
+    font-weight: 700;
+    font-size: 14px;
+    color: #231f20;
+    white-space: nowrap;
+}
+
+// `a.` para ganar al `.jlb-home-template a { text-decoration:none }` (0,1,1) del token.
+a.jlb-footer__email {
+    margin: 0;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+// ── Iconos sociales (glifo SVG sobre círculo con gradiente) ───────────────────
+.jlb-footer__socials {
+    display: flex;
+    gap: 8px;
+
+    a {
+        width: 38px;
+        height: 38px;
+        margin: 0;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        background: var(--jlb-gradient);
+        color: #fff;
+        transition: transform 180ms ease, box-shadow 180ms ease;
+
+        svg {
+            display: block;
+            width: 20px;
+            height: 20px;
+        }
+
+        &:hover,
+        &:focus-visible {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 18px rgb(97 71 148 / 0.4);
+        }
+    }
+}
+
+// ── Barra inferior (gradiente horizontal morado→rojo + onda superior) ─────────
+.jlb-footer__bottom {
+    position: relative;
+    margin-top: 40px;
+    padding: 24px 0 24px;
+    background: linear-gradient(90deg, #614794 0%, #993356 52%, #c92323 100%);
+    color: #fff;
+}
+
+// Onda orgánica que corona la barra (cresta más alta a la izquierda).
+.jlb-footer__wave {
+    position: absolute;
+    left: 0;
+    bottom: 100%;
+    width: 100%;
+    height: clamp(26px, 3vw, 44px);
+    margin-bottom: -1px; // evita hairline en el empalme con la barra
+    display: block;
+    pointer-events: none;
+}
+
+.jlb-footer__bottom-inner {
+    width: min(1140px, calc(100% - 40px));
+    margin-inline: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px 40px;
+    flex-wrap: wrap;
+
+    p {
+        margin: 0;
+        color: #fff;
+        font-weight: 700;
+    }
+}
+
+.jlb-footer__legal {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 28px;
+
+    a {
+        margin: 0;
+        color: #fff;
+        font-weight: 700;
+
+        &:hover,
+        &:focus-visible {
+            text-decoration: underline;
+        }
+    }
+}
+
+// ── Responsive ────────────────────────────────────────────────────────────────
+@media (max-width: 1100px) {
+    .jlb-footer__inner {
+        grid-template-columns: 220px minmax(0, 1fr);
+        row-gap: 36px;
+    }
+
+    .jlb-footer__visit {
+        grid-column: 2;
+    }
+}
+
+@media (max-width: 820px) {
+    .jlb-footer__inner {
+        width: min(100% - 28px, 1140px);
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+
+    .jlb-footer__visit {
+        grid-column: auto;
+    }
+
+    .jlb-footer__bottom-inner {
+        justify-content: flex-start;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+}

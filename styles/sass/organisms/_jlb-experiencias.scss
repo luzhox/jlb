@@ -1,0 +1,207 @@
+// Jean Le Boulch — Experiencias destacadas (Figma 4179:1360).
+// Filas alternadas media/texto. Media con play → video-lightbox (data-jlb-video).
+
+.jlb-experiencias {
+    padding: clamp(48px, 7vw, 96px) 0;
+    background: #fff;
+}
+
+.jlb-experiencias__row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: center;
+    gap: clamp(32px, 5vw, 80px);
+
+    & + & {
+        margin-top: clamp(56px, 8vw, 104px);
+    }
+}
+
+// Orden por defecto (par): texto izquierda, imagen derecha.
+.jlb-experiencias__body {
+    order: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.jlb-experiencias__media {
+    order: 2;
+}
+
+// Fila impar: imagen izquierda, texto derecha (alineado a la derecha — Figma).
+.jlb-experiencias__row--reverse {
+    .jlb-experiencias__media {
+        order: 1;
+    }
+
+    .jlb-experiencias__body {
+        order: 2;
+        align-items: flex-end;
+        text-align: right;
+    }
+}
+
+// ── Media (poster del video + play) ──────────────────────────────────────────
+.jlb-experiencias__frame {
+    position: relative;
+    display: block;
+    width: 100%;
+    aspect-ratio: 558 / 398;
+    border-radius: 24px;
+    overflow: hidden;
+    margin: 0;
+    box-shadow: 0 4px 24px rgb(0 0 0 / 0.25);
+
+    img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+        transition: transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+}
+
+// Solo si es enlace a video: cursor + hover.
+a.jlb-experiencias__frame {
+    cursor: pointer;
+
+    &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgb(12 8 24 / 0);
+        transition: background 300ms ease;
+    }
+
+    &:hover img,
+    &:focus-visible img {
+        transform: scale(1.04);
+    }
+
+    &:hover::after,
+    &:focus-visible::after {
+        background: rgb(12 8 24 / 0.12);
+    }
+
+    &:focus-visible {
+        outline: 3px solid var(--jlb-red, #c92323);
+        outline-offset: 3px;
+    }
+}
+
+.jlb-experiencias__play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 2;
+    width: clamp(72px, 8vw, 110px);
+    height: auto;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    transition: transform 240ms ease;
+    filter: drop-shadow(0 8px 18px rgb(0 0 0 / 0.28));
+
+    svg {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+
+    a.jlb-experiencias__frame:hover &,
+    a.jlb-experiencias__frame:focus-visible & {
+        transform: translate(-50%, -50%) scale(1.08);
+    }
+}
+
+// ── Texto ────────────────────────────────────────────────────────────────────
+.jlb-experiencias__title {
+    margin: 0;
+    font-family: "KG Second Chances Solid", "Caveat", cursive;
+    font-size: clamp(26px, 2.8vw, 32px);
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: 0;
+    color: #14111f;
+    max-width: 14ch;
+}
+
+.jlb-experiencias__text {
+    margin: 0;
+    max-width: 47ch;
+    font-family: "DM Sans", var(--font-sans);
+    font-size: clamp(16px, 1.4vw, 20px);
+    line-height: 1.55;
+    color: #14111f;
+}
+
+// ── Botón "Ver más información": píldora con gradiente de marca, texto blanco ──
+.jlb-link-external--gradient {
+    background: var(--jlb-gradient);
+    border-radius: 20px;
+
+    &:hover,
+    &:focus-visible {
+        box-shadow: 0 14px 28px rgb(97 71 148 / 0.28);
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--jlb-purple, #614794);
+        outline-offset: 2px;
+    }
+}
+
+// El token `.jlb-home-template a { color: inherit }` (0,1,1) gana al `.jlb-link-external`
+// base → reasertamos el blanco con `a.` (mismo truco que el hero de Admisión).
+a.jlb-link-external--gradient {
+    color: #fff;
+}
+
+@media (max-width: 900px) {
+    .jlb-experiencias__row,
+    .jlb-experiencias__row--reverse {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    // En una columna: imagen siempre arriba, texto alineado a la izquierda.
+    .jlb-experiencias__media,
+    .jlb-experiencias__row--reverse .jlb-experiencias__media {
+        order: 1;
+    }
+
+    .jlb-experiencias__body,
+    .jlb-experiencias__row--reverse .jlb-experiencias__body {
+        order: 2;
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    .jlb-experiencias__title {
+        max-width: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .jlb-experiencias__frame img,
+    .jlb-experiencias__play {
+        transition: none;
+    }
+}
+
+// ── Overrides del hero reutilizado (jlb_admision_hero) en esta página ─────────
+// El hero es el mismo módulo que Admisión; aquí el botón blanco lleva texto vino
+// (#ac2d42, Figma) y la imagen redondea también la esquina superior izquierda.
+.jlb-page-experiencias-innovadoras {
+    // Acotado al hero: si no, ganaría a `a.jlb-link-external--gradient` y pintaría
+    // de vino el texto de los botones "Ver más información" (deben ser blancos).
+    .jlb-adm-hero a.jlb-link-external {
+        color: #ac2d42;
+    }
+
+    .jlb-adm-hero__media {
+        border-top-left-radius: clamp(64px, 9vw, 141px);
+        border-bottom-left-radius: clamp(40px, 5vw, 73px);
+    }
+}

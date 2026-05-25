@@ -34,3 +34,6 @@ wp-config.php
 # Lock files de gestores ajenos al proyecto
 yarn.lock
 pnpm-lock.yaml
+
+# Vite hot file (marca de dev server activo)
+.vite-hot

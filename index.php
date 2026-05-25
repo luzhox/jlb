@@ -1,5 +1,5 @@
-<?php get_header(); ?>
-<?php // include('menu.php') retirado: header.php trae el masthead Kresna nativo. ?>
+<?php get_header('jlb'); ?>
+<?php // El chrome JLB (header-jlb.php) ya abre <main id="contenido">. ?>
 		<?php $args = array(
 			'posts_per_page' => 1,
 			'orderby'        => 'date',
@@ -63,4 +63,4 @@
 			</div>
 		</div>
 	</section>
-<?php get_footer(); ?>
+<?php get_footer('jlb'); ?>

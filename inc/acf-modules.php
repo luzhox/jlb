@@ -350,6 +350,320 @@ add_action('acf/init', function () {
                         ),
                     ),
 
+                    // ─────────────────────────────────────────────────────────
+                    // Módulos Jean Le Boulch (template Figma home)
+                    // Layout slug snake_case ↔ folder kebab-case (jlb_hero → jlb-hero).
+                    // ─────────────────────────────────────────────────────────
+
+                    // ── JLB Hero (Admisión) ───────────────────────────────────
+                    'jlb_hero' => array(
+                        'key' => 'layout_bp_jlb_hero',
+                        'name' => 'jlb_hero',
+                        'label' => 'JLB · Hero (Admisión)',
+                        'display' => 'block',
+                        'sub_fields' => array(
+                            array('key' => 'field_bp_jlb_hero_eyebrow', 'label' => 'Eyebrow', 'name' => 'eyebrow', 'type' => 'text', 'placeholder' => '2025 - 2026'),
+                            array('key' => 'field_bp_jlb_hero_titulo', 'label' => 'Título (H1)', 'name' => 'titulo', 'type' => 'text'),
+                            array('key' => 'field_bp_jlb_hero_texto', 'label' => 'Texto', 'name' => 'texto', 'type' => 'textarea', 'rows' => 3),
+                            array('key' => 'field_bp_jlb_hero_btn_pri', 'label' => 'Botón principal', 'name' => 'boton_principal', 'type' => 'link'),
+                            array('key' => 'field_bp_jlb_hero_btn_sec', 'label' => 'Botón secundario', 'name' => 'boton_secundario', 'type' => 'link'),
+                            array('key' => 'field_bp_jlb_hero_imagen', 'label' => 'Imagen', 'name' => 'imagen', 'type' => 'image', 'return_format' => 'array', 'instructions' => 'Imagen del lado derecho del hero (LCP).'),
+                        ),
+                    ),
+
+                    // ── JLB Niveles ───────────────────────────────────────────
+                    'jlb_niveles' => array(
+                        'key' => 'layout_bp_jlb_niveles',
+                        'name' => 'jlb_niveles',
+                        'label' => 'JLB · Niveles educativos',
+                        'display' => 'block',
+                        'sub_fields' => array(
+                            array('key' => 'field_bp_jlb_niv_titulo', 'label' => 'Título', 'name' => 'titulo', 'type' => 'text', 'default_value' => 'Nuestros niveles educativos'),
+                            array(
+                                'key' => 'field_bp_jlb_niv_items',
+                                'label' => 'Niveles',
+                                'name' => 'items',
+                                'type' => 'repeater',
+                                'button_label' => 'Agregar nivel',
+                                'sub_fields' => array(
+                                    array('key' => 'field_bp_jlb_niv_item_titulo', 'label' => 'Título', 'name' => 'titulo', 'type' => 'text'),
+                                    array('key' => 'field_bp_jlb_niv_item_imagen', 'label' => 'Imagen', 'name' => 'imagen', 'type' => 'image', 'return_format' => 'array'),
+                                    array('key' => 'field_bp_jlb_niv_item_link', 'label' => 'Enlace', 'name' => 'link', 'type' => 'link'),
+                                    array('key' => 'field_bp_jlb_niv_item_wide', 'label' => 'Card ancha (toda la fila)', 'name' => 'wide', 'type' => 'true_false', 'default_value' => 0, 'instructions' => 'Si activo, la card ocupa toda la fila (modifier `--wide`).'),
+                                ),
+                            ),
+                        ),
+                    ),
+
+                    // ── JLB Manifesto ─────────────────────────────────────────
+                    'jlb_manifesto' => array(
+                        'key' => 'layout_bp_jlb_manifesto',
+                        'name' => 'jlb_manifesto',
+                        'label' => 'JLB · Manifesto',
+                        'display' => 'block',
+                        'sub_fields' => array(
+                            array('key' => 'field_bp_jlb_man_anchor', 'label' => 'Anchor ID', 'name' => 'anchor', 'type' => 'text', 'default_value' => 'colegio', 'instructions' => 'ID para anclajes desde la navegación.'),
+                            array('key' => 'field_bp_jlb_man_texto', 'label' => 'Texto', 'name' => 'texto', 'type' => 'wysiwyg', 'toolbar' => 'basic', 'instructions' => 'Las palabras envueltas en <strong> se pintan con el gradient JLB.'),
+                        ),
+                    ),
+
+                    // ── JLB Experiencia ───────────────────────────────────────
+                    'jlb_experience' => array(
+                        'key' => 'layout_bp_jlb_experience',
+                        'name' => 'jlb_experience',
+                        'label' => 'JLB · Experiencia + Propuesta',
+                        'display' => 'block',
+                        'sub_fields' => array(
+                            array('key' => 'field_bp_jlb_exp_hero_img', 'label' => 'Imagen hero video', 'name' => 'hero_imagen', 'type' => 'image', 'return_format' => 'array'),
+                            array('key' => 'field_bp_jlb_exp_hero_video', 'label' => 'URL de video (hero)', 'name' => 'hero_video_url', 'type' => 'url', 'instructions' => 'YouTube, Vimeo o MP4. Si se llena, el botón play abre el video en un lightbox. Si está vacío, el play queda decorativo.'),
+                            array('key' => 'field_bp_jlb_exp_hero_titulo', 'label' => 'Título hero', 'name' => 'hero_titulo', 'type' => 'text', 'default_value' => 'Conoce la experiencia JLB'),
+                            array('key' => 'field_bp_jlb_exp_pro_titulo', 'label' => 'Título propuesta', 'name' => 'propuesta_titulo', 'type' => 'text', 'default_value' => 'Propuesta educativa'),
+                            array('key' => 'field_bp_jlb_exp_pro_texto', 'label' => 'Texto propuesta', 'name' => 'propuesta_texto', 'type' => 'textarea', 'rows' => 4),
+                            array(
+                                'key' => 'field_bp_jlb_exp_items',
+                                'label' => 'Experiencias (videos)',
+                                'name' => 'items',
+                                'type' => 'repeater',
+                                'button_label' => 'Agregar experiencia',
+                                'sub_fields' => array(
+                                    array('key' => 'field_bp_jlb_exp_item_titulo', 'label' => 'Título', 'name' => 'titulo', 'type' => 'text'),
+                                    array('key' => 'field_bp_jlb_exp_item_imagen', 'label' => 'Imagen / poster', 'name' => 'imagen', 'type' => 'image', 'return_format' => 'array'),
+                                    array('key' => 'field_bp_jlb_exp_item_video', 'label' => 'URL de video', 'name' => 'video_url', 'type' => 'url', 'instructions' => 'YouTube, Vimeo o MP4. Si se llena, el play abre el video en un lightbox. Si está vacío, el play queda decorativo.'),
+                                ),
+                            ),
+                        ),
+                    ),
+
+                    // ── JLB Testimonio padres ─────────────────────────────────
+                    'jlb_testimonio_padres' => array(
+                        'key' => 'layout_bp_jlb_testimonio_padres',
+                        'name' => 'jlb_testimonio_padres',
+                        'label' => 'JLB · Testimonio padres',
+                        'display' => 'block',
+                        'sub_fields' => array(
+                            array('key' => 'field_bp_jlb_tes_kicker', 'label' => 'Kicker', 'name' => 'kicker', 'type' => 'text', 'default_value' => 'Lo que dicen'),
+                            array('key' => 'field_bp_jlb_tes_titulo', 'label' => 'Título', 'name' => 'titulo', 'type' => 'text', 'default_value' => 'los padres'),
+                            array(
+                                'key' => 'field_bp_jlb_tes_citas',
+                                'label' => 'Testimonios (carrusel)',
+                                'name' => 'citas',
+                                'type' => 'repeater',
+                                'button_label' => 'Agregar testimonio',
+                                'min' => 1,
+                                'sub_fields' => array(
+                                    array('key' => 'field_bp_jlb_tes_cita', 'label' => 'Cita', 'name' => 'cita', 'type' => 'textarea', 'rows' => 4),
+                                    array('key' => 'field_bp_jlb_tes_autor', 'label' => 'Autor de la cita', 'name' => 'autor', 'type' => 'text', 'placeholder' => 'Papá de Ex Alumna'),
+                                ),
+                            ),
+                        ),
+                    ),
+
+                    // ── JLB Testimoniales (slider) ────────────────────────────
+                    'jlb_testimoniales' => array(
+                        'key' => 'layout_bp_jlb_testimoniales',
+                        'name' => 'jlb_testimoniales',
+                        'label' => 'JLB · Testimoniales (slider)',
+                        'display' => 'block',
+                        'sub_fields' => array(
+                            array('key' => 'field_bp_jlb_tlist_kicker', 'label' => 'Kicker', 'name' => 'kicker', 'type' => 'text', 'default_value' => 'Testimoniales'),
+                            array('key' => 'field_bp_jlb_tlist_arco', 'label' => '¿Mostrar arco decorativo?', 'name' => 'mostrar_arco_decorativo', 'type' => 'true_false', 'default_value' => 1, 'instructions' => 'Arco rojo multicapa en la esquina superior derecha (decorativo, oculto en mobile).'),
+                            array(
+                                'key' => 'field_bp_jlb_tlist_items',
+                                'label' => 'Testimoniales',
+                                'name' => 'items',
+                                'type' => 'repeater',
+                                'button_label' => 'Agregar testimonial',
+                                'sub_fields' => array(
+                                    array('key' => 'field_bp_jlb_tlist_imagen', 'label' => 'Imagen', 'name' => 'imagen', 'type' => 'image', 'return_format' => 'array'),
+                                    array('key' => 'field_bp_jlb_tlist_video', 'label' => 'URL de video (opcional)', 'name' => 'video_url', 'type' => 'url', 'instructions' => 'Si se llena, se muestra el botón "play" sobre la imagen. Si está vacío, el play se oculta.'),
+                                    array('key' => 'field_bp_jlb_tlist_titulo', 'label' => 'Título', 'name' => 'titulo', 'type' => 'text', 'placeholder' => 'Me motivaron a conseguir mis objetivos'),
+                                    array('key' => 'field_bp_jlb_tlist_cita', 'label' => 'Cita', 'name' => 'cita', 'type' => 'textarea', 'rows' => 4),
+                                    array('key' => 'field_bp_jlb_tlist_autor_nombre', 'label' => 'Autor — nombre', 'name' => 'autor_nombre', 'type' => 'text'),
+                                    array('key' => 'field_bp_jlb_tlist_autor_rol', 'label' => 'Autor — rol', 'name' => 'autor_rol', 'type' => 'text', 'placeholder' => 'Ex Alumna'),
+                                ),
+                            ),
+                        ),
+                    ),
+
+                    // ── JLB Noticias ──────────────────────────────────────────
+                    'jlb_noticias' => array(
+                        'key' => 'layout_bp_jlb_noticias',
+                        'name' => 'jlb_noticias',
+                        'label' => 'JLB · Noticias',
+                        'display' => 'block',
+                        'sub_fields' => array(
+                            array('key' => 'field_bp_jlb_not_titulo', 'label' => 'Título', 'name' => 'titulo', 'type' => 'text', 'default_value' => 'Noticias'),
+                            array(
+                                'key' => 'field_bp_jlb_not_items',
+                                'label' => 'Noticias',
+                                'name' => 'items',
+                                'type' => 'repeater',
+                                'button_label' => 'Agregar noticia',
+                                'sub_fields' => array(
+                                    array('key' => 'field_bp_jlb_not_item_titulo', 'label' => 'Título', 'name' => 'titulo', 'type' => 'text'),
+                                    array('key' => 'field_bp_jlb_not_item_fecha', 'label' => 'Fecha', 'name' => 'fecha', 'type' => 'text', 'placeholder' => '21/01/2026'),
+                                    array('key' => 'field_bp_jlb_not_item_etiqueta', 'label' => 'Etiqueta', 'name' => 'etiqueta', 'type' => 'text', 'default_value' => 'Noticias'),
+                                    array('key' => 'field_bp_jlb_not_item_imagen', 'label' => 'Imagen', 'name' => 'imagen', 'type' => 'image', 'return_format' => 'array'),
+                                    array('key' => 'field_bp_jlb_not_item_link', 'label' => 'Enlace', 'name' => 'link', 'type' => 'link'),
+                                ),
+                            ),
+                        ),
+                    ),
+
+                    // ── Página Admisión: Hero ─────────────────────────────────
+                    'jlb_admision_hero' => array(
+                        'key' => 'layout_bp_jlb_adm_hero',
+                        'name' => 'jlb_admision_hero',
+                        'label' => 'JLB · Admisión — Hero',
+                        'display' => 'block',
+                        'sub_fields' => array(
+                            array('key' => 'field_bp_jlb_adm_hero_eyebrow', 'label' => 'Eyebrow (texto pequeño sobre el título)', 'name' => 'eyebrow', 'type' => 'text'),
+                            array('key' => 'field_bp_jlb_adm_hero_titulo', 'label' => 'Título', 'name' => 'titulo', 'type' => 'text', 'default_value' => 'Educación integral para tu hijo'),
+                            array('key' => 'field_bp_jlb_adm_hero_titulo_img', 'label' => 'Título como imagen/logo (opcional; reemplaza el texto del título)', 'name' => 'titulo_imagen', 'type' => 'image', 'return_format' => 'array'),
+                            array('key' => 'field_bp_jlb_adm_hero_sub', 'label' => 'Subtítulo', 'name' => 'subtitulo', 'type' => 'textarea', 'rows' => 2),
+                            array('key' => 'field_bp_jlb_adm_hero_img', 'label' => 'Imagen', 'name' => 'imagen', 'type' => 'image', 'return_format' => 'array'),
+                            array('key' => 'field_bp_jlb_adm_hero_video', 'label' => 'URL de video (play sobre la imagen; opcional)', 'name' => 'video_url', 'type' => 'url'),
+                            array('key' => 'field_bp_jlb_adm_hero_video_cap', 'label' => 'Texto bajo el play (ej. "Ver recorrido virtual")', 'name' => 'video_caption', 'type' => 'text'),
+                            array(
+                                'key' => 'field_bp_jlb_adm_hero_botones', 'label' => 'Botones', 'name' => 'botones', 'type' => 'repeater', 'max' => 2, 'button_label' => 'Agregar botón',
+                                'sub_fields' => array(
+                                    array('key' => 'field_bp_jlb_adm_hero_btn_texto', 'label' => 'Texto', 'name' => 'texto', 'type' => 'text'),
+                                    array('key' => 'field_bp_jlb_adm_hero_btn_url', 'label' => 'URL', 'name' => 'url', 'type' => 'url'),
+                                    array('key' => 'field_bp_jlb_adm_hero_btn_target', 'label' => 'Target', 'name' => 'target', 'type' => 'select', 'choices' => array('_self' => 'Misma pestaña', '_blank' => 'Nueva pestaña'), 'default_value' => '_self'),
+                                ),
+                            ),
+                        ),
+                    ),
+
+                    // ── Página Admisión: Proceso (stepper) ────────────────────
+                    'jlb_proceso' => array(
+                        'key' => 'layout_bp_jlb_proceso',
+                        'name' => 'jlb_proceso',
+                        'label' => 'JLB · Admisión — Proceso (pasos)',
+                        'display' => 'block',
+                        'sub_fields' => array(
+                            array('key' => 'field_bp_jlb_proc_eyebrow', 'label' => 'Eyebrow', 'name' => 'eyebrow', 'type' => 'text', 'default_value' => 'Proceso de admisión'),
+                            array('key' => 'field_bp_jlb_proc_titulo', 'label' => 'Título', 'name' => 'titulo', 'type' => 'text'),
+                            array(
+                                'key' => 'field_bp_jlb_proc_pasos', 'label' => 'Pasos', 'name' => 'pasos', 'type' => 'repeater', 'button_label' => 'Agregar paso',
+                                'sub_fields' => array(
+                                    array('key' => 'field_bp_jlb_proc_etq', 'label' => 'Etiqueta (tab)', 'name' => 'etiqueta', 'type' => 'text'),
+                                    array('key' => 'field_bp_jlb_proc_intro', 'label' => 'Intro', 'name' => 'intro', 'type' => 'wysiwyg', 'toolbar' => 'basic', 'media_upload' => 0),
+                                    array(
+                                        'key' => 'field_bp_jlb_proc_reqs', 'label' => 'Requisitos', 'name' => 'requisitos', 'type' => 'repeater', 'button_label' => 'Agregar requisito',
+                                        'sub_fields' => array(
+                                            array('key' => 'field_bp_jlb_proc_req', 'label' => 'Texto', 'name' => 'texto', 'type' => 'text'),
+                                        ),
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ),
+
+                    // ── Página Admisión: Cuota de ingreso (calculadora) ───────
+                    'jlb_cuota' => array(
+                        'key' => 'layout_bp_jlb_cuota',
+                        'name' => 'jlb_cuota',
+                        'label' => 'JLB · Admisión — Cuota de ingreso',
+                        'display' => 'block',
+                        'sub_fields' => array(
+                            array('key' => 'field_bp_jlb_cuota_eyebrow', 'label' => 'Eyebrow', 'name' => 'eyebrow', 'type' => 'text', 'default_value' => 'Cuota de ingreso'),
+                            array('key' => 'field_bp_jlb_cuota_titulo', 'label' => 'Título', 'name' => 'titulo', 'type' => 'text'),
+                            array('key' => 'field_bp_jlb_cuota_ver', 'label' => 'Ver condiciones (link)', 'name' => 'ver_condiciones', 'type' => 'link'),
+                            array(
+                                'key' => 'field_bp_jlb_cuota_niveles', 'label' => 'Niveles', 'name' => 'niveles', 'type' => 'repeater', 'button_label' => 'Agregar nivel',
+                                'sub_fields' => array(
+                                    array('key' => 'field_bp_jlb_cuota_p_nombre', 'label' => 'Nivel', 'name' => 'nombre', 'type' => 'text', 'placeholder' => 'Inicial'),
+                                    array('key' => 'field_bp_jlb_cuota_p_contado', 'label' => 'Cuota al contado', 'name' => 'cuota_contado', 'type' => 'text', 'placeholder' => 'US$3500'),
+                                    array('key' => 'field_bp_jlb_cuota_p_cuotas', 'label' => 'Cuota en cuotas', 'name' => 'cuota_cuotas', 'type' => 'text', 'placeholder' => 'US$5000'),
+                                    array('key' => 'field_bp_jlb_cuota_p_ahorro', 'label' => 'Ahorro (al contado)', 'name' => 'ahorro', 'type' => 'text', 'placeholder' => '$1500'),
+                                ),
+                            ),
+                        ),
+                    ),
+
+                    // ── Página Admisión: Galería dúo ──────────────────────────
+                    'jlb_galeria' => array(
+                        'key' => 'layout_bp_jlb_galeria',
+                        'name' => 'jlb_galeria',
+                        'label' => 'JLB · Galería (2 imágenes)',
+                        'display' => 'block',
+                        'sub_fields' => array(
+                            array('key' => 'field_bp_jlb_gal_ancha', 'label' => 'Imagen ancha', 'name' => 'imagen_ancha', 'type' => 'image', 'return_format' => 'array'),
+                            array('key' => 'field_bp_jlb_gal_angosta', 'label' => 'Imagen angosta', 'name' => 'imagen_angosta', 'type' => 'image', 'return_format' => 'array'),
+                        ),
+                    ),
+
+                    // ── Página Admisión: Preguntas frecuentes ─────────────────
+                    'jlb_faq' => array(
+                        'key' => 'layout_bp_jlb_faq',
+                        'name' => 'jlb_faq',
+                        'label' => 'JLB · Preguntas frecuentes',
+                        'display' => 'block',
+                        'sub_fields' => array(
+                            array('key' => 'field_bp_jlb_faq_titulo', 'label' => 'Título', 'name' => 'titulo', 'type' => 'text', 'default_value' => 'Preguntas frecuentes'),
+                            array(
+                                'key' => 'field_bp_jlb_faq_preguntas', 'label' => 'Preguntas', 'name' => 'preguntas', 'type' => 'repeater', 'button_label' => 'Agregar pregunta',
+                                'sub_fields' => array(
+                                    array('key' => 'field_bp_jlb_faq_q', 'label' => 'Pregunta', 'name' => 'pregunta', 'type' => 'text'),
+                                    array('key' => 'field_bp_jlb_faq_a', 'label' => 'Respuesta', 'name' => 'respuesta', 'type' => 'wysiwyg', 'toolbar' => 'basic', 'media_upload' => 0),
+                                ),
+                            ),
+                        ),
+                    ),
+
+                    // ── Página Experiencias innovadoras: lista de experiencias ─
+                    'jlb_experiencias' => array(
+                        'key' => 'layout_bp_jlb_experiencias',
+                        'name' => 'jlb_experiencias',
+                        'label' => 'JLB · Experiencias (filas media/texto)',
+                        'display' => 'block',
+                        'sub_fields' => array(
+                            array(
+                                'key' => 'field_bp_jlb_exps_items', 'label' => 'Experiencias', 'name' => 'experiencias', 'type' => 'repeater', 'button_label' => 'Agregar experiencia',
+                                'sub_fields' => array(
+                                    array('key' => 'field_bp_jlb_exps_titulo', 'label' => 'Título', 'name' => 'titulo', 'type' => 'text'),
+                                    array('key' => 'field_bp_jlb_exps_texto', 'label' => 'Texto', 'name' => 'texto', 'type' => 'textarea', 'rows' => 4, 'new_lines' => ''),
+                                    array('key' => 'field_bp_jlb_exps_video', 'label' => 'URL del video', 'name' => 'video_url', 'type' => 'url', 'instructions' => 'YouTube / Vimeo / MP4. Vacío = sin play.'),
+                                    array('key' => 'field_bp_jlb_exps_img', 'label' => 'Imagen (poster)', 'name' => 'imagen', 'type' => 'image', 'return_format' => 'array', 'preview_size' => 'medium'),
+                                    array('key' => 'field_bp_jlb_exps_boton', 'label' => 'Botón', 'name' => 'boton', 'type' => 'link', 'return_format' => 'array'),
+                                ),
+                            ),
+                        ),
+                    ),
+
+                    // ── Página Open Day: formulario de registro (→ HubSpot) ────
+                    'jlb_open_day_form' => array(
+                        'key' => 'layout_bp_jlb_open_day_form',
+                        'name' => 'jlb_open_day_form',
+                        'label' => 'JLB · Open Day — Formulario (HubSpot)',
+                        'display' => 'block',
+                        'sub_fields' => array(
+                            array('key' => 'field_bp_jlb_od_titulo', 'label' => 'Título (opcional, oculto si vacío)', 'name' => 'titulo', 'type' => 'text'),
+                        ),
+                    ),
+
+                    // ── Página Nosotros: línea de tiempo / historia ────────────
+                    'jlb_timeline' => array(
+                        'key' => 'layout_bp_jlb_timeline',
+                        'name' => 'jlb_timeline',
+                        'label' => 'JLB · Línea de tiempo (historia)',
+                        'display' => 'block',
+                        'sub_fields' => array(
+                            array('key' => 'field_bp_jlb_tl_eyebrow', 'label' => 'Eyebrow', 'name' => 'eyebrow', 'type' => 'text', 'default_value' => 'Nuestra historia'),
+                            array('key' => 'field_bp_jlb_tl_titulo', 'label' => 'Título', 'name' => 'titulo', 'type' => 'text'),
+                            array(
+                                'key' => 'field_bp_jlb_tl_hitos', 'label' => 'Hitos', 'name' => 'hitos', 'type' => 'repeater', 'button_label' => 'Agregar hito',
+                                'sub_fields' => array(
+                                    array('key' => 'field_bp_jlb_tl_anio', 'label' => 'Año', 'name' => 'anio', 'type' => 'text', 'placeholder' => '1983'),
+                                    array('key' => 'field_bp_jlb_tl_h_titulo', 'label' => 'Título del hito', 'name' => 'titulo', 'type' => 'text'),
+                                    array('key' => 'field_bp_jlb_tl_texto', 'label' => 'Texto', 'name' => 'texto', 'type' => 'textarea', 'rows' => 3, 'new_lines' => ''),
+                                    array('key' => 'field_bp_jlb_tl_img', 'label' => 'Imagen (opcional)', 'name' => 'imagen', 'type' => 'image', 'return_format' => 'array'),
+                                ),
+                            ),
+                        ),
+                    ),
+
                 ),
             ),
         ),

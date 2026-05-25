@@ -1,0 +1,32 @@
+// Jean Le Boulch — Manifesto: bloque centrado con párrafo grande
+// y palabras destacadas con `<strong>` pintadas con el gradient JLB.
+
+.jlb-manifesto {
+    padding: 44px 0 72px;
+
+    p {
+        width: min(1140px, 100%);
+        margin: 0 auto;
+        font-family: "DM Sans", var(--font-sans);
+        font-size: clamp(24px, 2.25vw, 32px);
+        line-height: 1.62;
+        text-align: center;
+        color: #241d3e;
+    }
+
+    strong {
+        color: transparent;
+        background: var(--jlb-gradient);
+        background-repeat: no-repeat; // jlbManifesto.js ajusta size/position por palabra
+        background-clip: text;
+        -webkit-background-clip: text;
+        font-weight: 700;
+    }
+}
+
+@media (max-width: 820px) {
+    .jlb-manifesto p {
+        font-size: 23px;
+        text-align: left;
+    }
+}

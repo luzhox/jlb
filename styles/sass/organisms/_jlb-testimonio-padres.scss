@@ -1,0 +1,131 @@
+// Jean Le Boulch — Testimonio de padres.
+// Grid 3-col: kicker+título, blockquote, parent-card.
+
+.jlb-testimonial {
+    padding: 28px 0 88px;
+
+    h2 {
+        margin: 0;
+        font-family: "KG Second Chances Solid", "Caveat", cursive;
+        font-size: clamp(34px, 3vw, 44px);
+        line-height: 0.95;
+        color: var(--jlb-purple);
+        letter-spacing: 0;
+    }
+
+    blockquote {
+        position: relative;
+        max-width: 620px;
+        margin-inline: auto;
+        text-align: center;
+        font-family: "DM Sans", var(--font-sans);
+        font-size: clamp(17px, 1.5vw, 19px);
+        font-style: italic;
+        line-height: 1.55;
+        color: #2d3754;
+
+        p {
+            margin: 0;
+            // Hereda el clamp del blockquote: si no, el `p { font-size:24px }`
+            // global de _typo.scss (tablet) gana sobre el <p> interno.
+            font-size: inherit;
+            line-height: inherit;
+        }
+    }
+
+    // Comilla decorativa grande, centrada arriba de la cita.
+    &__quote-mark {
+        display: block;
+        width: 64px;
+        margin: 0 auto 16px;
+        color: var(--jlb-red);
+        line-height: 0;
+
+        svg {
+            width: 100%;
+            height: auto;
+        }
+    }
+
+    cite {
+        display: block;
+        margin-top: 20px;
+        font-family: "Caveat", cursive;
+        font-size: 26px;
+        font-style: normal;
+        color: var(--jlb-red);
+    }
+}
+
+.jlb-testimonial__inner {
+    display: grid;
+    grid-template-columns: minmax(200px, 300px) minmax(0, 1fr);
+    gap: 40px;
+    align-items: center;
+}
+
+// ── Carrusel (Swiper) ──────────────────────────────────────────────────────
+// `min-width: 0` es CRÍTICO: sin él, el item de grid (min-width:auto por
+// defecto) no puede encoger bajo el min-content de Swiper, y Swiper calcula un
+// slideSize "infinito" que clampa a 2^25 px → la sección se vuelve invisible y
+// mete overflow horizontal en toda la página (sobre todo en mobile/tablet).
+.jlb-testimonial__carousel {
+    position: relative;
+    min-width: 0;
+}
+
+.jlb-testimonial__swiper {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.jlb-testimonial__slide {
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    padding: 4px;
+}
+
+// Dots de paginación (Swiper con bulletClass custom).
+.jlb-testimonial__dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 32px;
+}
+
+.jlb-testimonial__dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: rgb(97 71 148 / 0.22);
+    cursor: pointer;
+    border: 0;
+    padding: 0;
+    transition: background-color 200ms ease, transform 200ms ease;
+
+    &.is-active {
+        background: var(--jlb-red);
+        transform: scale(1.1);
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--jlb-purple);
+        outline-offset: 3px;
+    }
+}
+
+@media (max-width: 1180px) {
+    .jlb-testimonial__inner {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        text-align: center;
+    }
+
+    .jlb-testimonial__head {
+        text-align: center;
+    }
+}

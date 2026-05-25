@@ -1,0 +1,183 @@
+{
+  "screenshots": [
+    "/Users/luismorales/Local Sites/jlb-school/app/public/wp-content/themes/jlb/qa/screenshots/jlb-testimoniales-single-1440.png",
+    "/Users/luismorales/Local Sites/jlb-school/app/public/wp-content/themes/jlb/qa/screenshots/jlb-testimoniales-single-980.png",
+    "/Users/luismorales/Local Sites/jlb-school/app/public/wp-content/themes/jlb/qa/screenshots/jlb-testimoniales-single-640.png",
+    "/Users/luismorales/Local Sites/jlb-school/app/public/wp-content/themes/jlb/qa/screenshots/jlb-testimoniales-single-375.png",
+    "/Users/luismorales/Local Sites/jlb-school/app/public/wp-content/themes/jlb/qa/screenshots/jlb-testimoniales-multi-1440.png",
+    "/Users/luismorales/Local Sites/jlb-school/app/public/wp-content/themes/jlb/qa/screenshots/jlb-testimoniales-multi-980.png",
+    "/Users/luismorales/Local Sites/jlb-school/app/public/wp-content/themes/jlb/qa/screenshots/jlb-testimoniales-multi-640.png",
+    "/Users/luismorales/Local Sites/jlb-school/app/public/wp-content/themes/jlb/qa/screenshots/jlb-testimoniales-multi-375.png",
+    "/Users/luismorales/Local Sites/jlb-school/app/public/wp-content/themes/jlb/qa/screenshots/jlb-testimoniales-con-video-1440.png",
+    "/Users/luismorales/Local Sites/jlb-school/app/public/wp-content/themes/jlb/qa/screenshots/jlb-testimoniales-con-video-980.png",
+    "/Users/luismorales/Local Sites/jlb-school/app/public/wp-content/themes/jlb/qa/screenshots/jlb-testimoniales-con-video-640.png",
+    "/Users/luismorales/Local Sites/jlb-school/app/public/wp-content/themes/jlb/qa/screenshots/jlb-testimoniales-con-video-375.png"
+  ],
+  "asserts": [
+    {
+      "name": "single: solo 1 slide (puede haber 0 si no usa swiper con 1)",
+      "ok": true,
+      "detail": "count=1"
+    },
+    {
+      "name": "single: .jlb-testimoniales__nav no presente o oculto",
+      "ok": true,
+      "detail": "count=0"
+    },
+    {
+      "name": "single: ningún botón play (sin video_url)",
+      "ok": true,
+      "detail": "count=0"
+    },
+    {
+      "name": "multi: <section class=\"jlb-testimoniales\"> existe",
+      "ok": true,
+      "detail": "count=1"
+    },
+    {
+      "name": "multi: 3 .swiper-slide",
+      "ok": true,
+      "detail": "count=3"
+    },
+    {
+      "name": "multi: kicker contiene \"Testimoniales\"",
+      "ok": true,
+      "detail": "\"Testimoniales\""
+    },
+    {
+      "name": "multi: slide 1 título = \"Me motivaron a conseguir mis objetivos\"",
+      "ok": true,
+      "detail": "\"Me motivaron a conseguir mis objetivos\""
+    },
+    {
+      "name": "multi: slide 1 autor incluye \"Nicole\"",
+      "ok": true,
+      "detail": "\"Nicole\n                                                                                                                             — \n                                                                                                                            Ex Alumna\""
+    },
+    {
+      "name": "multi: slide 1 autor incluye \"Ex Alumna\"",
+      "ok": true,
+      "detail": "\"Nicole\n                                                                                                                             — \n                                                                                                                            Ex Alumna\""
+    },
+    {
+      "name": "multi: slide 2 autor incluye \"Carla\"",
+      "ok": true,
+      "detail": "\"Carla\n                                                                                                                             — \n                                                                                                                            Ex Alumna · Promoción 2018\""
+    },
+    {
+      "name": "multi: slide 3 autor incluye \"Diego\"",
+      "ok": true,
+      "detail": "\"Diego\n                                                                                                                             — \n                                                                                                                            Ex Alumno\""
+    },
+    {
+      "name": "multi: card border-radius ≥ 80px (desktop 1440)",
+      "ok": true,
+      "detail": "tl=82px"
+    },
+    {
+      "name": "multi: media border-radius asimétrico (4 valores distintos)",
+      "ok": true,
+      "detail": "tl=134px tr=33px br=52px bl=82px"
+    },
+    {
+      "name": "multi: media radius dentro de tolerancia (tl≈134, tr≈33, br≈52, bl≈82 ±10)",
+      "ok": true,
+      "detail": "tl=134 tr=33 br=52 bl=82"
+    },
+    {
+      "name": "multi: .jlb-testimoniales__nav visible",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "multi: click .jlb-testimoniales__next cambia slide activo",
+      "ok": true,
+      "detail": "before=\"1 / 3\" after=\"2 / 3\""
+    },
+    {
+      "name": "multi: ningún botón play (slides sin video_url)",
+      "ok": true,
+      "detail": "count=0"
+    },
+    {
+      "name": "multi: kicker font-family menciona Raleway",
+      "ok": true,
+      "detail": "\"Raleway, \"DM Sans\", ui-sans-serif, system-ui, -apple-system, sans-serif\""
+    },
+    {
+      "name": "multi: título font-family menciona KG Second Chances",
+      "ok": true,
+      "detail": "\"\"KG Second Chances Solid\", Caveat, cursive\""
+    },
+    {
+      "name": "multi: cita color ≈ #2A2938 (rgb(42, 41, 56))",
+      "ok": true,
+      "detail": "computed=\"rgb(42, 41, 56)\""
+    },
+    {
+      "name": "multi: cita font-family menciona Raleway",
+      "ok": true,
+      "detail": "\"Raleway, \"DM Sans\", ui-sans-serif, system-ui, -apple-system, sans-serif\""
+    },
+    {
+      "name": "multi: cita fontStyle italic",
+      "ok": true,
+      "detail": "fontStyle=\"italic\""
+    },
+    {
+      "name": "multi: cita peso ligero (≤ 300)",
+      "ok": true,
+      "detail": "weight=300"
+    },
+    {
+      "name": "multi: Raleway 400 15px disponible (document.fonts.check)",
+      "ok": true,
+      "detail": "check=true"
+    },
+    {
+      "name": "multi: Raleway 300 italic 18px disponible (document.fonts.check)",
+      "ok": true,
+      "detail": "check=true"
+    },
+    {
+      "name": "multi: KG Second Chances 36px disponible (document.fonts.check)",
+      "ok": true,
+      "detail": "check=true"
+    },
+    {
+      "name": "multi: arco decorativo visible en desktop 1440",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "multi: autor tiene ≥ 2 pesos tipográficos distintos (bold/regular)",
+      "ok": true,
+      "detail": "weights=700,500,400 children=[{\"t\":\"Nicole\",\"w\":\"700\"},{\"t\":\"—\",\"w\":\"500\"},{\"t\":\"Ex Alumna\",\"w\":\"400\"}]"
+    },
+    {
+      "name": "con-video: botón play / link con SVG en media",
+      "ok": true,
+      "detail": "count=2"
+    },
+    {
+      "name": "con-video: play visible (computed)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "con-video: href apunta a YouTube",
+      "ok": true,
+      "detail": "href=\"https://www.youtube.com/watch?v=dQw4w9WgXcQ\""
+    },
+    {
+      "name": "mobile-640: arco decorativo display:none",
+      "ok": true,
+      "detail": "display=none"
+    }
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "httpErrors": [],
+  "notes": [],
+  "figma": []
+}

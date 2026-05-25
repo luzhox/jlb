@@ -1,0 +1,257 @@
+// Jean Le Boulch — Hero de la página Admisión (Figma 4128:316).
+// Gradiente full-width + texto izquierda + imagen derecha (esquina redondeada).
+
+.jlb-adm-hero {
+    position: relative;
+    min-height: clamp(480px, 42vw, 612px);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: stretch;
+    overflow: hidden;
+    background: var(--jlb-gradient);
+    isolation: isolate;
+}
+
+.jlb-adm-hero__content {
+    width: min(560px, calc(100% - 48px));
+    margin-left: max(28px, calc((100vw - 1140px) / 2));
+    padding-block: clamp(56px, 7vw, 96px);
+    align-self: center;
+    color: #fff;
+    position: relative;
+    z-index: 2;
+}
+
+// Eyebrow opcional sobre el título (Open Day: "Admisión 2026 - 2027").
+.jlb-adm-hero__eyebrow {
+    margin: 0 0 8px;
+    font-family: "DM Sans", var(--font-sans);
+    font-size: clamp(15px, 1.4vw, 18px);
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 0.01em;
+}
+
+.jlb-adm-hero__title {
+    margin: 0 0 20px;
+    font-family: "KG Second Chances Solid", "Caveat", cursive;
+    font-size: clamp(34px, 4.4vw, 52px);
+    font-weight: 400;
+    line-height: 1.08;
+    letter-spacing: 0;
+    color: #fff;
+}
+
+// Título como logo/imagen (Open Day "¡Open Day!").
+.jlb-adm-hero__title--img {
+    margin-bottom: 16px;
+
+    img {
+        display: block;
+        width: auto;
+        max-width: min(100%, 360px);
+        height: auto;
+    }
+}
+
+.jlb-adm-hero__subtitle {
+    margin: 0 0 32px;
+    max-width: 460px;
+    font-family: "Raleway", var(--font-sans);
+    font-size: 16px;
+    line-height: 1.5;
+    color: rgb(255 255 255 / 0.95);
+}
+
+.jlb-adm-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+// Wave blanco de transición al pie del hero (full-width, Figma 4128:324).
+.jlb-adm-hero__wave {
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    width: 100%;
+    height: clamp(32px, 4vw, 64px);
+    display: block;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.jlb-adm-hero__media {
+    position: relative;
+    min-height: 100%;
+    margin: 0;
+    overflow: hidden;
+    border-bottom-left-radius: clamp(80px, 12vw, 160px);
+    z-index: 1;
+
+    img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+    }
+}
+
+// Variante con video: overlay oscuro + play centrado + caption (Open Day).
+.jlb-adm-hero__media--video {
+    display: block;
+    cursor: pointer;
+
+    &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgb(48 28 63 / 0.52); // Figma: tinte vino-morado, no gris
+        transition: background 300ms ease;
+    }
+
+    &:hover::after,
+    &:focus-visible::after {
+        background: rgb(48 28 63 / 0.62);
+    }
+
+    &:focus-visible {
+        outline: 3px solid #fff;
+        outline-offset: -4px;
+    }
+}
+
+.jlb-adm-hero__play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 2;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    pointer-events: none;
+
+    >img {
+        width: clamp(72px, 7vw, 96px);
+        height: auto;
+        filter: drop-shadow(0 8px 18px rgb(0 0 0 / 0.3));
+        transition: transform 240ms ease;
+    }
+
+    &-cap {
+        font-family: "DM Sans", var(--font-sans);
+        font-size: clamp(15px, 1.4vw, 18px);
+        font-weight: 600;
+        color: #fff;
+        text-shadow: 0 2px 8px rgb(0 0 0 / 0.4);
+    }
+
+    .jlb-adm-hero__media--video:hover &>img,
+    .jlb-adm-hero__media--video:focus-visible &>img {
+        transform: scale(1.08);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .jlb-adm-hero__media--video::after,
+    .jlb-adm-hero__play>img {
+        transition: none;
+    }
+}
+
+// ── Botón-link externo (píldora blanca, texto teal + icono ↗) ─────────────────
+// Compartido por el hero y "Ver condiciones" de la cuota.
+.jlb-link-external {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 24px;
+    border-radius: 24px;
+    background: #fff;
+    color: #367596;
+    font-family: "DM Sans", var(--font-sans);
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1;
+    white-space: nowrap;
+    transition: transform 180ms ease, box-shadow 180ms ease;
+
+    &__icon {
+        flex: 0 0 auto;
+    }
+
+    &:hover,
+    &:focus-visible {
+        transform: translateY(-2px);
+        box-shadow: 0 14px 28px rgb(22 31 51 / 0.18);
+    }
+
+    &:focus-visible {
+        outline: 2px solid #fff;
+        outline-offset: 2px;
+    }
+}
+
+// Botón secundario del hero: outline blanco sobre el gradiente (Figma 4128:333).
+.jlb-link-external--outline {
+    background: transparent;
+    border: 1px solid #fff;
+
+    &:hover,
+    &:focus-visible {
+        background: rgb(255 255 255 / 0.12);
+        box-shadow: none;
+    }
+}
+
+// Color del texto: el token `.jlb-home-template a { color: inherit }` (0,1,1)
+// vence al `color` base del link (0,1,0) y lo deja heredando blanco → ilegible.
+// Reasertamos con `a.` (gana por especificidad/orden dentro de @layer components).
+a.jlb-link-external {
+    color: var(--jlb-red); // teal (botón relleno blanco)
+}
+
+a.jlb-link-external--outline {
+    color: #fff; // texto blanco (botón outline sobre gradiente)
+}
+
+@media (max-width: 1024px) {
+    .jlb-adm-hero {
+        grid-template-columns: 1fr;
+    }
+
+    .jlb-adm-hero__content {
+        width: min(100% - 48px, 620px);
+        margin-inline: auto;
+        padding-block: 64px 40px;
+    }
+
+    .jlb-adm-hero__media {
+        min-height: 320px;
+        border-bottom-left-radius: 0;
+    }
+}
+
+@media (max-width: 560px) {
+    .jlb-adm-hero__content {
+        width: calc(100% - 40px);
+        padding-block: 48px 32px;
+    }
+
+    .jlb-adm-hero__actions {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .jlb-link-external {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .jlb-adm-hero__media {
+        min-height: 240px;
+    }
+}

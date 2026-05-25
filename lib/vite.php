@@ -15,17 +15,31 @@ define('VITE_PORT', 5173);
 define('VITE_HOST', 'http://localhost:' . VITE_PORT);
 
 /**
- * Devuelve true SOLO cuando el Vite dev server está corriendo.
+ * Devuelve true cuando se deben servir los assets desde el Vite dev server.
  *
- * Para activar el modo dev server, añade en wp-config.php:
- *   define('VITE_DEV_SERVER', true);
+ * Dos modos (en este orden de prioridad):
+ *   1) Override explícito: si `VITE_DEV_SERVER` está definida en wp-config.php,
+ *      manda su valor (true = dev, false = producción). Útil para forzar un modo.
+ *   2) Auto-detección (recomendado, sin tocar wp-config): si la constante NO
+ *      está definida y el entorno es `local`, se activa el modo dev cuando Vite
+ *      está corriendo, detectado por el hot file `.vite-hot` que el dev server
+ *      crea al arrancar y borra al cerrar (ver vite.config.js). Así el modo
+ *      sigue a `npm run dev` / `npm run build` automáticamente.
  *
- * Y luego ejecuta: npm run dev
- *
- * Por defecto siempre usa el manifest de producción (build/).
+ * En producción (WP_ENVIRONMENT_TYPE != 'local') nunca entra en dev salvo que
+ * se defina explícitamente la constante.
  */
 function bp_is_vite_dev(): bool {
-    return defined('VITE_DEV_SERVER') && VITE_DEV_SERVER === true;
+    if (defined('VITE_DEV_SERVER')) {
+        return VITE_DEV_SERVER === true;
+    }
+
+    $env = function_exists('wp_get_environment_type') ? wp_get_environment_type() : 'production';
+    if ($env === 'local') {
+        return file_exists(get_template_directory() . '/.vite-hot');
+    }
+
+    return false;
 }
 
 function bp_vite_manifest(): array {

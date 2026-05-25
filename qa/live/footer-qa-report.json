@@ -1,0 +1,422 @@
+{
+  "byViewport": {
+    "desktop": {
+      "width": 1440,
+      "footerBox": {
+        "x": 0,
+        "y": 721.28125,
+        "width": 1440,
+        "height": 479,
+        "top": 721.28125,
+        "right": 1440,
+        "bottom": 1200.28125,
+        "left": 0
+      },
+      "gridTemplateColumns": "260px 430.766px 353.234px",
+      "gridColumnCount": 3,
+      "gap": "48px",
+      "innerChildren": [
+        {
+          "tag": "img",
+          "cls": "jlb-footer__logo",
+          "h2": [],
+          "text": ""
+        },
+        {
+          "tag": "div",
+          "cls": "jlb-footer__center",
+          "h2": [
+            "Llámanos:"
+          ],
+          "text": "Llámanos: Admisión: 976-369-407 Talleres: 976-369-417 Consul"
+        },
+        {
+          "tag": "div",
+          "cls": "jlb-footer__visit",
+          "h2": [
+            "Visítanos en:"
+          ],
+          "text": "Visítanos en: Jr. Rodrigo de Triana 150-154, Santa Patricia "
+        }
+      ],
+      "headings": [
+        {
+          "text": "Llámanos:",
+          "fontFamily": "\"KG Second Chances Solid\", Caveat, cursive",
+          "fontSize": "22px",
+          "color": "rgb(35, 31, 32)",
+          "display": "block"
+        },
+        {
+          "text": "Visítanos en:",
+          "fontFamily": "\"KG Second Chances Solid\", Caveat, cursive",
+          "fontSize": "22px",
+          "color": "rgb(35, 31, 32)",
+          "display": "block"
+        }
+      ],
+      "siguenosIsHeading": false,
+      "escribenosIsHeading": false,
+      "labels": [
+        {
+          "text": "Síguenos en:",
+          "tag": "span",
+          "fontFamily": "Raleway",
+          "fontSize": "14px",
+          "fontWeight": "700",
+          "color": "rgb(35, 31, 32)"
+        },
+        {
+          "text": "Escríbenos:",
+          "tag": "span",
+          "fontFamily": "Raleway",
+          "fontSize": "14px",
+          "fontWeight": "700",
+          "color": "rgb(35, 31, 32)"
+        }
+      ],
+      "socials": [
+        {
+          "text": "",
+          "hasSvg": true,
+          "hasImg": false,
+          "innerHTML": "<svg viewBox=\"0 0 24 24\" width=\"20\" height=\"20\" fill=\"none\" aria-hidden=\"true\" f",
+          "width": 38,
+          "height": 38,
+          "borderRadius": "50%",
+          "background": "linear-gradient(rgb(97, 71, 148) 20%, rgb(153, 51, 86) 57%, rgb(201, 35, 35) 86%",
+          "color": "rgb(255, 255, 255)"
+        },
+        {
+          "text": "",
+          "hasSvg": true,
+          "hasImg": false,
+          "innerHTML": "<svg viewBox=\"0 0 24 24\" width=\"20\" height=\"20\" fill=\"currentColor\" aria-hidden=",
+          "width": 38,
+          "height": 38,
+          "borderRadius": "50%",
+          "background": "linear-gradient(rgb(97, 71, 148) 20%, rgb(153, 51, 86) 57%, rgb(201, 35, 35) 86%",
+          "color": "rgb(255, 255, 255)"
+        }
+      ],
+      "bottom": {
+        "background": "linear-gradient(90deg, rgb(97, 71, 148) 0%, rgb(153, 51, 86) 52%, rgb(201, 35, 35) 100%)",
+        "color": "rgb(255, 255, 255)",
+        "hasWaveSvg": true,
+        "hasWavePath": true,
+        "waveVisible": true,
+        "waveHeight": 43,
+        "waveWidth": 1440,
+        "wavePathD": "M0,9 C 300,1 520,37 880,35 C 1160,33.5 1320,21 1440,25 L1440,44 L0,44 Z"
+      },
+      "legalOrder": [
+        "Términos y condiciones",
+        "Política de privacidad",
+        "Política de cookies"
+      ],
+      "copyright": "2026 Todos los derechos reservados – Colegio Jean Le Boulch La Molina",
+      "copyrightHasEnDash": true,
+      "phoneUnderline": [
+        {
+          "text": "976-369-407",
+          "textDecoration": "underline"
+        },
+        {
+          "text": "976-369-417",
+          "textDecoration": "underline"
+        },
+        {
+          "text": "976-369-496",
+          "textDecoration": "underline"
+        }
+      ],
+      "emailUnderline": {
+        "text": "informes@jlb.edu.pe",
+        "textDecoration": "underline"
+      },
+      "bodyColor": "rgb(35, 31, 32)",
+      "docScrollW": 1440,
+      "winInnerW": 1440,
+      "hasHorizontalOverflow": false
+    },
+    "tablet": {
+      "width": 834,
+      "footerBox": {
+        "x": 0,
+        "y": 465.234375,
+        "width": 834,
+        "height": 635,
+        "top": 465.234375,
+        "right": 834,
+        "bottom": 1100.234375,
+        "left": 0
+      },
+      "gridTemplateColumns": "220px 526px",
+      "gridColumnCount": 2,
+      "gap": "36px 48px",
+      "innerChildren": [
+        {
+          "tag": "img",
+          "cls": "jlb-footer__logo",
+          "h2": [],
+          "text": ""
+        },
+        {
+          "tag": "div",
+          "cls": "jlb-footer__center",
+          "h2": [
+            "Llámanos:"
+          ],
+          "text": "Llámanos: Admisión: 976-369-407 Talleres: 976-369-417 Consul"
+        },
+        {
+          "tag": "div",
+          "cls": "jlb-footer__visit",
+          "h2": [
+            "Visítanos en:"
+          ],
+          "text": "Visítanos en: Jr. Rodrigo de Triana 150-154, Santa Patricia "
+        }
+      ],
+      "headings": [
+        {
+          "text": "Llámanos:",
+          "fontFamily": "\"KG Second Chances Solid\", Caveat, cursive",
+          "fontSize": "22px",
+          "color": "rgb(35, 31, 32)",
+          "display": "block"
+        },
+        {
+          "text": "Visítanos en:",
+          "fontFamily": "\"KG Second Chances Solid\", Caveat, cursive",
+          "fontSize": "22px",
+          "color": "rgb(35, 31, 32)",
+          "display": "block"
+        }
+      ],
+      "siguenosIsHeading": false,
+      "escribenosIsHeading": false,
+      "labels": [
+        {
+          "text": "Síguenos en:",
+          "tag": "span",
+          "fontFamily": "Raleway",
+          "fontSize": "14px",
+          "fontWeight": "700",
+          "color": "rgb(35, 31, 32)"
+        },
+        {
+          "text": "Escríbenos:",
+          "tag": "span",
+          "fontFamily": "Raleway",
+          "fontSize": "14px",
+          "fontWeight": "700",
+          "color": "rgb(35, 31, 32)"
+        }
+      ],
+      "socials": [
+        {
+          "text": "",
+          "hasSvg": true,
+          "hasImg": false,
+          "innerHTML": "<svg viewBox=\"0 0 24 24\" width=\"20\" height=\"20\" fill=\"none\" aria-hidden=\"true\" f",
+          "width": 38,
+          "height": 38,
+          "borderRadius": "50%",
+          "background": "linear-gradient(rgb(97, 71, 148) 20%, rgb(153, 51, 86) 57%, rgb(201, 35, 35) 86%",
+          "color": "rgb(255, 255, 255)"
+        },
+        {
+          "text": "",
+          "hasSvg": true,
+          "hasImg": false,
+          "innerHTML": "<svg viewBox=\"0 0 24 24\" width=\"20\" height=\"20\" fill=\"currentColor\" aria-hidden=",
+          "width": 38,
+          "height": 38,
+          "borderRadius": "50%",
+          "background": "linear-gradient(rgb(97, 71, 148) 20%, rgb(153, 51, 86) 57%, rgb(201, 35, 35) 86%",
+          "color": "rgb(255, 255, 255)"
+        }
+      ],
+      "bottom": {
+        "background": "linear-gradient(90deg, rgb(97, 71, 148) 0%, rgb(153, 51, 86) 52%, rgb(201, 35, 35) 100%)",
+        "color": "rgb(255, 255, 255)",
+        "hasWaveSvg": true,
+        "hasWavePath": true,
+        "waveVisible": true,
+        "waveHeight": 26,
+        "waveWidth": 834,
+        "wavePathD": "M0,9 C 300,1 520,37 880,35 C 1160,33.5 1320,21 1440,25 L1440,44 L0,44 Z"
+      },
+      "legalOrder": [
+        "Términos y condiciones",
+        "Política de privacidad",
+        "Política de cookies"
+      ],
+      "copyright": "2026 Todos los derechos reservados – Colegio Jean Le Boulch La Molina",
+      "copyrightHasEnDash": true,
+      "phoneUnderline": [
+        {
+          "text": "976-369-407",
+          "textDecoration": "underline"
+        },
+        {
+          "text": "976-369-417",
+          "textDecoration": "underline"
+        },
+        {
+          "text": "976-369-496",
+          "textDecoration": "underline"
+        }
+      ],
+      "emailUnderline": {
+        "text": "informes@jlb.edu.pe",
+        "textDecoration": "underline"
+      },
+      "bodyColor": "rgb(35, 31, 32)",
+      "docScrollW": 834,
+      "winInnerW": 834,
+      "hasHorizontalOverflow": false
+    },
+    "mobile": {
+      "width": 390,
+      "footerBox": {
+        "x": 0,
+        "y": 627.15625,
+        "width": 390,
+        "height": 772.984375,
+        "top": 627.15625,
+        "right": 390,
+        "bottom": 1400.140625,
+        "left": 0
+      },
+      "gridTemplateColumns": "362px",
+      "gridColumnCount": 1,
+      "gap": "30px",
+      "innerChildren": [
+        {
+          "tag": "img",
+          "cls": "jlb-footer__logo",
+          "h2": [],
+          "text": ""
+        },
+        {
+          "tag": "div",
+          "cls": "jlb-footer__center",
+          "h2": [
+            "Llámanos:"
+          ],
+          "text": "Llámanos: Admisión: 976-369-407 Talleres: 976-369-417 Consul"
+        },
+        {
+          "tag": "div",
+          "cls": "jlb-footer__visit",
+          "h2": [
+            "Visítanos en:"
+          ],
+          "text": "Visítanos en: Jr. Rodrigo de Triana 150-154, Santa Patricia "
+        }
+      ],
+      "headings": [
+        {
+          "text": "Llámanos:",
+          "fontFamily": "\"KG Second Chances Solid\", Caveat, cursive",
+          "fontSize": "22px",
+          "color": "rgb(35, 31, 32)",
+          "display": "block"
+        },
+        {
+          "text": "Visítanos en:",
+          "fontFamily": "\"KG Second Chances Solid\", Caveat, cursive",
+          "fontSize": "22px",
+          "color": "rgb(35, 31, 32)",
+          "display": "block"
+        }
+      ],
+      "siguenosIsHeading": false,
+      "escribenosIsHeading": false,
+      "labels": [
+        {
+          "text": "Síguenos en:",
+          "tag": "span",
+          "fontFamily": "Raleway",
+          "fontSize": "14px",
+          "fontWeight": "700",
+          "color": "rgb(35, 31, 32)"
+        },
+        {
+          "text": "Escríbenos:",
+          "tag": "span",
+          "fontFamily": "Raleway",
+          "fontSize": "14px",
+          "fontWeight": "700",
+          "color": "rgb(35, 31, 32)"
+        }
+      ],
+      "socials": [
+        {
+          "text": "",
+          "hasSvg": true,
+          "hasImg": false,
+          "innerHTML": "<svg viewBox=\"0 0 24 24\" width=\"20\" height=\"20\" fill=\"none\" aria-hidden=\"true\" f",
+          "width": 38,
+          "height": 38,
+          "borderRadius": "50%",
+          "background": "linear-gradient(rgb(97, 71, 148) 20%, rgb(153, 51, 86) 57%, rgb(201, 35, 35) 86%",
+          "color": "rgb(255, 255, 255)"
+        },
+        {
+          "text": "",
+          "hasSvg": true,
+          "hasImg": false,
+          "innerHTML": "<svg viewBox=\"0 0 24 24\" width=\"20\" height=\"20\" fill=\"currentColor\" aria-hidden=",
+          "width": 38,
+          "height": 38,
+          "borderRadius": "50%",
+          "background": "linear-gradient(rgb(97, 71, 148) 20%, rgb(153, 51, 86) 57%, rgb(201, 35, 35) 86%",
+          "color": "rgb(255, 255, 255)"
+        }
+      ],
+      "bottom": {
+        "background": "linear-gradient(90deg, rgb(97, 71, 148) 0%, rgb(153, 51, 86) 52%, rgb(201, 35, 35) 100%)",
+        "color": "rgb(255, 255, 255)",
+        "hasWaveSvg": true,
+        "hasWavePath": true,
+        "waveVisible": true,
+        "waveHeight": 26,
+        "waveWidth": 390,
+        "wavePathD": "M0,9 C 300,1 520,37 880,35 C 1160,33.5 1320,21 1440,25 L1440,44 L0,44 Z"
+      },
+      "legalOrder": [
+        "Términos y condiciones",
+        "Política de privacidad",
+        "Política de cookies"
+      ],
+      "copyright": "2026 Todos los derechos reservados – Colegio Jean Le Boulch La Molina",
+      "copyrightHasEnDash": true,
+      "phoneUnderline": [
+        {
+          "text": "976-369-407",
+          "textDecoration": "underline"
+        },
+        {
+          "text": "976-369-417",
+          "textDecoration": "underline"
+        },
+        {
+          "text": "976-369-496",
+          "textDecoration": "underline"
+        }
+      ],
+      "emailUnderline": {
+        "text": "informes@jlb.edu.pe",
+        "textDecoration": "underline"
+      },
+      "bodyColor": "rgb(35, 31, 32)",
+      "docScrollW": 390,
+      "winInnerW": 390,
+      "hasHorizontalOverflow": false
+    }
+  },
+  "consoleErrors": []
+}

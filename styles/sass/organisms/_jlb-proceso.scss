@@ -1,0 +1,167 @@
+// Jean Le Boulch — Proceso de admisión (stepper/tabs) (Figma 4129/4130).
+
+.jlb-proceso {
+    padding: 72px 0;
+}
+
+// Eyebrow rojo centrado con marcador (reutilizable: proceso + cuota).
+.jlb-eyebrow-red {
+    margin: 0 0 8px;
+    text-align: center;
+    font-family: "Raleway", var(--font-sans);
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--jlb-red);
+
+    span {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+
+        &::before {
+            content: "";
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--jlb-red);
+        }
+    }
+}
+
+.jlb-proceso__title {
+    margin: 0 0 48px;
+    text-align: center;
+    font-family: "KG Second Chances Solid", "Caveat", cursive;
+    font-size: clamp(28px, 3.2vw, 40px);
+    line-height: 1.1;
+    color: var(--jlb-purple);
+    letter-spacing: 0;
+}
+
+.jlb-proceso__stepper {
+    display: grid;
+    grid-template-columns: minmax(280px, 403px) minmax(0, 1fr);
+    gap: 56px;
+    align-items: start;
+}
+
+.jlb-proceso__tabs {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+.jlb-proceso__tab {
+    position: relative;
+    min-height: 64px;
+    padding: 16px 24px;
+    border-radius: 8px;
+    border: 1px solid rgb(97 71 148 / 0.28);
+    background: #fff;
+    color: var(--jlb-purple);
+    font-family: "Raleway", var(--font-sans);
+    font-size: 20px;
+    font-weight: 500;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease;
+
+    &:hover:not(.is-active) {
+        border-color: var(--jlb-purple);
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--jlb-purple);
+        outline-offset: 2px;
+    }
+
+    &.is-active {
+        background: var(--jlb-red);
+        border-color: var(--jlb-red);
+        color: #fff;
+
+        // Flecha (chevron) apuntando al panel de detalle.
+        &::after {
+            content: "";
+            position: absolute;
+            left: 100%;
+            top: 50%;
+            transform: translateY(-50%);
+            border: 14px solid transparent;
+            border-left-color: var(--jlb-red);
+        }
+    }
+}
+
+.jlb-proceso__panel {
+    font-family: "DM Sans", var(--font-sans);
+    font-size: 16px;
+    line-height: 1.6;
+    color: #231f20;
+
+    &.is-active {
+        animation: jlb-proceso-fade 200ms ease-out;
+    }
+}
+
+.jlb-proceso__intro {
+    margin: 0 0 8px;
+
+    p { margin: 0 0 8px; }
+
+    a {
+        color: var(--jlb-purple);
+        text-decoration: underline;
+        text-underline-offset: 2px;
+    }
+}
+
+.jlb-proceso__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    li {
+        position: relative;
+        padding-left: 24px;
+        margin-bottom: 8px;
+
+        &::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 9px;
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: var(--jlb-red);
+        }
+    }
+}
+
+@keyframes jlb-proceso-fade {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+// ── Responsive: pestañas arriba, panel debajo ────────────────────────────────
+@media (max-width: 900px) {
+    .jlb-proceso__stepper {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+
+    .jlb-proceso__tabs {
+        gap: 12px;
+    }
+
+    .jlb-proceso__tab.is-active::after {
+        display: none; // sin flecha lateral en 1 columna
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .jlb-proceso__panel.is-active {
+        animation: none;
+    }
+}

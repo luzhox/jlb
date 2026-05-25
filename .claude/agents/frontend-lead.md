@@ -52,7 +52,7 @@ boilerplate-wordpress/
 ├── header.php / footer.php / menu.php
 ├── page.php / single.php  # Usan the_modules_loop() si existe campo 'modules'
 ├── index.php          # Template del blog
-├── webpack.config.js  # Webpack 5: Babel + SASS + BrowserSync (proxy template-wp.local)
+├── webpack.config.js  # Webpack 5: Babel + SASS + BrowserSync (proxy jlb-school.local)
 └── package.json       # Node >=18, scripts: dev/prod/clean/brow
 ```
 

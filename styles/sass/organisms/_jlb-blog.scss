@@ -1,0 +1,580 @@
+// Jean Le Boulch — Blog: listado (Figma 4175:533) + artículo (Figma 4177:961).
+
+// ── Banner secundario reutilizable (jlb-page-hero) ───────────────────────────
+.jlb-page-hero {
+    position: relative;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    min-height: clamp(280px, 27vw, 387px);
+    padding: clamp(48px, 7vw, 80px) 20px clamp(56px, 7vw, 88px);
+    background: var(--jlb-gradient);
+    color: #fff;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+.jlb-page-hero__inner {
+    position: relative;
+    z-index: 2;
+    max-width: 720px;
+}
+
+.jlb-page-hero__title {
+    margin: 0 0 12px;
+    font-family: "KG Second Chances Solid", "Caveat", cursive;
+    font-weight: 400;
+    font-size: clamp(40px, 5vw, 64px);
+    line-height: 1.05;
+    color: #fff;
+}
+
+.jlb-page-hero__subtitle {
+    margin: 0;
+    font-family: "DM Sans", var(--font-sans);
+    font-size: clamp(16px, 1.8vw, 20px);
+    line-height: 1.4;
+    color: rgb(255 255 255 / 0.95);
+}
+
+.jlb-page-hero__wave {
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    width: 100%;
+    height: clamp(28px, 4vw, 64px);
+    z-index: 1;
+    pointer-events: none;
+}
+
+// ── Listado de entradas ──────────────────────────────────────────────────────
+.jlb-blog {
+    padding: clamp(40px, 6vw, 72px) 0 clamp(64px, 9vw, 96px);
+    background: #fff;
+}
+
+.jlb-blog__container {
+    width: min(1200px, calc(100% - 40px));
+    margin-inline: auto;
+}
+
+.jlb-blog__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.jlb-blog__empty {
+    text-align: center;
+    color: #5a5a6e;
+    font-family: "DM Sans", var(--font-sans);
+}
+
+// ── Tarjeta de entrada ───────────────────────────────────────────────────────
+.jlb-pcard {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-bottom: 28px;
+    background: #fff;
+    border: 1px solid rgb(0 0 0 / 0.12);
+    border-radius: 24px;
+    overflow: hidden;
+    transition: transform 240ms ease, box-shadow 240ms ease;
+
+    &:hover,
+    &:focus-within {
+        transform: translateY(-4px);
+        box-shadow: 0 20px 40px rgb(20 17 31 / 0.12);
+    }
+}
+
+.jlb-pcard__image {
+    position: relative;
+    aspect-ratio: 384 / 231;
+    overflow: hidden;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .jlb-pcard:hover & img {
+        transform: scale(1.05);
+    }
+}
+
+.jlb-pcard__date {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
+    background: #fff;
+    color: #231f20;
+    line-height: 1;
+    box-shadow: 0 4px 12px rgb(0 0 0 / 0.12);
+
+    &-day {
+        font-family: "KG Second Chances Solid", "Caveat", cursive;
+        font-size: 22px;
+    }
+
+    &-month {
+        font-family: "KG Second Chances Solid", "Caveat", cursive;
+        font-size: 12px;
+        text-transform: capitalize;
+    }
+}
+
+.jlb-pcard__cat {
+    position: absolute;
+    left: 16px;
+    bottom: 14px;
+    padding: 5px 10px;
+    border-radius: 6px;
+    background: var(--jlb-gradient);
+    color: #fff;
+    font-family: "DM Sans", var(--font-sans);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.jlb-pcard__body {
+    padding: 0 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.jlb-pcard__title {
+    margin: 0;
+    font-family: "KG Second Chances Solid", "Caveat", cursive;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 1.25;
+    color: #231f20;
+}
+
+.jlb-pcard__excerpt {
+    margin: 0;
+    font-family: "DM Sans", var(--font-sans);
+    font-size: 14px;
+    line-height: 1.5;
+    color: #4a4a58;
+}
+
+// Overlay link accesible que cubre toda la tarjeta.
+.jlb-pcard__link {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+
+    &:focus-visible {
+        outline: 3px solid var(--jlb-purple, #614794);
+        outline-offset: -3px;
+        border-radius: 24px;
+    }
+}
+
+// Paginación
+.jlb-blog__pagination {
+    margin-top: clamp(40px, 6vw, 64px);
+
+    .nav-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        justify-content: center;
+    }
+
+    .page-numbers {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 44px;
+        height: 44px;
+        padding: 0 14px;
+        border-radius: 12px;
+        background: #f2f0f7;
+        color: #231f20;
+        font-family: "DM Sans", var(--font-sans);
+        font-weight: 600;
+        text-decoration: none;
+
+        &.current {
+            background: var(--jlb-gradient);
+            color: #fff;
+        }
+
+        &:hover:not(.current) {
+            background: #e6e2f0;
+        }
+    }
+}
+
+// ── Artículo (single) ────────────────────────────────────────────────────────
+.jlb-article__container {
+    width: min(1200px, calc(100% - 40px));
+    margin-inline: auto;
+    padding-top: clamp(32px, 5vw, 56px);
+}
+
+// Tag de categoría (píldora gradiente). Reutilizable.
+.jlb-tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 14px;
+    border-radius: 14px;
+    background: var(--jlb-gradient);
+    color: #fff;
+    font-family: "DM Sans", var(--font-sans);
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    line-height: 1.5;
+}
+
+a.jlb-tag,
+a.jlb-tag:hover {
+    color: #fff;
+}
+
+.jlb-article__title {
+    margin: 20px 0 16px;
+    font-family: "KG Second Chances Solid", "Caveat", cursive;
+    font-weight: 400;
+    font-size: clamp(32px, 4.4vw, 48px);
+    line-height: 1.1;
+    letter-spacing: -0.4px;
+    color: #14111f;
+    max-width: 960px;
+}
+
+.jlb-article__date {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 28px;
+    font-family: "DM Sans", var(--font-sans);
+    font-size: 18px;
+    color: #231f20;
+
+    .jlb-article__cal {
+        color: var(--jlb-red, #c92323);
+        flex: 0 0 auto;
+    }
+}
+
+.jlb-article__featured {
+    position: relative;
+    margin: 0 0 28px;
+    aspect-ratio: 1160 / 424;
+
+    .jlb-article__cover {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        border-radius: 32px;
+    }
+
+    // Garabato decorativo (Figma 4177:1189): asoma en la esquina superior derecha
+    // y gira en loop suave.
+    .jlb-article__deco {
+        position: absolute;
+        top: -32px;
+        right: -24px;
+        width: clamp(64px, 7vw, 100px);
+        height: auto;
+        z-index: 2;
+        pointer-events: none;
+        transform-origin: center;
+        animation: jlb-deco-spin 6s linear infinite;
+    }
+}
+
+@keyframes jlb-deco-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.jlb-article__author {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 16px;
+    font-family: "DM Sans", var(--font-sans);
+    font-size: 18px;
+    color: #231f20;
+
+    .jlb-article__quote {
+        color: var(--jlb-red, #c92323);
+        flex: 0 0 auto;
+    }
+}
+
+.jlb-article__divider {
+    border: 0;
+    border-top: 1px solid rgb(0 0 0 / 0.12);
+    margin: 0 0 28px;
+}
+
+// Contenido WYSIWYG (the_content): párrafos, imágenes, columnas, video.
+.jlb-article__content {
+    font-family: "DM Sans", var(--font-sans);
+    font-size: 16px;
+    line-height: 1.6;
+    color: #231f20;
+
+    >*+* {
+        margin-top: 24px;
+    }
+
+    // Override de _typo.scss legacy (p=18px, primero=24px). Figma: 16px.
+    p,
+    li {
+        margin: 0;
+        font-size: 16px;
+        line-height: 1.6;
+    }
+
+    strong {
+        font-weight: 700;
+    }
+
+    h2,
+    h3 {
+        font-family: "KG Second Chances Solid", "Caveat", cursive;
+        font-weight: 400;
+        color: #14111f;
+        line-height: 1.15;
+    }
+
+    h2 {
+        font-size: clamp(26px, 3vw, 34px);
+    }
+
+    h3 {
+        font-size: clamp(22px, 2.4vw, 28px);
+    }
+
+    a {
+        color: var(--jlb-red, #c92323);
+        text-decoration: underline;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 32px;
+        display: block;
+    }
+
+    figure {
+        margin: 0;
+    }
+
+    // Bloque de columnas (Gutenberg) → 2 imágenes lado a lado.
+    .wp-block-columns {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+    }
+
+    .wp-block-column {
+        min-width: 0;
+    }
+
+    // Imagen-video con play (data-jlb-video) dentro del contenido.
+    .jlb-article__video {
+        position: relative;
+        display: block;
+        border-radius: 32px;
+        overflow: hidden;
+        cursor: pointer;
+
+        img {
+            border-radius: 32px;
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgb(26 13 39 / 0.32);
+            border-radius: 32px;
+        }
+
+        .jlb-article__play {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            z-index: 2;
+            transform: translate(-50%, -50%);
+            width: clamp(72px, 8vw, 110px);
+            height: auto;
+            color: #fff;
+            filter: drop-shadow(0 8px 18px rgb(0 0 0 / 0.3));
+        }
+    }
+}
+
+// ── Artículos relacionados ───────────────────────────────────────────────────
+.jlb-related {
+    margin-top: clamp(48px, 7vw, 80px);
+    padding: clamp(40px, 6vw, 72px) 0 clamp(48px, 7vw, 88px);
+    background: rgb(210 225 249 / 0.2); // #d2e1f9 @20% (Figma)
+}
+
+.jlb-related__container {
+    width: min(1200px, calc(100% - 40px));
+    margin-inline: auto;
+}
+
+.jlb-related__title {
+    margin: 0 0 clamp(24px, 3vw, 40px);
+    font-family: "DM Sans", var(--font-sans);
+    font-weight: 700;
+    font-size: clamp(28px, 3.4vw, 40px);
+    line-height: 1.15;
+    letter-spacing: -0.4px;
+    color: #14111f;
+}
+
+.jlb-related__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.jlb-rcard {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+
+    &:focus-visible {
+        outline: 3px solid var(--jlb-purple, #614794);
+        outline-offset: 3px;
+        border-radius: 24px;
+    }
+}
+
+.jlb-rcard__image {
+    position: relative;
+    display: block;
+    aspect-ratio: 560 / 376;
+    border-radius: 24px;
+    overflow: hidden;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .jlb-rcard:hover & img {
+        transform: scale(1.04);
+    }
+}
+
+.jlb-rcard__tag {
+    position: absolute;
+    top: 18px;
+    left: 18px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 12px;
+    border-radius: 12px;
+    background: var(--jlb-gradient);
+    color: #fff;
+    font-family: "DM Sans", var(--font-sans);
+    font-size: 12px;
+    font-weight: 600;
+
+    .jlb-rcard__tag-ico {
+        flex: 0 0 auto;
+    }
+}
+
+.jlb-rcard__arrow {
+    position: absolute;
+    right: 16px;
+    bottom: 16px;
+    line-height: 0;
+
+    svg {
+        display: block;
+    }
+}
+
+.jlb-rcard__title {
+    margin: 18px 0 6px;
+    font-family: "KG Second Chances Solid", "Caveat", cursive;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 1.2;
+    color: #14111f;
+}
+
+.jlb-rcard__cta {
+    font-family: "DM Sans", var(--font-sans);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--jlb-red, #c92323);
+    text-decoration: underline;
+}
+
+a.jlb-rcard__cta,
+.jlb-rcard:hover .jlb-rcard__cta {
+    color: var(--jlb-red, #c92323);
+}
+
+// ── Responsive ───────────────────────────────────────────────────────────────
+@media (max-width: 900px) {
+    .jlb-blog__grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .jlb-article__content .wp-block-columns {
+        grid-template-columns: 1fr;
+    }
+
+    .jlb-related__grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 560px) {
+    .jlb-blog__grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .jlb-pcard,
+    .jlb-pcard__image img,
+    .jlb-rcard__image img {
+        transition: none;
+    }
+
+    .jlb-article__deco {
+        animation: none;
+    }
+}

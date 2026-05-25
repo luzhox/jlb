@@ -1,0 +1,126 @@
+// Jean Le Boulch — Hero "Admisión".
+// Grid 2-col con texto sobre gradient y media con esquina radio.
+// Conforma el módulo ACF `jlb_hero` (modules/jlb-hero/jlb-hero.php).
+
+.jlb-hero {
+    position: relative;
+    min-height: clamp(560px, 58vw, 636px);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(420px, 1fr);
+    align-items: stretch;
+    overflow: hidden;
+    background: var(--jlb-gradient);
+    isolation: isolate;
+
+    // Pseudo-ondulación inferior que enlaza con la siguiente sección.
+    &::after {
+        content: "";
+        position: absolute;
+        left: -6vw;
+        right: -6vw;
+        bottom: -72px;
+        height: 150px;
+        z-index: 2;
+        background: #fff;
+        border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+    }
+}
+
+.jlb-hero__content {
+    width: min(520px, calc(100% - 56px));
+    margin-left: max(28px, calc((100vw - 1140px) / 2));
+    padding-block: clamp(92px, 10vw, 148px) 132px;
+    color: #fff;
+    position: relative;
+    z-index: 3;
+}
+
+// Eyebrow como píldora blanca DEBAJO del título (Figma): el <span> es la
+// píldora (se ajusta al texto), el <p> solo aporta el espaciado.
+.jlb-hero__eyebrow {
+    margin: 0 0 24px;
+
+    span {
+        display: inline-block;
+        padding: 8px 24px;
+        border-radius: 999px;
+        background: #fff;
+        color: var(--jlb-ink);
+        font-family: "DM Sans", var(--font-sans);
+        font-size: 16px;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+    }
+}
+
+.jlb-hero h1 {
+    margin: 0 0 16px;
+    font-family: "KG Second Chances Solid", "Caveat", cursive;
+    font-size: clamp(56px, 6vw, 86px);
+    font-weight: 700;
+    line-height: 0.95;
+    letter-spacing: 0;
+    margin-bottom: 24px;
+}
+
+.jlb-hero p {
+    max-width: 430px;
+    margin: 0;
+    font-family: "DM Sans", var(--font-sans);
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1.5;
+    margin-top: 24px;
+}
+
+.jlb-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 32px;
+}
+
+.jlb-hero__media {
+    position: relative;
+    min-height: 100%;
+    margin: 0;
+    overflow: hidden;
+    border-bottom-left-radius: clamp(120px, 19vw, 276px);
+    z-index: 1;
+
+    img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+    }
+}
+
+@media (max-width: 1180px) {
+    .jlb-hero {
+        grid-template-columns: 1fr;
+    }
+
+    .jlb-hero__content {
+        margin-inline: auto;
+        text-align: center;
+    }
+
+    .jlb-hero p,
+    .jlb-hero__actions {
+        justify-content: center;
+        margin-inline: auto;
+    }
+
+    .jlb-hero__media {
+        min-height: 360px;
+        border-bottom-left-radius: 0;
+    }
+}
+
+@media (max-width: 820px) {
+    .jlb-hero__content {
+        width: min(100% - 32px, 520px);
+        padding-block: 72px 96px;
+    }
+}

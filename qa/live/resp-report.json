@@ -1,0 +1,1228 @@
+{
+  "site": "http://jlb-school.local",
+  "viewports": [
+    {
+      "label": "tablet",
+      "width": 834,
+      "height": 1112,
+      "sections": {
+        "testimoniales": {
+          "found": true,
+          "rootRect": {
+            "x": 0,
+            "y": 113.2,
+            "w": 834,
+            "h": 884.73,
+            "right": 834
+          },
+          "sectionOverflow": {
+            "rootRight": 834,
+            "vw": 834,
+            "exceedsVw": false
+          },
+          "overflowing": [],
+          "testimoniales": {
+            "slideGridCols": "794px",
+            "slideDisplay": "grid",
+            "media": {
+              "x": 40,
+              "y": 189.2,
+              "w": 581.81,
+              "h": 400,
+              "right": 621.81
+            },
+            "mediaImg": {
+              "x": 40,
+              "y": 189.2,
+              "w": 581.81,
+              "h": 400,
+              "right": 621.81
+            },
+            "mediaCS": {
+              "minHeight": "400px",
+              "maxHeight": "400px",
+              "aspectRatio": "16 / 11"
+            },
+            "mediaVisible": true,
+            "body": {
+              "x": 20,
+              "y": 589.2,
+              "w": 794,
+              "h": 344.73,
+              "right": 814
+            },
+            "decor": {
+              "rect": {
+                "x": 670,
+                "y": 153.2,
+                "w": 160,
+                "h": 135.05,
+                "right": 830
+              },
+              "display": "block"
+            },
+            "nav": {
+              "x": 48,
+              "y": 851.44,
+              "w": 738,
+              "h": 46.5,
+              "right": 786
+            },
+            "navCount": 6,
+            "play": {
+              "rect": {
+                "x": 280.91,
+                "y": 339.2,
+                "w": 100,
+                "h": 100,
+                "right": 380.91
+              },
+              "display": "block"
+            },
+            "fontSizes": {
+              "title": 28,
+              "quote": 16,
+              "author": 18,
+              "kicker": 15.5
+            },
+            "stacked": true,
+            "mediaBodyOverlap": 0
+          }
+        },
+        "padres": {
+          "found": true,
+          "rootRect": {
+            "x": 0,
+            "y": 641.94,
+            "w": 834,
+            "h": 469.59,
+            "right": 834
+          },
+          "sectionOverflow": {
+            "rootRight": 834,
+            "vw": 834,
+            "exceedsVw": false
+          },
+          "overflowing": [
+            {
+              "sel": ".jlb-testimonial__head",
+              "left": 20,
+              "right": 33554428,
+              "w": 33554408
+            },
+            {
+              "sel": ".jlb-kicker",
+              "left": 20,
+              "right": 33554428,
+              "w": 33554408
+            },
+            {
+              "sel": "h2",
+              "left": 20,
+              "right": 33554428,
+              "w": 33554408
+            },
+            {
+              "sel": ".jlb-testimonial__carousel",
+              "left": 20,
+              "right": 33554428,
+              "w": 33554408
+            },
+            {
+              "sel": ".jlb-testimonial__swiper.swiper",
+              "left": 20,
+              "right": 33554428,
+              "w": 33554408
+            },
+            {
+              "sel": ".swiper-wrapper",
+              "left": 20,
+              "right": 33554428,
+              "w": 33554408
+            },
+            {
+              "sel": ".swiper-slide.jlb-testimonial__slide",
+              "left": 20,
+              "right": 33554428,
+              "w": 33554408
+            },
+            {
+              "sel": "blockquote",
+              "left": 16776914,
+              "right": 16777534,
+              "w": 620
+            },
+            {
+              "sel": ".jlb-testimonial__quote-mark",
+              "left": 16777192,
+              "right": 16777256,
+              "w": 64
+            },
+            {
+              "sel": "svg",
+              "left": 16777192,
+              "right": 16777256,
+              "w": 64
+            },
+            {
+              "sel": "path",
+              "left": 16777192,
+              "right": 16777256,
+              "w": 64
+            },
+            {
+              "sel": "p",
+              "left": 16776914,
+              "right": 16777534,
+              "w": 620
+            }
+          ],
+          "padres": {
+            "innerGridCols": "3.35544e+07px",
+            "head": {
+              "x": 20,
+              "y": 669.94,
+              "w": 33554408,
+              "h": 64.59,
+              "right": 33554428
+            },
+            "carousel": {
+              "x": 20,
+              "y": 758.53,
+              "w": 33554408,
+              "h": 267,
+              "right": 33554428
+            },
+            "stacked": true,
+            "dotsWrap": {
+              "rect": {
+                "x": 20,
+                "y": 1011.53,
+                "w": 33554408,
+                "h": 14,
+                "right": 33554428
+              },
+              "display": "flex"
+            },
+            "dotsCount": 3,
+            "quoteMark": {
+              "x": 16777192,
+              "y": 762.53,
+              "w": 64,
+              "h": 39,
+              "right": 16777256
+            },
+            "blockquote": {
+              "x": 16776914,
+              "y": 762.53,
+              "w": 620,
+              "h": 215.3,
+              "right": 16777534
+            },
+            "quoteToTextGap": 14,
+            "slideHeight": 223.3,
+            "fontSizes": {
+              "title": 34,
+              "quote": 24,
+              "cite": 26,
+              "kicker": 34
+            }
+          }
+        }
+      },
+      "consoleErrors": [],
+      "docOverflow": {
+        "scrollWidth": 33554428,
+        "clientWidth": 834,
+        "overflowPx": 33553594,
+        "hasHOverflow": true
+      },
+      "widestCulprits": [
+        {
+          "sel": "div.jlb-testimonial__head",
+          "w": 33554408,
+          "scrollW": 33554408,
+          "section": "padres"
+        },
+        {
+          "sel": "p.jlb-kicker",
+          "w": 33554408,
+          "scrollW": 33554408,
+          "section": "padres"
+        },
+        {
+          "sel": "h2",
+          "w": 33554408,
+          "scrollW": 33554408,
+          "section": "padres"
+        },
+        {
+          "sel": "div.jlb-testimonial__carousel",
+          "w": 33554408,
+          "scrollW": 33554408,
+          "section": "padres"
+        },
+        {
+          "sel": "div.jlb-testimonial__swiper.swiper",
+          "w": 33554408,
+          "scrollW": 33554432,
+          "section": "padres"
+        },
+        {
+          "sel": "div.swiper-wrapper",
+          "w": 33554408,
+          "scrollW": 33554432,
+          "section": "padres"
+        },
+        {
+          "sel": "div.swiper-slide.jlb-testimonial__slide",
+          "w": 33554408,
+          "scrollW": 33554408,
+          "section": "padres"
+        },
+        {
+          "sel": "div.jlb-testimonial__dots.swiper-pagination-clickable",
+          "w": 33554408,
+          "scrollW": 33554408,
+          "section": "padres"
+        }
+      ],
+      "header": {
+        "tag": "jlb-header",
+        "position": "sticky",
+        "height": 73,
+        "zIndex": "80"
+      }
+    },
+    {
+      "label": "tablet",
+      "width": 768,
+      "height": 1024,
+      "sections": {
+        "testimoniales": {
+          "found": true,
+          "rootRect": {
+            "x": 0,
+            "y": 69.27,
+            "w": 768,
+            "h": 884.73,
+            "right": 768
+          },
+          "sectionOverflow": {
+            "rootRight": 768,
+            "vw": 768,
+            "exceedsVw": false
+          },
+          "overflowing": [
+            {
+              "sel": ".jlb-testimoniales__decor",
+              "left": 610,
+              "right": 770,
+              "w": 160
+            },
+            {
+              "sel": "svg",
+              "left": 610,
+              "right": 770,
+              "w": 160
+            }
+          ],
+          "testimoniales": {
+            "slideGridCols": "740px",
+            "slideDisplay": "grid",
+            "media": {
+              "x": 34,
+              "y": 145.27,
+              "w": 581.81,
+              "h": 400,
+              "right": 615.81
+            },
+            "mediaImg": {
+              "x": 34,
+              "y": 145.27,
+              "w": 581.81,
+              "h": 400,
+              "right": 615.81
+            },
+            "mediaCS": {
+              "minHeight": "400px",
+              "maxHeight": "400px",
+              "aspectRatio": "16 / 11"
+            },
+            "mediaVisible": true,
+            "body": {
+              "x": 14,
+              "y": 545.27,
+              "w": 740,
+              "h": 344.73,
+              "right": 754
+            },
+            "decor": {
+              "rect": {
+                "x": 610,
+                "y": 109.27,
+                "w": 160,
+                "h": 135.05,
+                "right": 770
+              },
+              "display": "block"
+            },
+            "nav": {
+              "x": 42,
+              "y": 807.5,
+              "w": 684,
+              "h": 46.5,
+              "right": 726
+            },
+            "navCount": 6,
+            "play": {
+              "rect": {
+                "x": 274.91,
+                "y": 295.27,
+                "w": 100,
+                "h": 100,
+                "right": 374.91
+              },
+              "display": "block"
+            },
+            "fontSizes": {
+              "title": 28,
+              "quote": 16,
+              "author": 18,
+              "kicker": 15.5
+            },
+            "stacked": true,
+            "mediaBodyOverlap": 0
+          }
+        },
+        "padres": {
+          "found": true,
+          "rootRect": {
+            "x": 0,
+            "y": 554,
+            "w": 768,
+            "h": 469.59,
+            "right": 768
+          },
+          "sectionOverflow": {
+            "rootRight": 768,
+            "vw": 768,
+            "exceedsVw": false
+          },
+          "overflowing": [
+            {
+              "sel": ".jlb-testimonial__head",
+              "left": 14,
+              "right": 33554422,
+              "w": 33554408
+            },
+            {
+              "sel": ".jlb-kicker",
+              "left": 14,
+              "right": 33554422,
+              "w": 33554408
+            },
+            {
+              "sel": "h2",
+              "left": 14,
+              "right": 33554422,
+              "w": 33554408
+            },
+            {
+              "sel": ".jlb-testimonial__carousel",
+              "left": 14,
+              "right": 33554422,
+              "w": 33554408
+            },
+            {
+              "sel": ".jlb-testimonial__swiper.swiper",
+              "left": 14,
+              "right": 33554422,
+              "w": 33554408
+            },
+            {
+              "sel": ".swiper-wrapper",
+              "left": 14,
+              "right": 33554422,
+              "w": 33554408
+            },
+            {
+              "sel": ".swiper-slide.jlb-testimonial__slide",
+              "left": 14,
+              "right": 33554422,
+              "w": 33554408
+            },
+            {
+              "sel": "blockquote",
+              "left": 16776908,
+              "right": 16777528,
+              "w": 620
+            },
+            {
+              "sel": ".jlb-testimonial__quote-mark",
+              "left": 16777186,
+              "right": 16777250,
+              "w": 64
+            },
+            {
+              "sel": "svg",
+              "left": 16777186,
+              "right": 16777250,
+              "w": 64
+            },
+            {
+              "sel": "path",
+              "left": 16777186,
+              "right": 16777250,
+              "w": 64
+            },
+            {
+              "sel": "p",
+              "left": 16776908,
+              "right": 16777528,
+              "w": 620
+            }
+          ],
+          "padres": {
+            "innerGridCols": "3.35544e+07px",
+            "head": {
+              "x": 14,
+              "y": 582,
+              "w": 33554408,
+              "h": 64.59,
+              "right": 33554422
+            },
+            "carousel": {
+              "x": 14,
+              "y": 670.59,
+              "w": 33554408,
+              "h": 267,
+              "right": 33554422
+            },
+            "stacked": true,
+            "dotsWrap": {
+              "rect": {
+                "x": 14,
+                "y": 923.59,
+                "w": 33554408,
+                "h": 14,
+                "right": 33554422
+              },
+              "display": "flex"
+            },
+            "dotsCount": 3,
+            "quoteMark": {
+              "x": 16777186,
+              "y": 674.59,
+              "w": 64,
+              "h": 39,
+              "right": 16777250
+            },
+            "blockquote": {
+              "x": 16776908,
+              "y": 674.59,
+              "w": 620,
+              "h": 215.3,
+              "right": 16777528
+            },
+            "quoteToTextGap": 14,
+            "slideHeight": 223.3,
+            "fontSizes": {
+              "title": 34,
+              "quote": 24,
+              "cite": 26,
+              "kicker": 34
+            }
+          }
+        }
+      },
+      "consoleErrors": [],
+      "docOverflow": {
+        "scrollWidth": 33554422,
+        "clientWidth": 768,
+        "overflowPx": 33553654,
+        "hasHOverflow": true
+      },
+      "widestCulprits": [
+        {
+          "sel": "div.jlb-testimonial__head",
+          "w": 33554408,
+          "scrollW": 33554408,
+          "section": "padres"
+        },
+        {
+          "sel": "p.jlb-kicker",
+          "w": 33554408,
+          "scrollW": 33554408,
+          "section": "padres"
+        },
+        {
+          "sel": "h2",
+          "w": 33554408,
+          "scrollW": 33554408,
+          "section": "padres"
+        },
+        {
+          "sel": "div.jlb-testimonial__carousel",
+          "w": 33554408,
+          "scrollW": 33554408,
+          "section": "padres"
+        },
+        {
+          "sel": "div.jlb-testimonial__swiper.swiper",
+          "w": 33554408,
+          "scrollW": 33554432,
+          "section": "padres"
+        },
+        {
+          "sel": "div.swiper-wrapper",
+          "w": 33554408,
+          "scrollW": 33554432,
+          "section": "padres"
+        },
+        {
+          "sel": "div.swiper-slide.jlb-testimonial__slide",
+          "w": 33554408,
+          "scrollW": 33554408,
+          "section": "padres"
+        },
+        {
+          "sel": "div.jlb-testimonial__dots.swiper-pagination-clickable",
+          "w": 33554408,
+          "scrollW": 33554408,
+          "section": "padres"
+        }
+      ],
+      "header": {
+        "tag": "jlb-header",
+        "position": "sticky",
+        "height": 73,
+        "zIndex": "80"
+      }
+    },
+    {
+      "label": "mobile",
+      "width": 390,
+      "height": 844,
+      "sections": {
+        "testimoniales": {
+          "found": true,
+          "rootRect": {
+            "x": 0,
+            "y": -48.22,
+            "w": 390,
+            "h": 939.92,
+            "right": 390
+          },
+          "sectionOverflow": {
+            "rootRight": 390,
+            "vw": 390,
+            "exceedsVw": false
+          },
+          "overflowing": [
+            {
+              "sel": ".jlb-testimoniales__media",
+              "left": 30,
+              "right": 611.81,
+              "w": 581.81
+            },
+            {
+              "sel": "img",
+              "left": 30,
+              "right": 611.81,
+              "w": 581.81
+            },
+            {
+              "sel": ".jlb-testimoniales__media-overlay",
+              "left": 30,
+              "right": 611.81,
+              "w": 581.81
+            }
+          ],
+          "testimoniales": {
+            "slideGridCols": "362px",
+            "slideDisplay": "grid",
+            "media": {
+              "x": 30,
+              "y": 7.78,
+              "w": 581.81,
+              "h": 400,
+              "right": 611.81
+            },
+            "mediaImg": {
+              "x": 30,
+              "y": 7.78,
+              "w": 581.81,
+              "h": 400,
+              "right": 611.81
+            },
+            "mediaCS": {
+              "minHeight": "400px",
+              "maxHeight": "400px",
+              "aspectRatio": "16 / 11"
+            },
+            "mediaVisible": true,
+            "body": {
+              "x": 14,
+              "y": 407.78,
+              "w": 362,
+              "h": 427.92,
+              "right": 376
+            },
+            "decor": {
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "w": 0,
+                "h": 0,
+                "right": 0
+              },
+              "display": "none"
+            },
+            "nav": {
+              "x": 34,
+              "y": 761.2,
+              "w": 322,
+              "h": 46.5,
+              "right": 356
+            },
+            "navCount": 6,
+            "play": {
+              "rect": {
+                "x": 284.91,
+                "y": 171.78,
+                "w": 72,
+                "h": 72,
+                "right": 356.91
+              },
+              "display": "block"
+            },
+            "fontSizes": {
+              "title": 28,
+              "quote": 16,
+              "author": 18,
+              "kicker": 15.5
+            },
+            "stacked": true,
+            "mediaBodyOverlap": 0
+          }
+        },
+        "padres": {
+          "found": true,
+          "rootRect": {
+            "x": 0,
+            "y": 203.7,
+            "w": 390,
+            "h": 435.59,
+            "right": 390
+          },
+          "sectionOverflow": {
+            "rootRight": 390,
+            "vw": 390,
+            "exceedsVw": false
+          },
+          "overflowing": [
+            {
+              "sel": ".jlb-testimonial__head",
+              "left": 14,
+              "right": 33554422,
+              "w": 33554408
+            },
+            {
+              "sel": ".jlb-kicker",
+              "left": 14,
+              "right": 33554422,
+              "w": 33554408
+            },
+            {
+              "sel": "h2",
+              "left": 14,
+              "right": 33554422,
+              "w": 33554408
+            },
+            {
+              "sel": ".jlb-testimonial__carousel",
+              "left": 14,
+              "right": 33554422,
+              "w": 33554408
+            },
+            {
+              "sel": ".jlb-testimonial__swiper.swiper",
+              "left": 14,
+              "right": 33554422,
+              "w": 33554408
+            },
+            {
+              "sel": ".swiper-wrapper",
+              "left": 14,
+              "right": 33554422,
+              "w": 33554408
+            },
+            {
+              "sel": ".swiper-slide.jlb-testimonial__slide",
+              "left": 14,
+              "right": 33554422,
+              "w": 33554408
+            },
+            {
+              "sel": "blockquote",
+              "left": 16776908,
+              "right": 16777528,
+              "w": 620
+            },
+            {
+              "sel": ".jlb-testimonial__quote-mark",
+              "left": 16777186,
+              "right": 16777250,
+              "w": 64
+            },
+            {
+              "sel": "svg",
+              "left": 16777186,
+              "right": 16777250,
+              "w": 64
+            },
+            {
+              "sel": "path",
+              "left": 16777186,
+              "right": 16777250,
+              "w": 64
+            },
+            {
+              "sel": "p",
+              "left": 16776908,
+              "right": 16777528,
+              "w": 620
+            }
+          ],
+          "padres": {
+            "innerGridCols": "3.35544e+07px",
+            "head": {
+              "x": 14,
+              "y": 231.7,
+              "w": 33554408,
+              "h": 64.59,
+              "right": 33554422
+            },
+            "carousel": {
+              "x": 14,
+              "y": 320.3,
+              "w": 33554408,
+              "h": 233,
+              "right": 33554422
+            },
+            "stacked": true,
+            "dotsWrap": {
+              "rect": {
+                "x": 14,
+                "y": 539.3,
+                "w": 33554408,
+                "h": 14,
+                "right": 33554422
+              },
+              "display": "flex"
+            },
+            "dotsCount": 3,
+            "quoteMark": {
+              "x": 16777186,
+              "y": 324.3,
+              "w": 64,
+              "h": 39,
+              "right": 16777250
+            },
+            "blockquote": {
+              "x": 16776908,
+              "y": 324.3,
+              "w": 620,
+              "h": 181.3,
+              "right": 16777528
+            },
+            "quoteToTextGap": 14,
+            "slideHeight": 189.3,
+            "fontSizes": {
+              "title": 34,
+              "quote": 18,
+              "cite": 26,
+              "kicker": 34
+            }
+          }
+        }
+      },
+      "consoleErrors": [],
+      "docOverflow": {
+        "scrollWidth": 33554422,
+        "clientWidth": 390,
+        "overflowPx": 33554032,
+        "hasHOverflow": true
+      },
+      "widestCulprits": [
+        {
+          "sel": "div.jlb-testimonial__head",
+          "w": 33554408,
+          "scrollW": 33554408,
+          "section": "padres"
+        },
+        {
+          "sel": "p.jlb-kicker",
+          "w": 33554408,
+          "scrollW": 33554408,
+          "section": "padres"
+        },
+        {
+          "sel": "h2",
+          "w": 33554408,
+          "scrollW": 33554408,
+          "section": "padres"
+        },
+        {
+          "sel": "div.jlb-testimonial__carousel",
+          "w": 33554408,
+          "scrollW": 33554408,
+          "section": "padres"
+        },
+        {
+          "sel": "div.jlb-testimonial__swiper.swiper",
+          "w": 33554408,
+          "scrollW": 33554432,
+          "section": "padres"
+        },
+        {
+          "sel": "div.swiper-wrapper",
+          "w": 33554408,
+          "scrollW": 33554432,
+          "section": "padres"
+        },
+        {
+          "sel": "div.swiper-slide.jlb-testimonial__slide",
+          "w": 33554408,
+          "scrollW": 33554408,
+          "section": "padres"
+        },
+        {
+          "sel": "div.jlb-testimonial__dots.swiper-pagination-clickable",
+          "w": 33554408,
+          "scrollW": 33554408,
+          "section": "padres"
+        }
+      ],
+      "header": {
+        "tag": "jlb-header",
+        "position": "sticky",
+        "height": 73,
+        "zIndex": "80"
+      }
+    },
+    {
+      "label": "mobile",
+      "width": 360,
+      "height": 800,
+      "sections": {
+        "testimoniales": {
+          "found": true,
+          "rootRect": {
+            "x": 0,
+            "y": -69.47,
+            "w": 360,
+            "h": 939.92,
+            "right": 360
+          },
+          "sectionOverflow": {
+            "rootRight": 360,
+            "vw": 360,
+            "exceedsVw": false
+          },
+          "overflowing": [
+            {
+              "sel": ".jlb-testimoniales__media",
+              "left": 30,
+              "right": 611.81,
+              "w": 581.81
+            },
+            {
+              "sel": "img",
+              "left": 30,
+              "right": 611.81,
+              "w": 581.81
+            },
+            {
+              "sel": ".jlb-testimoniales__media-overlay",
+              "left": 30,
+              "right": 611.81,
+              "w": 581.81
+            }
+          ],
+          "testimoniales": {
+            "slideGridCols": "332px",
+            "slideDisplay": "grid",
+            "media": {
+              "x": 30,
+              "y": -13.47,
+              "w": 581.81,
+              "h": 400,
+              "right": 611.81
+            },
+            "mediaImg": {
+              "x": 30,
+              "y": -13.47,
+              "w": 581.81,
+              "h": 400,
+              "right": 611.81
+            },
+            "mediaCS": {
+              "minHeight": "400px",
+              "maxHeight": "400px",
+              "aspectRatio": "16 / 11"
+            },
+            "mediaVisible": true,
+            "body": {
+              "x": 14,
+              "y": 386.53,
+              "w": 332,
+              "h": 427.92,
+              "right": 346
+            },
+            "decor": {
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "w": 0,
+                "h": 0,
+                "right": 0
+              },
+              "display": "none"
+            },
+            "nav": {
+              "x": 34,
+              "y": 739.95,
+              "w": 292,
+              "h": 46.5,
+              "right": 326
+            },
+            "navCount": 6,
+            "play": {
+              "rect": {
+                "x": 284.91,
+                "y": 150.53,
+                "w": 72,
+                "h": 72,
+                "right": 356.91
+              },
+              "display": "block"
+            },
+            "fontSizes": {
+              "title": 28,
+              "quote": 16,
+              "author": 18,
+              "kicker": 15.5
+            },
+            "stacked": true,
+            "mediaBodyOverlap": 0
+          }
+        },
+        "padres": {
+          "found": true,
+          "rootRect": {
+            "x": 0,
+            "y": 182.45,
+            "w": 360,
+            "h": 435.59,
+            "right": 360
+          },
+          "sectionOverflow": {
+            "rootRight": 360,
+            "vw": 360,
+            "exceedsVw": false
+          },
+          "overflowing": [
+            {
+              "sel": ".jlb-testimonial__head",
+              "left": 14,
+              "right": 33554422,
+              "w": 33554408
+            },
+            {
+              "sel": ".jlb-kicker",
+              "left": 14,
+              "right": 33554422,
+              "w": 33554408
+            },
+            {
+              "sel": "h2",
+              "left": 14,
+              "right": 33554422,
+              "w": 33554408
+            },
+            {
+              "sel": ".jlb-testimonial__carousel",
+              "left": 14,
+              "right": 33554422,
+              "w": 33554408
+            },
+            {
+              "sel": ".jlb-testimonial__swiper.swiper",
+              "left": 14,
+              "right": 33554422,
+              "w": 33554408
+            },
+            {
+              "sel": ".swiper-wrapper",
+              "left": 14,
+              "right": 33554422,
+              "w": 33554408
+            },
+            {
+              "sel": ".swiper-slide.jlb-testimonial__slide",
+              "left": 14,
+              "right": 33554422,
+              "w": 33554408
+            },
+            {
+              "sel": "blockquote",
+              "left": 16776908,
+              "right": 16777528,
+              "w": 620
+            },
+            {
+              "sel": ".jlb-testimonial__quote-mark",
+              "left": 16777186,
+              "right": 16777250,
+              "w": 64
+            },
+            {
+              "sel": "svg",
+              "left": 16777186,
+              "right": 16777250,
+              "w": 64
+            },
+            {
+              "sel": "path",
+              "left": 16777186,
+              "right": 16777250,
+              "w": 64
+            },
+            {
+              "sel": "p",
+              "left": 16776908,
+              "right": 16777528,
+              "w": 620
+            }
+          ],
+          "padres": {
+            "innerGridCols": "3.35544e+07px",
+            "head": {
+              "x": 14,
+              "y": 210.45,
+              "w": 33554408,
+              "h": 64.59,
+              "right": 33554422
+            },
+            "carousel": {
+              "x": 14,
+              "y": 299.05,
+              "w": 33554408,
+              "h": 233,
+              "right": 33554422
+            },
+            "stacked": true,
+            "dotsWrap": {
+              "rect": {
+                "x": 14,
+                "y": 518.05,
+                "w": 33554408,
+                "h": 14,
+                "right": 33554422
+              },
+              "display": "flex"
+            },
+            "dotsCount": 3,
+            "quoteMark": {
+              "x": 16777186,
+              "y": 303.05,
+              "w": 64,
+              "h": 39,
+              "right": 16777250
+            },
+            "blockquote": {
+              "x": 16776908,
+              "y": 303.05,
+              "w": 620,
+              "h": 181.3,
+              "right": 16777528
+            },
+            "quoteToTextGap": 14,
+            "slideHeight": 189.3,
+            "fontSizes": {
+              "title": 34,
+              "quote": 18,
+              "cite": 26,
+              "kicker": 34
+            }
+          }
+        }
+      },
+      "consoleErrors": [],
+      "docOverflow": {
+        "scrollWidth": 33554422,
+        "clientWidth": 360,
+        "overflowPx": 33554062,
+        "hasHOverflow": true
+      },
+      "widestCulprits": [
+        {
+          "sel": "div.jlb-testimonial__head",
+          "w": 33554408,
+          "scrollW": 33554408,
+          "section": "padres"
+        },
+        {
+          "sel": "p.jlb-kicker",
+          "w": 33554408,
+          "scrollW": 33554408,
+          "section": "padres"
+        },
+        {
+          "sel": "h2",
+          "w": 33554408,
+          "scrollW": 33554408,
+          "section": "padres"
+        },
+        {
+          "sel": "div.jlb-testimonial__carousel",
+          "w": 33554408,
+          "scrollW": 33554408,
+          "section": "padres"
+        },
+        {
+          "sel": "div.jlb-testimonial__swiper.swiper",
+          "w": 33554408,
+          "scrollW": 33554432,
+          "section": "padres"
+        },
+        {
+          "sel": "div.swiper-wrapper",
+          "w": 33554408,
+          "scrollW": 33554432,
+          "section": "padres"
+        },
+        {
+          "sel": "div.swiper-slide.jlb-testimonial__slide",
+          "w": 33554408,
+          "scrollW": 33554408,
+          "section": "padres"
+        },
+        {
+          "sel": "div.jlb-testimonial__dots.swiper-pagination-clickable",
+          "w": 33554408,
+          "scrollW": 33554408,
+          "section": "padres"
+        }
+      ],
+      "header": {
+        "tag": "jlb-header",
+        "position": "sticky",
+        "height": 73,
+        "zIndex": "80"
+      }
+    }
+  ]
+}

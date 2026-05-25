@@ -1,0 +1,16 @@
+{
+  "screenshots": [],
+  "asserts": [],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "notes": [
+    "[case-single|desktop-1440] No se encontró .jlb-testimoniales tras 15s.",
+    "[case-single|desktop-1280] No se encontró .jlb-testimoniales tras 15s.",
+    "[case-single|tablet-980] No se encontró .jlb-testimoniales tras 15s.",
+    "[case-single|mobile-640] No se encontró .jlb-testimoniales tras 15s.",
+    "[case-single|mobile-375] No se encontró .jlb-testimoniales tras 15s."
+  ],
+  "blockers": [
+    "Excepción en casesMultiAndPlay: locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.editor-post-title__input, [aria-label*=\"Añade título\"], [aria-label*=\"Add title\"], [placeholder*=\"Añade título\"], [placeholder*=\"Add title\"]').first()\u001b[22m\n"
+  ]
+}

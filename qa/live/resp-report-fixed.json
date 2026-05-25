@@ -1,0 +1,1088 @@
+{
+  "site": "http://jlb-school.local",
+  "viewports": [
+    {
+      "label": "desktop",
+      "width": 1440,
+      "height": 900,
+      "sections": {
+        "testimoniales": {
+          "found": true,
+          "rootRect": {
+            "x": 0,
+            "y": 127.31,
+            "w": 1440,
+            "h": 644.53,
+            "right": 1440
+          },
+          "sectionOverflow": {
+            "rootRight": 1440,
+            "vw": 1440,
+            "exceedsVw": false
+          },
+          "overflowing": [],
+          "testimoniales": {
+            "slideGridCols": "468.984px 671.016px",
+            "slideDisplay": "grid",
+            "media": {
+              "x": 174,
+              "y": 231.31,
+              "w": 444.98,
+              "h": 400,
+              "right": 618.98
+            },
+            "mediaImg": {
+              "x": 174,
+              "y": 231.31,
+              "w": 444.98,
+              "h": 400,
+              "right": 618.98
+            },
+            "mediaCS": {
+              "minHeight": "400px",
+              "maxHeight": "400px",
+              "aspectRatio": "auto"
+            },
+            "mediaVisible": true,
+            "body": {
+              "x": 618.98,
+              "y": 207.31,
+              "w": 671.02,
+              "h": 478.53,
+              "right": 1290
+            },
+            "decor": {
+              "rect": {
+                "x": 1130,
+                "y": 109.31,
+                "w": 272,
+                "h": 229.59,
+                "right": 1402
+              },
+              "display": "block"
+            },
+            "nav": {
+              "x": 674.98,
+              "y": 591.34,
+              "w": 551.02,
+              "h": 46.5,
+              "right": 1226
+            },
+            "navCount": 6,
+            "play": {
+              "rect": {
+                "x": 346.48,
+                "y": 381.31,
+                "w": 100,
+                "h": 100,
+                "right": 446.48
+              },
+              "display": "block"
+            },
+            "fontSizes": {
+              "title": 36,
+              "quote": 19.38,
+              "author": 23.25,
+              "kicker": 15.5
+            },
+            "stacked": false,
+            "mediaBodyOverlap": 424
+          }
+        },
+        "padres": {
+          "found": true,
+          "rootRect": {
+            "x": 0,
+            "y": 518.84,
+            "w": 1440,
+            "h": 381,
+            "right": 1440
+          },
+          "sectionOverflow": {
+            "rootRight": 1440,
+            "vw": 1440,
+            "exceedsVw": false
+          },
+          "overflowing": [
+            {
+              "sel": ".swiper-slide.jlb-testimonial__slide",
+              "left": 1314,
+              "right": 2114,
+              "w": 800
+            },
+            {
+              "sel": "blockquote",
+              "left": 1404,
+              "right": 2024,
+              "w": 620
+            },
+            {
+              "sel": ".jlb-testimonial__quote-mark",
+              "left": 1682,
+              "right": 1746,
+              "w": 64
+            },
+            {
+              "sel": "svg",
+              "left": 1682,
+              "right": 1746,
+              "w": 64
+            },
+            {
+              "sel": "path",
+              "left": 1682,
+              "right": 1746,
+              "w": 64
+            },
+            {
+              "sel": "p",
+              "left": 1404,
+              "right": 2024,
+              "w": 620
+            },
+            {
+              "sel": "cite",
+              "left": 1404,
+              "right": 2024,
+              "w": 620
+            }
+          ],
+          "padres": {
+            "innerGridCols": "300px 800px",
+            "head": {
+              "x": 150,
+              "y": 639.31,
+              "w": 300,
+              "h": 82.06,
+              "right": 450
+            },
+            "carousel": {
+              "x": 490,
+              "y": 546.84,
+              "w": 800,
+              "h": 267,
+              "right": 1290
+            },
+            "stacked": false,
+            "dotsWrap": {
+              "rect": {
+                "x": 490,
+                "y": 799.84,
+                "w": 800,
+                "h": 14,
+                "right": 1290
+              },
+              "display": "flex"
+            },
+            "dotsCount": 3,
+            "quoteMark": {
+              "x": 858,
+              "y": 550.84,
+              "w": 64,
+              "h": 39,
+              "right": 922
+            },
+            "blockquote": {
+              "x": 580,
+              "y": 550.84,
+              "w": 620,
+              "h": 215.3,
+              "right": 1200
+            },
+            "quoteToTextGap": 14,
+            "slideHeight": 223.3,
+            "fontSizes": {
+              "title": 43.2,
+              "quote": 24,
+              "cite": 26,
+              "kicker": 43.2
+            }
+          }
+        }
+      },
+      "consoleErrors": [],
+      "docOverflow": {
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "overflowPx": 0,
+        "hasHOverflow": false
+      },
+      "widestCulprits": [],
+      "header": {
+        "tag": "jlb-header",
+        "position": "sticky",
+        "height": 97,
+        "zIndex": "80"
+      }
+    },
+    {
+      "label": "tablet",
+      "width": 834,
+      "height": 1112,
+      "sections": {
+        "testimoniales": {
+          "found": true,
+          "rootRect": {
+            "x": 0,
+            "y": 54.2,
+            "w": 834,
+            "h": 1003.11,
+            "right": 834
+          },
+          "sectionOverflow": {
+            "rootRight": 834,
+            "vw": 834,
+            "exceedsVw": false
+          },
+          "overflowing": [],
+          "testimoniales": {
+            "slideGridCols": "794px",
+            "slideDisplay": "grid",
+            "media": {
+              "x": 40,
+              "y": 130.2,
+              "w": 754,
+              "h": 518.38,
+              "right": 794
+            },
+            "mediaImg": {
+              "x": 40,
+              "y": 130.2,
+              "w": 754,
+              "h": 518.38,
+              "right": 794
+            },
+            "mediaCS": {
+              "minHeight": "auto",
+              "maxHeight": "none",
+              "aspectRatio": "16 / 11"
+            },
+            "mediaVisible": true,
+            "body": {
+              "x": 20,
+              "y": 648.58,
+              "w": 794,
+              "h": 344.73,
+              "right": 814
+            },
+            "decor": {
+              "rect": {
+                "x": 670,
+                "y": 94.2,
+                "w": 160,
+                "h": 135.05,
+                "right": 830
+              },
+              "display": "block"
+            },
+            "nav": {
+              "x": 48,
+              "y": 910.81,
+              "w": 738,
+              "h": 46.5,
+              "right": 786
+            },
+            "navCount": 6,
+            "play": {
+              "rect": {
+                "x": 367,
+                "y": 339.39,
+                "w": 100,
+                "h": 100,
+                "right": 467
+              },
+              "display": "block"
+            },
+            "fontSizes": {
+              "title": 28,
+              "quote": 16,
+              "author": 18,
+              "kicker": 15.5
+            },
+            "stacked": true,
+            "mediaBodyOverlap": 0
+          }
+        },
+        "padres": {
+          "found": true,
+          "rootRect": {
+            "x": 0,
+            "y": 642.31,
+            "w": 834,
+            "h": 469.59,
+            "right": 834
+          },
+          "sectionOverflow": {
+            "rootRight": 834,
+            "vw": 834,
+            "exceedsVw": false
+          },
+          "overflowing": [
+            {
+              "sel": ".swiper-slide.jlb-testimonial__slide",
+              "left": 838,
+              "right": 1632,
+              "w": 794
+            },
+            {
+              "sel": "blockquote",
+              "left": 925,
+              "right": 1545,
+              "w": 620
+            },
+            {
+              "sel": ".jlb-testimonial__quote-mark",
+              "left": 1203,
+              "right": 1267,
+              "w": 64
+            },
+            {
+              "sel": "svg",
+              "left": 1203,
+              "right": 1267,
+              "w": 64
+            },
+            {
+              "sel": "path",
+              "left": 1203,
+              "right": 1267,
+              "w": 64
+            },
+            {
+              "sel": "p",
+              "left": 925,
+              "right": 1545,
+              "w": 620
+            },
+            {
+              "sel": "cite",
+              "left": 925,
+              "right": 1545,
+              "w": 620
+            }
+          ],
+          "padres": {
+            "innerGridCols": "794px",
+            "head": {
+              "x": 20,
+              "y": 670.31,
+              "w": 794,
+              "h": 64.59,
+              "right": 814
+            },
+            "carousel": {
+              "x": 20,
+              "y": 758.91,
+              "w": 794,
+              "h": 267,
+              "right": 814
+            },
+            "stacked": true,
+            "dotsWrap": {
+              "rect": {
+                "x": 20,
+                "y": 1011.91,
+                "w": 794,
+                "h": 14,
+                "right": 814
+              },
+              "display": "flex"
+            },
+            "dotsCount": 3,
+            "quoteMark": {
+              "x": 385,
+              "y": 762.91,
+              "w": 64,
+              "h": 39,
+              "right": 449
+            },
+            "blockquote": {
+              "x": 107,
+              "y": 762.91,
+              "w": 620,
+              "h": 215.3,
+              "right": 727
+            },
+            "quoteToTextGap": 14,
+            "slideHeight": 223.3,
+            "fontSizes": {
+              "title": 34,
+              "quote": 24,
+              "cite": 26,
+              "kicker": 34
+            }
+          }
+        }
+      },
+      "consoleErrors": [],
+      "docOverflow": {
+        "scrollWidth": 834,
+        "clientWidth": 834,
+        "overflowPx": 0,
+        "hasHOverflow": false
+      },
+      "widestCulprits": [],
+      "header": {
+        "tag": "jlb-header",
+        "position": "sticky",
+        "height": 73,
+        "zIndex": "80"
+      }
+    },
+    {
+      "label": "tablet",
+      "width": 768,
+      "height": 1024,
+      "sections": {
+        "testimoniales": {
+          "found": true,
+          "rootRect": {
+            "x": 0,
+            "y": 29.27,
+            "w": 768,
+            "h": 965.98,
+            "right": 768
+          },
+          "sectionOverflow": {
+            "rootRight": 768,
+            "vw": 768,
+            "exceedsVw": false
+          },
+          "overflowing": [
+            {
+              "sel": ".jlb-testimoniales__decor",
+              "left": 610,
+              "right": 770,
+              "w": 160
+            },
+            {
+              "sel": "svg",
+              "left": 610,
+              "right": 770,
+              "w": 160
+            }
+          ],
+          "testimoniales": {
+            "slideGridCols": "740px",
+            "slideDisplay": "grid",
+            "media": {
+              "x": 34,
+              "y": 105.27,
+              "w": 700,
+              "h": 481.25,
+              "right": 734
+            },
+            "mediaImg": {
+              "x": 34,
+              "y": 105.27,
+              "w": 700,
+              "h": 481.25,
+              "right": 734
+            },
+            "mediaCS": {
+              "minHeight": "auto",
+              "maxHeight": "none",
+              "aspectRatio": "16 / 11"
+            },
+            "mediaVisible": true,
+            "body": {
+              "x": 14,
+              "y": 586.52,
+              "w": 740,
+              "h": 344.73,
+              "right": 754
+            },
+            "decor": {
+              "rect": {
+                "x": 610,
+                "y": 69.27,
+                "w": 160,
+                "h": 135.05,
+                "right": 770
+              },
+              "display": "block"
+            },
+            "nav": {
+              "x": 42,
+              "y": 848.75,
+              "w": 684,
+              "h": 46.5,
+              "right": 726
+            },
+            "navCount": 6,
+            "play": {
+              "rect": {
+                "x": 334,
+                "y": 295.89,
+                "w": 100,
+                "h": 100,
+                "right": 434
+              },
+              "display": "block"
+            },
+            "fontSizes": {
+              "title": 28,
+              "quote": 16,
+              "author": 18,
+              "kicker": 15.5
+            },
+            "stacked": true,
+            "mediaBodyOverlap": 0
+          }
+        },
+        "padres": {
+          "found": true,
+          "rootRect": {
+            "x": 0,
+            "y": 554.25,
+            "w": 768,
+            "h": 469.59,
+            "right": 768
+          },
+          "sectionOverflow": {
+            "rootRight": 768,
+            "vw": 768,
+            "exceedsVw": false
+          },
+          "overflowing": [
+            {
+              "sel": ".swiper-slide.jlb-testimonial__slide",
+              "left": 778,
+              "right": 1518,
+              "w": 740
+            },
+            {
+              "sel": "blockquote",
+              "left": 838,
+              "right": 1458,
+              "w": 620
+            },
+            {
+              "sel": ".jlb-testimonial__quote-mark",
+              "left": 1116,
+              "right": 1180,
+              "w": 64
+            },
+            {
+              "sel": "svg",
+              "left": 1116,
+              "right": 1180,
+              "w": 64
+            },
+            {
+              "sel": "path",
+              "left": 1116,
+              "right": 1180,
+              "w": 64
+            },
+            {
+              "sel": "p",
+              "left": 838,
+              "right": 1458,
+              "w": 620
+            },
+            {
+              "sel": "cite",
+              "left": 838,
+              "right": 1458,
+              "w": 620
+            }
+          ],
+          "padres": {
+            "innerGridCols": "740px",
+            "head": {
+              "x": 14,
+              "y": 582.25,
+              "w": 740,
+              "h": 64.59,
+              "right": 754
+            },
+            "carousel": {
+              "x": 14,
+              "y": 670.84,
+              "w": 740,
+              "h": 267,
+              "right": 754
+            },
+            "stacked": true,
+            "dotsWrap": {
+              "rect": {
+                "x": 14,
+                "y": 923.84,
+                "w": 740,
+                "h": 14,
+                "right": 754
+              },
+              "display": "flex"
+            },
+            "dotsCount": 3,
+            "quoteMark": {
+              "x": 352,
+              "y": 674.84,
+              "w": 64,
+              "h": 39,
+              "right": 416
+            },
+            "blockquote": {
+              "x": 74,
+              "y": 674.84,
+              "w": 620,
+              "h": 215.3,
+              "right": 694
+            },
+            "quoteToTextGap": 14,
+            "slideHeight": 223.3,
+            "fontSizes": {
+              "title": 34,
+              "quote": 24,
+              "cite": 26,
+              "kicker": 34
+            }
+          }
+        }
+      },
+      "consoleErrors": [],
+      "docOverflow": {
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "overflowPx": 0,
+        "hasHOverflow": false
+      },
+      "widestCulprits": [],
+      "header": {
+        "tag": "jlb-header",
+        "position": "sticky",
+        "height": 73,
+        "zIndex": "80"
+      }
+    },
+    {
+      "label": "mobile",
+      "width": 390,
+      "height": 844,
+      "sections": {
+        "testimoniales": {
+          "found": true,
+          "rootRect": {
+            "x": 0,
+            "y": 38.78,
+            "w": 390,
+            "h": 766.8,
+            "right": 390
+          },
+          "sectionOverflow": {
+            "rootRight": 390,
+            "vw": 390,
+            "exceedsVw": false
+          },
+          "overflowing": [],
+          "testimoniales": {
+            "slideGridCols": "362px",
+            "slideDisplay": "grid",
+            "media": {
+              "x": 30,
+              "y": 94.78,
+              "w": 330,
+              "h": 226.88,
+              "right": 360
+            },
+            "mediaImg": {
+              "x": 30,
+              "y": 94.78,
+              "w": 330,
+              "h": 226.88,
+              "right": 360
+            },
+            "mediaCS": {
+              "minHeight": "auto",
+              "maxHeight": "none",
+              "aspectRatio": "16 / 11"
+            },
+            "mediaVisible": true,
+            "body": {
+              "x": 14,
+              "y": 321.66,
+              "w": 362,
+              "h": 427.92,
+              "right": 376
+            },
+            "decor": {
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "w": 0,
+                "h": 0,
+                "right": 0
+              },
+              "display": "none"
+            },
+            "nav": {
+              "x": 34,
+              "y": 675.08,
+              "w": 322,
+              "h": 46.5,
+              "right": 356
+            },
+            "navCount": 6,
+            "play": {
+              "rect": {
+                "x": 159,
+                "y": 172.22,
+                "w": 72,
+                "h": 72,
+                "right": 231
+              },
+              "display": "block"
+            },
+            "fontSizes": {
+              "title": 28,
+              "quote": 16,
+              "author": 18,
+              "kicker": 15.5
+            },
+            "stacked": true,
+            "mediaBodyOverlap": 0
+          }
+        },
+        "padres": {
+          "found": true,
+          "rootRect": {
+            "x": 0,
+            "y": 340.58,
+            "w": 390,
+            "h": 503.59,
+            "right": 390
+          },
+          "sectionOverflow": {
+            "rootRight": 390,
+            "vw": 390,
+            "exceedsVw": false
+          },
+          "overflowing": [
+            {
+              "sel": ".swiper-slide.jlb-testimonial__slide",
+              "left": 400,
+              "right": 762,
+              "w": 362
+            },
+            {
+              "sel": "blockquote",
+              "left": 404,
+              "right": 758,
+              "w": 354
+            },
+            {
+              "sel": ".jlb-testimonial__quote-mark",
+              "left": 549,
+              "right": 613,
+              "w": 64
+            },
+            {
+              "sel": "svg",
+              "left": 549,
+              "right": 613,
+              "w": 64
+            },
+            {
+              "sel": "path",
+              "left": 549,
+              "right": 613,
+              "w": 64
+            },
+            {
+              "sel": "p",
+              "left": 404,
+              "right": 758,
+              "w": 354
+            },
+            {
+              "sel": "cite",
+              "left": 404,
+              "right": 758,
+              "w": 354
+            }
+          ],
+          "padres": {
+            "innerGridCols": "362px",
+            "head": {
+              "x": 14,
+              "y": 368.58,
+              "w": 362,
+              "h": 64.59,
+              "right": 376
+            },
+            "carousel": {
+              "x": 14,
+              "y": 457.17,
+              "w": 362,
+              "h": 301,
+              "right": 376
+            },
+            "stacked": true,
+            "dotsWrap": {
+              "rect": {
+                "x": 14,
+                "y": 744.17,
+                "w": 362,
+                "h": 14,
+                "right": 376
+              },
+              "display": "flex"
+            },
+            "dotsCount": 3,
+            "quoteMark": {
+              "x": 163,
+              "y": 461.17,
+              "w": 64,
+              "h": 39,
+              "right": 227
+            },
+            "blockquote": {
+              "x": 18,
+              "y": 461.17,
+              "w": 354,
+              "h": 249.3,
+              "right": 372
+            },
+            "quoteToTextGap": 14,
+            "slideHeight": 257.3,
+            "fontSizes": {
+              "title": 34,
+              "quote": 18,
+              "cite": 26,
+              "kicker": 34
+            }
+          }
+        }
+      },
+      "consoleErrors": [],
+      "docOverflow": {
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "overflowPx": 0,
+        "hasHOverflow": false
+      },
+      "widestCulprits": [],
+      "header": {
+        "tag": "jlb-header",
+        "position": "sticky",
+        "height": 73,
+        "zIndex": "80"
+      }
+    },
+    {
+      "label": "mobile",
+      "width": 360,
+      "height": 800,
+      "sections": {
+        "testimoniales": {
+          "found": true,
+          "rootRect": {
+            "x": 0,
+            "y": 26.53,
+            "w": 360,
+            "h": 746.17,
+            "right": 360
+          },
+          "sectionOverflow": {
+            "rootRight": 360,
+            "vw": 360,
+            "exceedsVw": false
+          },
+          "overflowing": [],
+          "testimoniales": {
+            "slideGridCols": "332px",
+            "slideDisplay": "grid",
+            "media": {
+              "x": 30,
+              "y": 82.53,
+              "w": 300,
+              "h": 206.25,
+              "right": 330
+            },
+            "mediaImg": {
+              "x": 30,
+              "y": 82.53,
+              "w": 300,
+              "h": 206.25,
+              "right": 330
+            },
+            "mediaCS": {
+              "minHeight": "auto",
+              "maxHeight": "none",
+              "aspectRatio": "16 / 11"
+            },
+            "mediaVisible": true,
+            "body": {
+              "x": 14,
+              "y": 288.78,
+              "w": 332,
+              "h": 427.92,
+              "right": 346
+            },
+            "decor": {
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "w": 0,
+                "h": 0,
+                "right": 0
+              },
+              "display": "none"
+            },
+            "nav": {
+              "x": 34,
+              "y": 642.2,
+              "w": 292,
+              "h": 46.5,
+              "right": 326
+            },
+            "navCount": 6,
+            "play": {
+              "rect": {
+                "x": 144,
+                "y": 149.66,
+                "w": 72,
+                "h": 72,
+                "right": 216
+              },
+              "display": "block"
+            },
+            "fontSizes": {
+              "title": 28,
+              "quote": 16,
+              "author": 18,
+              "kicker": 15.5
+            },
+            "stacked": true,
+            "mediaBodyOverlap": 0
+          }
+        },
+        "padres": {
+          "found": true,
+          "rootRect": {
+            "x": 0,
+            "y": 296.7,
+            "w": 360,
+            "h": 503.59,
+            "right": 360
+          },
+          "sectionOverflow": {
+            "rootRight": 360,
+            "vw": 360,
+            "exceedsVw": false
+          },
+          "overflowing": [
+            {
+              "sel": ".swiper-slide.jlb-testimonial__slide",
+              "left": 370,
+              "right": 702,
+              "w": 332
+            },
+            {
+              "sel": "blockquote",
+              "left": 374,
+              "right": 698,
+              "w": 324
+            },
+            {
+              "sel": ".jlb-testimonial__quote-mark",
+              "left": 504,
+              "right": 568,
+              "w": 64
+            },
+            {
+              "sel": "svg",
+              "left": 504,
+              "right": 568,
+              "w": 64
+            },
+            {
+              "sel": "path",
+              "left": 504,
+              "right": 568,
+              "w": 64
+            },
+            {
+              "sel": "p",
+              "left": 374,
+              "right": 698,
+              "w": 324
+            },
+            {
+              "sel": "cite",
+              "left": 374,
+              "right": 698,
+              "w": 324
+            }
+          ],
+          "padres": {
+            "innerGridCols": "332px",
+            "head": {
+              "x": 14,
+              "y": 324.7,
+              "w": 332,
+              "h": 64.59,
+              "right": 346
+            },
+            "carousel": {
+              "x": 14,
+              "y": 413.3,
+              "w": 332,
+              "h": 301,
+              "right": 346
+            },
+            "stacked": true,
+            "dotsWrap": {
+              "rect": {
+                "x": 14,
+                "y": 700.3,
+                "w": 332,
+                "h": 14,
+                "right": 346
+              },
+              "display": "flex"
+            },
+            "dotsCount": 3,
+            "quoteMark": {
+              "x": 148,
+              "y": 417.3,
+              "w": 64,
+              "h": 39,
+              "right": 212
+            },
+            "blockquote": {
+              "x": 18,
+              "y": 417.3,
+              "w": 324,
+              "h": 249.3,
+              "right": 342
+            },
+            "quoteToTextGap": 14,
+            "slideHeight": 257.3,
+            "fontSizes": {
+              "title": 34,
+              "quote": 18,
+              "cite": 26,
+              "kicker": 34
+            }
+          }
+        }
+      },
+      "consoleErrors": [],
+      "docOverflow": {
+        "scrollWidth": 360,
+        "clientWidth": 360,
+        "overflowPx": 0,
+        "hasHOverflow": false
+      },
+      "widestCulprits": [],
+      "header": {
+        "tag": "jlb-header",
+        "position": "sticky",
+        "height": 73,
+        "zIndex": "80"
+      }
+    }
+  ]
+}

@@ -1,0 +1,249 @@
+// Jean Le Boulch — Formulario Open Day (Figma 4172:416). Envía a HubSpot.
+
+.jlb-openday {
+    padding: clamp(40px, 6vw, 80px) 0 clamp(56px, 8vw, 96px);
+    background: #fff;
+}
+
+// Hero de Open Day: el botón "Inscríbete ahora" va en rojo (Figma #c32529).
+// Acotado a .jlb-adm-hero para no pisar otros .jlb-link-external (p.ej. gradiente).
+.jlb-page-open-day .jlb-adm-hero a.jlb-link-external {
+    color: #c32529;
+}
+
+// Hero de Open Day: el contenido (eyebrow + logo + subtítulo + botón) va
+// CENTRADO en la mitad izquierda (Figma), no alineado a la izquierda como
+// Admisión/Experiencias. Acotado a la página para no afectar a las demás.
+.jlb-page-open-day {
+    .jlb-adm-hero__content {
+        margin-inline: auto;
+        text-align: center;
+    }
+
+    .jlb-adm-hero__eyebrow,
+    .jlb-adm-hero__subtitle {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .jlb-adm-hero__title--img img {
+        margin-inline: auto;
+    }
+
+    .jlb-adm-hero__actions {
+        justify-content: center;
+    }
+}
+
+.jlb-openday__container {
+    width: min(1200px, calc(100% - 40px));
+    margin-inline: auto;
+}
+
+// Honeypot anti-spam: fuera de pantalla, no enfocable visualmente.
+.jlb-openday__hp {
+    position: absolute !important;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+.jlb-openday__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px 40px;
+    align-items: start;
+}
+
+.jlb-openday__field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+
+    &--full {
+        grid-column: 1 / -1;
+    }
+
+    label,
+    legend {
+        font-family: "DM Sans", var(--font-sans);
+        font-size: 14px;
+        font-weight: 500;
+        color: #3a3a44;
+        padding: 0;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"] {
+        height: 48px;
+        padding: 0 14px;
+        border: 1px solid #dbe3ec;
+        border-radius: 6px;
+        background: #f4f7fb;
+        font-family: "DM Sans", var(--font-sans);
+        font-size: 16px;
+        color: #231f20;
+        transition: border-color 160ms ease, box-shadow 160ms ease;
+
+        &:focus {
+            outline: none;
+            border-color: var(--jlb-purple, #614794);
+            box-shadow: 0 0 0 3px rgb(97 71 148 / 0.15);
+            background: #fff;
+        }
+    }
+
+    &.has-error {
+        input,
+        legend {
+            border-color: var(--jlb-red, #c92323);
+            color: var(--jlb-red, #c92323);
+        }
+
+        input {
+            box-shadow: 0 0 0 3px rgb(201 35 35 / 0.12);
+        }
+    }
+}
+
+.req {
+    color: var(--jlb-red, #c92323);
+}
+
+// Grupos de radios (Año de admisión / Hora de visita).
+.jlb-openday__radios {
+    border: 0;
+    margin: 0;
+    padding: 0;
+
+    legend {
+        margin-bottom: 10px;
+    }
+}
+
+.jlb-openday__radio {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+    font-family: "DM Sans", var(--font-sans);
+    font-size: 15px;
+    color: #231f20;
+    cursor: pointer;
+
+    input {
+        // Reset global del tema deja los inputs con appearance:none → invisibles.
+        // Restauramos el control nativo + color de marca.
+        appearance: auto;
+        -webkit-appearance: radio;
+        width: 18px;
+        height: 18px;
+        margin: 0;
+        accent-color: var(--jlb-purple, #614794);
+        flex: 0 0 auto;
+    }
+}
+
+// Consentimientos.
+.jlb-openday__consents {
+    margin-top: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.jlb-openday__check {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-family: "DM Sans", var(--font-sans);
+    font-size: 14px;
+    line-height: 1.4;
+    color: #5a5a6e;
+    cursor: pointer;
+
+    input {
+        appearance: auto;
+        -webkit-appearance: checkbox;
+        width: 18px;
+        height: 18px;
+        margin: 1px 0 0;
+        accent-color: var(--jlb-purple, #614794);
+        flex: 0 0 auto;
+    }
+
+    &.has-error span {
+        color: var(--jlb-red, #c92323);
+    }
+}
+
+.jlb-openday__recaptcha {
+    margin-top: 24px;
+}
+
+.jlb-openday__actions {
+    margin-top: 28px;
+}
+
+// Botón "Enviar registro": píldora con gradiente de marca, homologado en tamaño
+// y forma con los botones gradiente de otras páginas (.jlb-link-external--gradient).
+.jlb-openday__submit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 56px;
+    padding: 16px 32px;
+    border: 0;
+    border-radius: 20px;
+    background: var(--jlb-gradient);
+    color: #fff;
+    font-family: "DM Sans", var(--font-sans);
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1;
+    cursor: pointer;
+    transition: transform 180ms ease, box-shadow 180ms ease;
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 14px 28px rgb(97 71 148 / 0.28);
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--jlb-purple, #614794);
+        outline-offset: 2px;
+    }
+
+    &:disabled {
+        opacity: 0.6;
+        cursor: progress;
+        transform: none;
+        box-shadow: none;
+    }
+}
+
+// Mensaje de estado (aria-live).
+.jlb-openday__status {
+    margin: 18px 0 0;
+    font-family: "DM Sans", var(--font-sans);
+    font-size: 15px;
+    font-weight: 600;
+
+    &[data-type="success"] { color: #0e7b6c; }
+    &[data-type="error"] { color: var(--jlb-red, #c92323); }
+    &[data-type="pending"] { color: #5a5a6e; }
+}
+
+@media (max-width: 720px) {
+    .jlb-openday__grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .jlb-openday__field--full {
+        grid-column: 1;
+    }
+}

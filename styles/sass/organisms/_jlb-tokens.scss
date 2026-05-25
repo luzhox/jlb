@@ -1,0 +1,129 @@
+// Jean Le Boulch — Tokens base + helpers compartidos del template JLB.
+// Scope `body.jlb-home-template` para no contaminar el resto del tema.
+
+// Utilidad screen-reader-only global (antes solo existía en .site-footer, por lo
+// que cualquier .sr-text fuera del footer quedaba visible). Oculta visualmente
+// pero accesible para lectores de pantalla.
+.jlb-home-template .sr-text,
+.jlb-home-template .sr-only {
+    position: absolute !important;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.jlb-home-template {
+    --jlb-purple: #614794;
+    --jlb-red: #c92323;
+    --jlb-wine: #993356;
+    --jlb-ink: #161f33;
+    --jlb-copy: #374059;
+    --jlb-soft: #f6f1fb;
+    --jlb-gradient: linear-gradient(180deg, var(--jlb-purple) 20%, var(--jlb-wine) 57%, var(--jlb-red) 86%);
+    background: #fff;
+    color: var(--jlb-ink);
+    font-family: "Raleway", var(--font-sans);
+
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
+}
+
+.jlb-container {
+    width: min(1140px, calc(100% - 40px));
+    margin-inline: auto;
+}
+
+// Botones reutilizables (hero + módulos JLB)
+.jlb-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px; // separación texto ↔ icono ↗
+    min-height: 56px;
+    padding: 16px 24px;
+    // Radio asimétrico de marca (esquina inferior-derecha pronunciada), como
+    // las píldoras de niveles y el botón de Figma.
+    border-radius: 13px 13px 44px 13px;
+    border: 1px solid transparent;
+    font-family: "DM Sans", var(--font-sans);
+    font-size: 18px;
+    font-weight: 700;
+    transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 14px 28px rgb(22 31 51 / 0.18);
+    }
+}
+
+.jlb-home-template .jlb-btn--light {
+    background: #fff;
+    color: var(--jlb-red);
+}
+
+.jlb-home-template .jlb-btn--outline {
+    border-color: #fff;
+    color: #fff;
+}
+
+// Watermark decorativo reutilizado por niveles y otras secciones.
+.jlb-section-watermark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0;
+    font-family: "DM Serif Display", serif;
+    font-size: clamp(112px, 16.7vw, 241px);
+    line-height: 1;
+    color: rgb(198 54 52 / 0.04);
+    pointer-events: none;
+    user-select: none;
+}
+
+// Kicker compartido (testimonio, propuesta).
+.jlb-kicker {
+    margin: 0;
+    font-family: "KG Second Chances Solid", "Caveat", cursive;
+    font-size: clamp(34px, 3vw, 44px);
+    line-height: 0.95;
+    color: var(--jlb-purple);
+    letter-spacing: 0;
+}
+
+@media (max-width: 820px) {
+    .jlb-container {
+        width: min(100% - 28px, 1140px);
+    }
+}
+
+// ── prefers-reduced-motion ──────────────────────────────────────────────────
+// Cuando el SO/navegador lo pide:
+//   · Anulamos cualquier transición sobre clases JLB (drawer, hovers).
+//   · Forzamos que los elementos marcados con data-gsap-* sean visibles
+//     (el JS también hace bypass, pero esto cubre el caso "el JS aún no
+//     hidrató" y el de no-JS).
+@media (prefers-reduced-motion: reduce) {
+    .jlb-home-template {
+        *,
+        *::before,
+        *::after {
+            animation-duration: 0.001ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.001ms !important;
+            scroll-behavior: auto !important;
+        }
+
+        [data-gsap],
+        [data-gsap-batch] > * {
+            opacity: 1 !important;
+            transform: none !important;
+        }
+    }
+}

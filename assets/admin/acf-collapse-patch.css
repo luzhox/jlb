@@ -1,0 +1,27 @@
+/**
+ * Parche CSS para ACF Pro Flexible Content — plegado visual.
+ *
+ * Complementa assets/admin/acf-collapse-patch.js: el JS aplica la clase
+ * `-collapsed` correctamente pero la regla nativa de ACF Pro:
+ *   .acf-flexible-content .layout.-collapsed > .acf-table { display: none }
+ * no aplica porque el DOM en esta instalación tiene un wrapper <strong>
+ * inesperado dentro del layout:
+ *
+ *   <div class="layout -collapsed">
+ *     <strong>                               ← wrapper (origen desconocido, válido como
+ *       <input hidden>                          parser HTML aunque inválido semánticamente)
+ *       <div class="acf-fc-layout-actions-wrap">
+ *         <div class="acf-fc-layout-handle">      ← título (visible)
+ *         <div class="acf-fc-layout-controls">    ← acciones (visible)
+ *       <div class="acf-fields">                  ← ocultar al colapsar
+ *     </strong>
+ *   </div>
+ *
+ * Usamos selector descendiente (sin `>`) para evadir el wrapper.
+ */
+
+.acf-flexible-content .layout.-collapsed .acf-fields,
+.acf-flexible-content .layout.-collapsed .acf-table,
+.acf-flexible-content .layout.-collapsed .acf-fields-wrap {
+    display: none !important;
+}

@@ -1,0 +1,218 @@
+// Jean Le Boulch — Lightbox de imagen / zoom (src/jlbImageLightbox.js).
+// Overlay full-screen con la imagen a tamaño completo (object-fit: contain),
+// navegación prev/next opcional y caption. z-index alto sobre el header sticky.
+
+.jlb-image-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 100000; // por encima del header (80), masthead (100) y admin-bar WP (99999)
+    display: grid;
+    place-items: center;
+    padding: clamp(16px, 4vw, 56px);
+    opacity: 0;
+    transition: opacity 240ms ease;
+
+    &.is-open {
+        opacity: 1;
+    }
+}
+
+.jlb-image-lightbox__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgb(12 8 24 / 0.86);
+    backdrop-filter: blur(6px);
+    cursor: zoom-out;
+}
+
+.jlb-image-lightbox__dialog {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: clamp(8px, 2vw, 24px);
+    max-width: min(1200px, 100%);
+    transform: translateY(12px) scale(0.98);
+    transition: transform 240ms ease;
+
+    .jlb-image-lightbox.is-open & {
+        transform: translateY(0) scale(1);
+    }
+}
+
+.jlb-image-lightbox__frame {
+    position: relative;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+
+    img {
+        display: block;
+        max-width: min(86vw, 1040px);
+        max-height: 86vh;
+        width: auto;
+        height: auto;
+        border-radius: 18px;
+        background: #000;
+        box-shadow: 0 30px 80px rgb(0 0 0 / 0.5);
+    }
+}
+
+.jlb-image-lightbox__caption {
+    color: rgb(255 255 255 / 0.82);
+    font-family: "DM Sans", var(--font-sans);
+    font-size: 14px;
+    text-align: center;
+    max-width: 60ch;
+
+    &[hidden] {
+        display: none;
+    }
+}
+
+.jlb-image-lightbox__close {
+    position: absolute;
+    top: clamp(8px, 3vw, 24px);
+    right: clamp(8px, 3vw, 24px);
+    z-index: 2;
+    width: 46px;
+    height: 46px;
+    display: grid;
+    place-items: center;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: #fff;
+    color: var(--jlb-ink, #161f33);
+    font-size: 30px;
+    line-height: 1;
+    cursor: pointer;
+    box-shadow: 0 10px 24px rgb(0 0 0 / 0.35);
+    transition: transform 180ms ease;
+
+    &:hover {
+        transform: scale(1.08);
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--jlb-red, #c92323);
+        outline-offset: 3px;
+    }
+}
+
+.jlb-image-lightbox__nav {
+    flex: 0 0 auto;
+    width: 52px;
+    height: 52px;
+    display: grid;
+    place-items: center;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: rgb(255 255 255 / 0.16);
+    color: #fff;
+    cursor: pointer;
+    transition: background 180ms ease, transform 180ms ease;
+
+    &:hover {
+        background: rgb(255 255 255 / 0.3);
+        transform: scale(1.06);
+    }
+
+    &:focus-visible {
+        outline: 2px solid #fff;
+        outline-offset: 3px;
+    }
+
+    &[hidden] {
+        display: none;
+    }
+}
+
+// Bloquea el scroll del fondo mientras el lightbox está abierto.
+.jlb-image-lightbox-open {
+    overflow: hidden;
+}
+
+// Las flechas pasan debajo de la imagen en pantallas chicas.
+@media (max-width: 700px) {
+    .jlb-image-lightbox__dialog {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .jlb-image-lightbox__frame {
+        order: -1;
+        flex-basis: 100%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .jlb-image-lightbox,
+    .jlb-image-lightbox__dialog {
+        transition: none;
+    }
+}
+
+// ── Affordance de zoom sobre la imagen disparadora (.jlb-galeria) ─────────────
+.jlb-galeria__zoom {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    cursor: zoom-in;
+
+    // Velo + lupa al hover/focus.
+    &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgb(12 8 24 / 0.28);
+        opacity: 0;
+        transition: opacity 220ms ease;
+        z-index: 1;
+    }
+
+    &:hover::before,
+    &:focus-visible::before {
+        opacity: 1;
+    }
+
+    &:focus-visible {
+        outline: 3px solid var(--jlb-red, #c92323);
+        outline-offset: -3px;
+    }
+}
+
+.jlb-galeria__zoom-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 2;
+    width: 56px;
+    height: 56px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: rgb(255 255 255 / 0.92);
+    color: var(--jlb-ink, #161f33);
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 0;
+    transition: opacity 220ms ease, transform 220ms ease;
+    pointer-events: none;
+
+    .jlb-galeria__zoom:hover &,
+    .jlb-galeria__zoom:focus-visible & {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .jlb-galeria__zoom::before,
+    .jlb-galeria__zoom-icon {
+        transition: none;
+    }
+}

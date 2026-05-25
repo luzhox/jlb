@@ -270,6 +270,19 @@
 ─────────────────────────────────────────────────────────────────────────────── */
 @layer components {
 
+  /* Jean Le Boulch — Estilos migrados a SASS legacy.
+     Las clases .jlb-* viven ahora en:
+       styles/sass/organisms/_jlb-tokens.scss     (CSS vars + .jlb-container, .jlb-btn, .jlb-kicker, watermark)
+       styles/sass/organisms/_jlb-header.scss     (header-jlb.php)
+       styles/sass/organisms/_jlb-footer.scss     (footer-jlb.php)
+       styles/sass/organisms/_jlb-hero.scss       (modules/jlb-hero)
+       styles/sass/organisms/_jlb-niveles.scss    (modules/jlb-niveles)
+       styles/sass/organisms/_jlb-manifesto.scss  (modules/jlb-manifesto)
+       styles/sass/organisms/_jlb-experience.scss (modules/jlb-experience)
+       styles/sass/organisms/_jlb-testimonio-padres.scss
+       styles/sass/organisms/_jlb-noticias.scss   (modules/jlb-noticias)
+     Cargadas desde styles/sass/style.scss → @layer legacy. */
+
   /* ── Container helpers ─────────────────────────────────────────────────── */
   .container {
     @apply mx-auto px-4 sm:px-6 lg:px-8;

@@ -1,0 +1,10 @@
+<svg width="140" height="140" viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Reproducir video">
+<circle cx="70.5" cy="69.5" r="57.5" fill="#fff"/>
+<path d="M50.9847 70.0006V60.2595C50.9847 48.1259 59.5601 43.1675 70.0601 49.2341L78.5178 54.1343L86.9762 59.0339C97.4762 65.1006 97.4762 75.0178 86.9762 81.0845L78.5178 85.9839L70.0601 90.8845C59.5601 96.9512 50.9847 91.9922 50.9847 79.8589V70.0006Z" fill="url(#jlb_play_grad)"/>
+<defs>
+<linearGradient id="jlb_play_grad" x1="72.9179" y1="55.9518" x2="72.9179" y2="92.3892" gradientUnits="userSpaceOnUse">
+<stop stop-color="#09A699"/>
+<stop offset="1" stop-color="#614794"/>
+</linearGradient>
+</defs>
+</svg>

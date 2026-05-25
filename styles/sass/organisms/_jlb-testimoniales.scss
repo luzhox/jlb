@@ -1,0 +1,400 @@
+// Jean Le Boulch — Testimoniales (slider).
+// Especificaciones Figma 4219:978 (1244.631 × 549.14):
+//   · Card blanca: border-radius 82px, sombra suave azulada, ocupa 89.67% del ancho del frame.
+//   · Imagen izq: 41.14% ancho, radius asimétrico tl:134 tr:33 br:52 bl:82, overlay rgba(0,0,0,.2).
+//   · Body der: kicker Raleway 15.5px + título KG 36px + comillas SVG + cita Raleway Light Italic 19.375px + autor 23.25px.
+//   · Flechas slider abajo-izquierda del body (bajo la cita).
+//   · Arco decorativo absoluto en esquina superior derecha del frame (sobresale del card).
+//
+// Tokens locales (--jlb-shadow-card-soft / --jlb-radius-card-xl) viven aquí
+// para no contaminar _tokens.scss con valores hyper-específicos de un módulo.
+
+.jlb-testimoniales {
+    --jlb-shadow-card-soft: 0 4px 32px rgba(169, 169, 215, 0.25);
+    --jlb-radius-card-xl: 82px;
+
+    position: relative;
+    padding: 80px 0 88px;
+    overflow: hidden; // contiene el arco decor en mobile / cuando se sale del viewport
+}
+
+.jlb-testimoniales__decor {
+    position: absolute;
+    // Réplica del arco de Figma: transform EXACTO del diseño
+    // (scaleX(-1) rotate(-131.72deg) skewX(-6.56deg)) → el anillo concéntrico
+    // queda arriba y el lápiz abajo apuntando hacia adentro, como el original.
+    // Grande y anclado arriba-derecha; el título lleva padding-right para
+    // cederle la esquina (nuestra card es más angosta que el frame Figma).
+    top: -30px;
+    right: -28px;
+    width: clamp(150px, 14vw, 190px);
+    transform: scaleX(-1) rotate(-131.72deg) skewX(-6.56deg);
+    transform-origin: center;
+    pointer-events: none;
+    z-index: 1;
+
+    svg {
+        width: 100%;
+        height: auto;
+    }
+}
+
+.jlb-testimoniales .jlb-container {
+    position: relative;
+    z-index: 2;
+}
+
+.jlb-testimoniales__card {
+    position: relative;
+    background: #fff;
+    border-radius: var(--jlb-radius-card-xl);
+    box-shadow: var(--jlb-shadow-card-soft);
+    overflow: hidden;
+}
+
+.jlb-testimoniales__swiper {
+    width: 100%;
+    height: 100%;
+}
+
+.jlb-testimoniales__slide {
+    display: grid;
+    grid-template-columns: 41.14% 1fr;
+    align-items: stretch;
+    min-height: 440px;
+    box-sizing: border-box;
+}
+
+// Swiper core inyecta `.swiper-slide { display: block }` SIN capa de cascada.
+// Como este SCSS vive en `@layer components` (que pierde ante lo no-capado),
+// el `display: block` de Swiper gana SIEMPRE — sin importar la especificidad —
+// y colapsa la columna de la foto (height: 0). Un `!important` dentro de la capa
+// sí vence a la declaración normal no-capada: única forma limpia de reasertar
+// el grid sobre Swiper.
+.jlb-testimoniales__slide.swiper-slide {
+    display: grid !important;
+}
+
+// ── Media (columna izquierda) ──────────────────────────────────────────────
+.jlb-testimoniales__media {
+    position: relative;
+    overflow: hidden;
+    border-radius: 134px 33px 52px 82px;
+    margin: 24px 0 24px 24px;
+    // Altura fija para homologar la foto entre testimoniales: con el efecto
+    // fade cada slide marca la altura del card, y los testimoniales con poco
+    // texto encogían la imagen. Este min-height (≈ slide 440px − márgenes 48px)
+    // mantiene la foto consistente aunque la cita sea corta.
+    min-height: 400px;
+
+    max-height: 400px;
+
+    img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+}
+
+.jlb-testimoniales__media-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.2);
+    pointer-events: none;
+    z-index: 1;
+}
+
+// Play en la esquina superior-derecha de la foto (como Figma), no centrado.
+.jlb-testimoniales__play {
+    position: absolute;
+    top: 18px;
+    right: 14px;
+    width: 88px;
+    height: 88px;
+    z-index: 2;
+    border-radius: 50%;
+    transition: transform 220ms ease, box-shadow 220ms ease;
+
+    svg {
+        width: 100%;
+        height: 100%;
+    }
+
+    &:hover,
+    &:focus-visible {
+        transform: scale(1.06);
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--jlb-red);
+        outline-offset: 6px;
+    }
+}
+
+// ── Body (columna derecha) ─────────────────────────────────────────────────
+.jlb-testimoniales__body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 16px;
+    padding: 48px 64px 48px 56px;
+    box-sizing: border-box;
+}
+
+.jlb-testimoniales__kicker {
+    margin: 0;
+    font-family: "Raleway", var(--font-sans);
+    font-weight: 400;
+    font-size: 15.5px;
+    line-height: 1.3;
+    color: #231F20;
+    letter-spacing: 0.02em;
+}
+
+.jlb-testimoniales__title {
+    margin: 0;
+    padding-right: 48px; // espacio para el arco decorativo en la esquina sup-der
+    font-family: "KG Second Chances Solid", "Caveat", cursive;
+    font-weight: 400;
+    font-size: clamp(28px, 3vw, 36px);
+    line-height: 1.2;
+    color: #231F20;
+    letter-spacing: 0;
+}
+
+.jlb-testimoniales__quote {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    p {
+        margin: 0;
+        font-family: "Raleway", var(--font-sans);
+        font-weight: 300;
+        font-style: italic;
+        font-size: clamp(16px, 1.5vw, 19.375px);
+        line-height: 1.5;
+        color: #2A2938;
+    }
+}
+
+.jlb-testimoniales__quote-mark {
+    display: inline-block;
+    width: 33px;
+    height: auto;
+    line-height: 0;
+
+    svg {
+        width: 100%;
+        height: auto;
+    }
+}
+
+// Fila inferior: flechas a la izquierda, autor a la derecha (misma línea).
+.jlb-testimoniales__actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-top: 12px;
+}
+
+.jlb-testimoniales__author {
+    margin: 0;
+    margin-left: auto; // se mantiene a la derecha aunque no haya flechas
+    font-family: "Raleway", var(--font-sans);
+    font-size: clamp(18px, 1.8vw, 23.25px);
+    line-height: 1.3;
+    color: #231F20;
+    text-align: right;
+}
+
+.jlb-testimoniales__author-name {
+    font-weight: 700;
+}
+
+.jlb-testimoniales__author-sep {
+    font-weight: 500;
+}
+
+.jlb-testimoniales__author-role {
+    font-weight: 400;
+}
+
+// ── Navegación (flechas circulares con gradient) ───────────────────────────
+.jlb-testimoniales__nav {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.jlb-testimoniales__arrow {
+    position: relative;
+    width: 46.5px;
+    height: 46.5px;
+    border: 0;
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 200ms ease, filter 200ms ease;
+
+    .jlb-testimoniales__arrow-bg {
+        position: absolute;
+        inset: 0;
+        display: block;
+        line-height: 0;
+
+        svg {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    .jlb-testimoniales__arrow-icon {
+        position: relative;
+        z-index: 1;
+        width: 14.23px;
+        height: auto;
+        line-height: 0;
+
+        svg {
+            width: 100%;
+            height: auto;
+        }
+    }
+
+    &:hover {
+        transform: translateY(-2px);
+        filter: drop-shadow(0 8px 16px rgba(201, 35, 35, 0.28));
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--jlb-red);
+        outline-offset: 4px;
+    }
+
+    &.swiper-button-disabled {
+        opacity: 0.4;
+        cursor: default;
+        transform: none;
+        filter: none;
+    }
+}
+
+// El export de Figma entregó dos flechas IGUALES apuntando a la izquierda
+// (testimonial-arrow-1.svg == arrow-2.svg). Volteamos la flecha "next" para
+// que apunte a la derecha, como en el diseño.
+.jlb-testimoniales__next .jlb-testimoniales__arrow-icon {
+    transform: scaleX(-1);
+}
+
+// ── Estado: slider 1-solo (nav ocultos por JS añadiendo modifier) ──────────
+.jlb-testimoniales__nav.is-hidden {
+    display: none;
+}
+
+// ── Responsive ─────────────────────────────────────────────────────────────
+@media (max-width: 980px) {
+    .jlb-testimoniales {
+        padding: 56px 0 64px;
+    }
+
+    .jlb-testimoniales__card {
+        border-radius: 48px;
+    }
+
+    .jlb-testimoniales__slide {
+        grid-template-columns: 1fr;
+        min-height: auto;
+    }
+
+    .jlb-testimoniales__media {
+        margin: 20px 20px 0;
+        border-radius: 24px;
+        aspect-ratio: 16 / 11;
+        // Reset del alto fijo del desktop: en 1-col el ancho lo manda el
+        // contenedor y el aspect-ratio deriva el alto. Sin esto, el
+        // min/max-height:400px fija el alto y el ancho sale 400×16/11 ≈ 581px,
+        // desbordando y recortando la foto en mobile.
+        min-height: auto;
+        max-height: none;
+    }
+
+    .jlb-testimoniales__body {
+        padding: 32px 28px 36px;
+        gap: 16px;
+    }
+
+    .jlb-testimoniales__title {
+        padding-right: 0; // sin arco al lado en 1-col
+    }
+
+    .jlb-testimoniales__decor {
+        width: 160px;
+        top: -16px;
+        right: -16px;
+    }
+}
+
+@media (max-width: 640px) {
+    .jlb-testimoniales {
+        padding: 40px 0 56px;
+    }
+
+    .jlb-testimoniales__decor {
+        display: none;
+    }
+
+    .jlb-testimoniales__card {
+        border-radius: 32px;
+    }
+
+    .jlb-testimoniales__media {
+        margin: 16px 16px 0;
+        border-radius: 20px;
+    }
+
+    .jlb-testimoniales__play {
+        width: 72px;
+        height: 72px;
+    }
+
+    .jlb-testimoniales__body {
+        padding: 24px 20px 28px;
+        gap: 12px;
+    }
+
+    .jlb-testimoniales__nav {
+        gap: 12px;
+    }
+}
+
+// ── prefers-reduced-motion ─────────────────────────────────────────────────
+@media (prefers-reduced-motion: reduce) {
+
+    .jlb-testimoniales__play,
+    .jlb-testimoniales__arrow {
+        transition: none !important;
+    }
+
+    .jlb-testimoniales__play:hover,
+    .jlb-testimoniales__play:focus-visible,
+    .jlb-testimoniales__arrow:hover {
+        transform: translate(-50%, -50%) !important;
+    }
+
+    .jlb-testimoniales__arrow:hover {
+        transform: none !important;
+        filter: none !important;
+    }
+}

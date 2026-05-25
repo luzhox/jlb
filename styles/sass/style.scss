@@ -43,9 +43,55 @@
     @import "organisms/_modal";
     @import "organisms/_modules";
 
+    // (JLB Figma home — los imports están más abajo en @layer components
+    //  para no quedar atrapados bajo Tailwind base. Ver el bloque al final.)
+
     // ── Vendors ──────────────────────────────────────────────────────────────
     @import "vendors/_colorbox";
 
     // ── Pages ────────────────────────────────────────────────────────────────
     @import "pages/_404";
+}
+
+// ─── Cascade layer: components (Jean Le Boulch) ──────────────────────────────
+//
+// Los estilos del template JLB NO pueden vivir en @layer legacy porque
+// Tailwind v4 publica reglas reset en @layer base (h1 { font-size: inherit },
+// etc.) y, por orden de capas (`legacy, theme, base, components, utilities`),
+// `base` siempre gana a `legacy`. Resultado: los h1 del hero/niveles/etc.
+// se renderizaban en tamaño body en vez del clamp(56px,…) del diseño.
+//
+// Poniendo JLB en `components`, queda POR ENCIMA de base (Tailwind reset) y
+// POR DEBAJO de utilities (utilities Tailwind siguen ganando si se aplican
+// directamente). Esto replica lo que hacía el bloque original cuando vivía
+// dentro de `@layer components { … }` en src/main.css antes de la migración.
+// ─────────────────────────────────────────────────────────────────────────────
+@layer components {
+    @import "organisms/_jlb-tokens";
+    @import "organisms/_jlb-header";
+    @import "organisms/_jlb-hero";
+    @import "organisms/_jlb-niveles";
+    @import "organisms/_jlb-manifesto";
+    @import "organisms/_jlb-experience";
+    @import "organisms/_jlb-testimonio-padres";
+    @import "organisms/_jlb-testimoniales";
+    @import "organisms/_jlb-noticias";
+    @import "organisms/_jlb-footer";
+    @import "organisms/_jlb-video-lightbox";
+    @import "organisms/_jlb-image-lightbox";
+    // Página Admisión
+    @import "organisms/_jlb-admision-hero";
+    @import "organisms/_jlb-proceso";
+    @import "organisms/_jlb-cuota";
+    @import "organisms/_jlb-galeria";
+    @import "organisms/_jlb-faq";
+    @import "organisms/_jlb-experiencias";
+    // Blog: listado (home.php) + artículo (single.php) — Figma 4175/4177
+    @import "organisms/_jlb-blog";
+    // Open Day: formulario → HubSpot — Figma 4172:416
+    @import "organisms/_jlb-open-day";
+    // Talleres: formato CPT (single-taller.php) — Figma 4131:452
+    @import "organisms/_jlb-taller";
+    // Nosotros: línea de tiempo / historia
+    @import "organisms/_jlb-timeline";
 }

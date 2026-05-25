@@ -1,0 +1,264 @@
+// Jean Le Boulch — Bloque "Experiencia JLB":
+//   1. Hero con video destacado (imagen + play overlay, toda la sección clickeable).
+//   2. Sub-bloque "Propuesta educativa".
+//   3. Grid de 3×N tarjetas de experiencias en video (toda la card clickeable).
+//
+// El play usa el mismo SVG que el slider de testimoniales (círculo blanco +
+// triángulo con gradiente teal→morado). El click se captura con un overlay <a>
+// transparente que cubre toda la card/hero (data-jlb-video → lightbox).
+
+.jlb-experience {
+    position: relative;
+    padding-bottom: 80px;
+}
+
+// ── Hero video ──────────────────────────────────────────────────────────────
+.jlb-experience__hero {
+    position: relative;
+    min-height: clamp(360px, 42vw, 560px);
+    overflow: hidden;
+    color: #fff;
+
+    > img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%);
+    }
+
+    // Título centrado JUSTO debajo del play (no encima): absoluto desde el centro.
+    h2 {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, 52px);
+        z-index: 2;
+        width: min(90%, 760px);
+        margin: 0;
+        text-align: center;
+        font-family: "KG Second Chances Solid", "Caveat", cursive;
+        font-size: clamp(40px, 4.2vw, 48px);
+        color: #fff;
+        letter-spacing: 0;
+    }
+}
+
+// Play del hero (SVG) — anclado al centro para tapar el play "horneado" del PNG.
+.jlb-experience__play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    width: 92px;
+    height: 92px;
+    line-height: 0;
+    pointer-events: none; // los clicks pasan al overlay <a>
+    filter: drop-shadow(0 16px 34px rgb(22 31 51 / 0.24));
+    transition: transform 220ms ease;
+
+    svg { width: 100%; height: 100%; display: block; }
+}
+
+// Overlay clickeable: cubre todo el hero. Sin JS abre el video; con JS, lightbox.
+.jlb-experience__hero-link {
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+    display: block;
+
+    &:focus-visible {
+        outline: 3px solid #fff;
+        outline-offset: -6px;
+    }
+}
+
+// Hover del hero (solo cuando es clickeable): zoom suave de la imagen + el play
+// crece y gana sombra. El play va ANTES del link en el DOM, por eso el hover se
+// resuelve a nivel del contenedor (no con el combinador ~).
+.jlb-experience__hero:has(.jlb-experience__hero-link) {
+    cursor: pointer;
+
+    > img {
+        transition: transform 600ms ease;
+    }
+
+    &:hover > img,
+    &:focus-within > img {
+        transform: scale(1.04);
+    }
+
+    &:hover .jlb-experience__play,
+    &:focus-within .jlb-experience__play {
+        transform: translate(-50%, -50%) scale(1.08);
+        filter: drop-shadow(0 18px 40px rgb(22 31 51 / 0.34));
+    }
+}
+
+// ── Propuesta educativa ───────────────────────────────────────────────────────
+.jlb-proposal {
+    display: grid;
+    grid-template-columns: 280px minmax(0, 1fr);
+    gap: 36px;
+    align-items: start;
+    padding: 72px 0 40px;
+
+    h2 {
+        margin: 0;
+        font-family: "KG Second Chances Solid", "Caveat", cursive;
+        font-size: clamp(34px, 3vw, 44px);
+        line-height: 0.95;
+        color: var(--jlb-purple);
+        letter-spacing: 0;
+    }
+
+    p {
+        margin: 0;
+        font-family: "DM Sans", var(--font-sans);
+        font-size: 20px;
+        line-height: 1.45;
+        color: #2d3754;
+    }
+}
+
+// Título + flecha roja (chevron) a la derecha, como en Figma.
+.jlb-proposal__head {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.jlb-proposal__arrow {
+    flex: 0 0 auto;
+    line-height: 0;
+    color: var(--jlb-red);
+
+    svg { display: block; }
+}
+
+// ── Grid de videos ────────────────────────────────────────────────────────────
+.jlb-video-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px 32px;
+}
+
+.jlb-video-card {
+    position: relative;
+    min-height: 269px;
+    overflow: hidden;
+    border-radius: 12px;
+    background: #ddd;
+    box-shadow: 0 16px 38px rgb(22 31 51 / 0.12);
+
+    img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+        transition: transform 450ms ease;
+    }
+
+    // Overlay oscuro sutil — SOLO sobre la imagen. Sin z-index explícito queda
+    // por encima del <img> pero por debajo de la barra blanca del título
+    // (&::after, que se pinta después), así no oscurece esa barra.
+    &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0.12) 0%, rgba(0, 0, 0, 0.30) 100%);
+        pointer-events: none;
+    }
+
+    // Barra blanca inferior donde va el título.
+    &::after {
+        content: "";
+        position: absolute;
+        inset: auto 9px 9px;
+        height: 59px;
+        border-radius: 13px;
+        background: #fff;
+    }
+
+    // Hover (solo cuando es clickeable): zoom de imagen + el play crece.
+    // El play va ANTES del overlay en el DOM, por eso resolvemos a nivel de card.
+    &:has(.jlb-video-card__overlay):hover img,
+    &:has(.jlb-video-card__overlay):focus-within img {
+        transform: scale(1.06);
+    }
+
+    &:has(.jlb-video-card__overlay):hover .jlb-video-card__play,
+    &:has(.jlb-video-card__overlay):focus-within .jlb-video-card__play {
+        transform: translate(-50%, calc(-50% - 22px)) scale(1.1);
+    }
+}
+
+// Play (SVG) centrado — tapa el play "horneado" del PNG.
+.jlb-video-card__play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, calc(-50% - 22px)); // sube un poco: centra sobre la foto, no sobre la barra blanca
+    z-index: 2;
+    width: 60px;
+    height: 60px;
+    line-height: 0;
+    pointer-events: none;
+    transition: transform 220ms ease;
+
+    svg { width: 100%; height: 100%; display: block; }
+}
+
+.jlb-video-card__title {
+    position: absolute;
+    left: 18px;
+    right: 18px;
+    bottom: 24px;
+    z-index: 3;
+    font-family: "KG Second Chances Solid", "Caveat", cursive;
+    font-size: 20px;
+    line-height: 1;
+    text-align: center;
+    color: #14111f;
+}
+
+// Overlay clickeable: cubre toda la card.
+.jlb-video-card__overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    display: block;
+    cursor: pointer;
+
+    &:focus-visible {
+        outline: 3px solid var(--jlb-purple);
+        outline-offset: -3px;
+        border-radius: 12px;
+    }
+}
+
+@media (max-width: 820px) {
+    .jlb-video-grid,
+    .jlb-proposal {
+        grid-template-columns: 1fr;
+    }
+
+    .jlb-experience__hero h2 {
+        text-align: center;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .jlb-experience__play,
+    .jlb-video-card__play {
+        transition: none;
+    }
+}
