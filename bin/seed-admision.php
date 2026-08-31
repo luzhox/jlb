@@ -120,6 +120,11 @@ $modules = array(
             array('pregunta' => '¿El colegio ofrece programas de educación especial?', 'respuesta' => 'Brindamos acompañamiento psicopedagógico e inclusión educativa según las necesidades de cada estudiante.'),
         ),
     ),
+    array(
+        'acf_fc_layout' => 'jlb_admision_form',
+        'titulo'        => 'Solicita tu admisión',
+        'subtitulo'     => 'Completa el formulario y nuestro equipo de admisiones te contactará.',
+    ),
 );
 
 $ok = update_field('modules', $modules, $pid);

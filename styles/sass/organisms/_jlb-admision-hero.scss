@@ -89,7 +89,13 @@
     border-bottom-left-radius: clamp(80px, 12vw, 160px);
     z-index: 1;
 
+    // Absoluta para que la imagen NO participe en el alto del grid: con una
+    // portada vertical (p.ej. 921×1152) el alto intrínseco estiraba el hero a
+    // ~900px. Así el alto lo fija siempre el clamp del .jlb-adm-hero,
+    // sin importar la proporción de la imagen que suba el cliente.
     img {
+        position: absolute;
+        inset: 0;
         width: 100%;
         height: 100%;
         display: block;

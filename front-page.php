@@ -33,18 +33,35 @@ if (!$has_modules):
         return $asset_base . ltrim($file, '/');
     };
 
-    // jlb_hero — Admisión
+    // jlb_hero — Admisión (carrusel: 2 slides de ejemplo)
     get_template_part('modules/jlb-hero/jlb-hero', null, array(
-        'eyebrow' => '2025 - 2026',
-        'titulo'  => 'Admisión',
-        'texto'   => 'Asumimos con honestidad la responsabilidad de la formación integral de nuestros estudiantes y los acompañamos desde la curiosidad.',
-        'boton_principal'  => array('title' => 'Propuesta educativa', 'url' => '#propuesta', 'target' => '_self'),
-        'boton_secundario' => array('title' => 'Más información',    'url' => '#contacto',   'target' => '_self'),
-        'imagen' => array(
-            'url'    => $asset('hero.png'),
-            'alt'    => 'Niños explorando la naturaleza con lupas',
-            'width'  => 1360,
-            'height' => 1241,
+        'slides' => array(
+            array(
+                'eyebrow' => '2025 - 2026',
+                'titulo'  => 'Admisión',
+                'texto'   => 'Asumimos con honestidad la responsabilidad de la formación integral de nuestros estudiantes y los acompañamos desde la curiosidad.',
+                'boton_principal'  => array('title' => 'Propuesta educativa', 'url' => '#propuesta', 'target' => '_self'),
+                'boton_secundario' => array('title' => 'Más información',    'url' => '#contacto',   'target' => '_self'),
+                'imagen' => array(
+                    'url'    => $asset('hero.png'),
+                    'alt'    => 'Niños explorando la naturaleza con lupas',
+                    'width'  => 1360,
+                    'height' => 1241,
+                ),
+            ),
+            array(
+                'eyebrow' => 'Comunidad',
+                'titulo'  => 'Aprender jugando',
+                'texto'   => 'Cada experiencia despierta la curiosidad: exploramos, creamos y convivimos para que el aprendizaje tenga sentido.',
+                'boton_principal'  => array('title' => 'Conoce el método', 'url' => '#propuesta', 'target' => '_self'),
+                'boton_secundario' => array('title' => 'Agenda una visita', 'url' => '#contacto',  'target' => '_self'),
+                'imagen' => array(
+                    'url'    => $asset('video-aprendizaje.png'),
+                    'alt'    => 'Estudiantes en una actividad de aprendizaje activo',
+                    'width'  => 1360,
+                    'height' => 1241,
+                ),
+            ),
         ),
     ));
 

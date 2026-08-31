@@ -37,6 +37,17 @@
     }
 }
 
+// Video vertical (`is-vertical`, lo pone el JS según el trigger / YouTube Short):
+// dialog angosto 9:16, ancho limitado por el alto del viewport para que el
+// player entre completo sin scroll.
+.jlb-video-lightbox.is-vertical .jlb-video-lightbox__dialog {
+    width: min(420px, calc(86vh * 9 / 16), 100%);
+}
+
+.jlb-video-lightbox.is-vertical .jlb-video-lightbox__frame {
+    aspect-ratio: 9 / 16;
+}
+
 .jlb-video-lightbox__frame {
     position: relative;
     width: 100%;

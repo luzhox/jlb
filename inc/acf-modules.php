@@ -362,12 +362,27 @@ add_action('acf/init', function () {
                         'label' => 'JLB · Hero (Admisión)',
                         'display' => 'block',
                         'sub_fields' => array(
-                            array('key' => 'field_bp_jlb_hero_eyebrow', 'label' => 'Eyebrow', 'name' => 'eyebrow', 'type' => 'text', 'placeholder' => '2025 - 2026'),
-                            array('key' => 'field_bp_jlb_hero_titulo', 'label' => 'Título (H1)', 'name' => 'titulo', 'type' => 'text'),
-                            array('key' => 'field_bp_jlb_hero_texto', 'label' => 'Texto', 'name' => 'texto', 'type' => 'textarea', 'rows' => 3),
-                            array('key' => 'field_bp_jlb_hero_btn_pri', 'label' => 'Botón principal', 'name' => 'boton_principal', 'type' => 'link'),
-                            array('key' => 'field_bp_jlb_hero_btn_sec', 'label' => 'Botón secundario', 'name' => 'boton_secundario', 'type' => 'link'),
-                            array('key' => 'field_bp_jlb_hero_imagen', 'label' => 'Imagen', 'name' => 'imagen', 'type' => 'image', 'return_format' => 'array', 'instructions' => 'Imagen del lado derecho del hero (LCP).'),
+                            // Carrusel: cada fila del repeater es un slide del hero
+                            // (autoplay + dots + flechas). El 1º lleva el <h1> y la
+                            // imagen LCP; el resto, <h2> y carga diferida.
+                            array(
+                                'key' => 'field_bp_jlb_hero_slides',
+                                'label' => 'Slides',
+                                'name' => 'slides',
+                                'type' => 'repeater',
+                                'layout' => 'block',
+                                'min' => 1,
+                                'button_label' => 'Agregar slide',
+                                'instructions' => 'Cada slide es una diapositiva del carrusel del hero.',
+                                'sub_fields' => array(
+                                    array('key' => 'field_bp_jlb_hero_slide_eyebrow', 'label' => 'Eyebrow', 'name' => 'eyebrow', 'type' => 'text', 'placeholder' => '2025 - 2026'),
+                                    array('key' => 'field_bp_jlb_hero_slide_titulo', 'label' => 'Título', 'name' => 'titulo', 'type' => 'text', 'instructions' => 'El 1er slide se renderiza como H1 (uno por página); el resto como H2.'),
+                                    array('key' => 'field_bp_jlb_hero_slide_texto', 'label' => 'Texto', 'name' => 'texto', 'type' => 'textarea', 'rows' => 3),
+                                    array('key' => 'field_bp_jlb_hero_slide_btn_pri', 'label' => 'Botón principal', 'name' => 'boton_principal', 'type' => 'link'),
+                                    array('key' => 'field_bp_jlb_hero_slide_btn_sec', 'label' => 'Botón secundario', 'name' => 'boton_secundario', 'type' => 'link'),
+                                    array('key' => 'field_bp_jlb_hero_slide_imagen', 'label' => 'Imagen', 'name' => 'imagen', 'type' => 'image', 'return_format' => 'array', 'instructions' => 'Imagen del lado derecho del slide (LCP en el 1º).'),
+                                ),
+                            ),
                         ),
                     ),
 
@@ -417,6 +432,16 @@ add_action('acf/init', function () {
                             array('key' => 'field_bp_jlb_exp_hero_img', 'label' => 'Imagen hero video', 'name' => 'hero_imagen', 'type' => 'image', 'return_format' => 'array'),
                             array('key' => 'field_bp_jlb_exp_hero_video', 'label' => 'URL de video (hero)', 'name' => 'hero_video_url', 'type' => 'url', 'instructions' => 'YouTube, Vimeo o MP4. Si se llena, el botón play abre el video en un lightbox. Si está vacío, el play queda decorativo.'),
                             array('key' => 'field_bp_jlb_exp_hero_titulo', 'label' => 'Título hero', 'name' => 'hero_titulo', 'type' => 'text', 'default_value' => 'Conoce la experiencia JLB'),
+                            array(
+                                'key' => 'field_bp_jlb_exp_stories', 'label' => 'Stories (videos verticales)', 'name' => 'stories', 'type' => 'repeater',
+                                'layout' => 'table', 'button_label' => 'Agregar story',
+                                'instructions' => 'Tira horizontal de videos verticales 9:16 (estilo stories) debajo del hero. Click abre el video en lightbox vertical.',
+                                'sub_fields' => array(
+                                    array('key' => 'field_bp_jlb_exp_story_etiqueta', 'label' => 'Etiqueta', 'name' => 'etiqueta', 'type' => 'text', 'placeholder' => 'Nicole · Exalumna'),
+                                    array('key' => 'field_bp_jlb_exp_story_video', 'label' => 'URL del video (vertical)', 'name' => 'video_url', 'type' => 'url', 'instructions' => 'MP4 / YouTube / Vimeo. Se abre en lightbox 9:16.'),
+                                    array('key' => 'field_bp_jlb_exp_story_poster', 'label' => 'Poster (vertical 9:16)', 'name' => 'poster', 'type' => 'image', 'return_format' => 'array'),
+                                ),
+                            ),
                             array('key' => 'field_bp_jlb_exp_pro_titulo', 'label' => 'Título propuesta', 'name' => 'propuesta_titulo', 'type' => 'text', 'default_value' => 'Propuesta educativa'),
                             array('key' => 'field_bp_jlb_exp_pro_texto', 'label' => 'Texto propuesta', 'name' => 'propuesta_texto', 'type' => 'textarea', 'rows' => 4),
                             array(
@@ -528,7 +553,8 @@ add_action('acf/init', function () {
                                 'key' => 'field_bp_jlb_adm_hero_botones', 'label' => 'Botones', 'name' => 'botones', 'type' => 'repeater', 'max' => 2, 'button_label' => 'Agregar botón',
                                 'sub_fields' => array(
                                     array('key' => 'field_bp_jlb_adm_hero_btn_texto', 'label' => 'Texto', 'name' => 'texto', 'type' => 'text'),
-                                    array('key' => 'field_bp_jlb_adm_hero_btn_url', 'label' => 'URL', 'name' => 'url', 'type' => 'url'),
+                                    // Tipo text (no url): debe aceptar anclas (#open-day-form) y rutas relativas, que el tipo url de ACF rechaza.
+                                    array('key' => 'field_bp_jlb_adm_hero_btn_url', 'label' => 'URL', 'name' => 'url', 'type' => 'text', 'instructions' => 'URL completa, ruta relativa (/admision/) o ancla (#open-day-form).'),
                                     array('key' => 'field_bp_jlb_adm_hero_btn_target', 'label' => 'Target', 'name' => 'target', 'type' => 'select', 'choices' => array('_self' => 'Misma pestaña', '_blank' => 'Nueva pestaña'), 'default_value' => '_self'),
                                 ),
                             ),
@@ -640,6 +666,18 @@ add_action('acf/init', function () {
                         'display' => 'block',
                         'sub_fields' => array(
                             array('key' => 'field_bp_jlb_od_titulo', 'label' => 'Título (opcional, oculto si vacío)', 'name' => 'titulo', 'type' => 'text'),
+                        ),
+                    ),
+
+                    // ── Página Admisión: formulario de solicitud (CPT + email) ──
+                    'jlb_admision_form' => array(
+                        'key' => 'layout_bp_jlb_admision_form',
+                        'name' => 'jlb_admision_form',
+                        'label' => 'JLB · Admisión — Formulario de solicitud',
+                        'display' => 'block',
+                        'sub_fields' => array(
+                            array('key' => 'field_bp_jlb_admf_titulo', 'label' => 'Título (opcional)', 'name' => 'titulo', 'type' => 'text', 'placeholder' => 'Solicita tu admisión'),
+                            array('key' => 'field_bp_jlb_admf_subtitulo', 'label' => 'Subtítulo (opcional)', 'name' => 'subtitulo', 'type' => 'textarea', 'rows' => 2, 'new_lines' => ''),
                         ),
                     ),
 

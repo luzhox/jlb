@@ -52,6 +52,28 @@ createSwiper('.hero-container', {
     },
 })
 
+// ── JLB Hero (Admisión) — carrusel del hero del home ────────────────────────
+// Autoplay + dots + flechas. Respeta prefers-reduced-motion (sin autoplay).
+const jlbHeroReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+createSwiper('.jlb-hero__carousel', {
+    loop: true,
+    speed: 700,
+    autoHeight: false,
+    autoplay: jlbHeroReducedMotion ? false : {
+        delay: 6000,
+        disableOnInteraction: false,
+        pauseOnMouseEnter: true,
+    },
+    pagination: {
+        el: '.jlb-hero__carousel .swiper-pagination',
+        clickable: true,
+    },
+    navigation: {
+        nextEl: '.jlb-hero__carousel .swiper-button-next',
+        prevEl: '.jlb-hero__carousel .swiper-button-prev',
+    },
+})
+
 // ── Hero de servicio con hash URL ──────────────────────────────────────────
 createSwiper('.hero-service__hero', {
     speed: 600,

@@ -65,9 +65,25 @@ $obj_card_img = get_field('obj_card_imagen');
 $obj_card_txt = (string) get_field('obj_card_texto');
 $obj_card_btn = get_field('obj_card_boton');
 
+// ── Destacado (opcional; solo niveles lo registran, p.ej. Programa IB) ──
+$dest_titulo = (string) get_field('destacado_titulo');
+$dest_puntos = array();
+if ($dest_titulo !== '' && have_rows('destacado_puntos')) {
+    while (have_rows('destacado_puntos')) { the_row(); $t = (string) get_sub_field('texto'); if ($t !== '') $dest_puntos[] = $t; }
+}
+
 // ── Video (opcional) ──
 $video  = (string) get_field('video_url');
 $poster = get_field('video_poster');
+// Orientación: la manda el poster (alto > ancho ⇒ vertical, layout 9:16 con
+// copy al costado). Un YouTube Short también fuerza vertical por si el poster
+// no trae dimensiones.
+$video_vertical = (!empty($poster['height']) && !empty($poster['width']) && (int) $poster['height'] > (int) $poster['width'])
+    || (bool) preg_match('~youtube\.com/shorts/~i', $video);
+$video_eyebrow = (string) get_field('video_eyebrow');
+$video_titulo  = (string) get_field('video_titulo');
+$video_texto   = (string) get_field('video_texto');
+$video_copy    = ($video_eyebrow !== '' || $video_titulo !== '' || $video_texto !== '');
 
 // ── Galería ──
 $gal_full = get_field('gal_full');
@@ -111,14 +127,69 @@ $tq = (string) get_field('testi_quote');
         </section>
     <?php endif; ?>
 
+    <?php if ($dest_titulo !== ''):
+        $dest_eyebrow = (string) get_field('destacado_eyebrow');
+        $dest_texto   = (string) get_field('destacado_texto');
+        $dest_lista_t = (string) get_field('destacado_lista_titulo');
+        $dest_imagen  = get_field('destacado_imagen');
+    ?>
+        <section class="jlb-taller-destacado" aria-labelledby="jlb-detalle-dest-t">
+            <div class="jlb-container jlb-taller-destacado__inner">
+                <div class="jlb-taller-destacado__main" data-gsap="fade-right">
+                    <?php if ($dest_eyebrow !== ''): ?>
+                        <p class="jlb-taller-eyebrow"><?php echo esc_html($dest_eyebrow); ?></p>
+                    <?php endif; ?>
+                    <h2 class="jlb-taller-destacado__title" id="jlb-detalle-dest-t"><?php echo esc_html($dest_titulo); ?></h2>
+                    <?php if ($dest_texto !== ''): ?>
+                        <p class="jlb-taller-destacado__text"><?php echo wp_kses_post($dest_texto); ?></p>
+                    <?php endif; ?>
+                    <?php if ($dest_puntos): ?>
+                        <?php if ($dest_lista_t !== ''): ?>
+                            <p class="jlb-taller-destacado__list-title"><?php echo esc_html($dest_lista_t); ?></p>
+                        <?php endif; ?>
+                        <ul class="jlb-taller-destacado__list">
+                            <?php foreach ($dest_puntos as $p): ?>
+                                <li>
+                                    <span class="jlb-taller-plan__dot" aria-hidden="true"></span>
+                                    <span><?php echo esc_html($p); ?></span>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    <?php endif; ?>
+                </div>
+                <?php if (!empty($dest_imagen['url'])): ?>
+                    <figure class="jlb-taller-destacado__media" data-gsap="fade-left">
+                        <img src="<?php echo esc_url($dest_imagen['url']); ?>"
+                            alt="<?php echo esc_attr($dest_imagen['alt'] ?? ''); ?>"
+                            loading="lazy" decoding="async">
+                    </figure>
+                <?php endif; ?>
+            </div>
+        </section>
+    <?php endif; ?>
+
     <?php if (!empty($poster['url'])):
         $vtag = $video !== '' ? 'a' : 'figure';
     ?>
-        <section class="jlb-taller-video">
-            <div class="jlb-container">
+        <section class="jlb-taller-video<?php echo $video_vertical ? ' jlb-taller-video--vertical' : ''; ?>"
+            <?php if ($video_titulo !== ''): ?>aria-labelledby="jlb-detalle-video-t"<?php endif; ?>>
+            <div class="jlb-container jlb-taller-video__inner">
+                <?php if ($video_copy): // Copy: al costado si el video es vertical; arriba si es horizontal. ?>
+                    <div class="jlb-taller-video__copy" data-gsap="fade-right">
+                        <?php if ($video_eyebrow !== ''): ?>
+                            <p class="jlb-taller-eyebrow"><?php echo esc_html($video_eyebrow); ?></p>
+                        <?php endif; ?>
+                        <?php if ($video_titulo !== ''): ?>
+                            <h2 class="jlb-taller-video__title" id="jlb-detalle-video-t"><?php echo esc_html($video_titulo); ?></h2>
+                        <?php endif; ?>
+                        <?php if ($video_texto !== ''): ?>
+                            <p class="jlb-taller-video__text"><?php echo wp_kses_post($video_texto); ?></p>
+                        <?php endif; ?>
+                    </div>
+                <?php endif; ?>
                 <<?php echo $vtag; ?> class="jlb-taller-video__frame<?php echo $video !== '' ? ' is-video' : ''; ?>"
-                    data-gsap="fade-up"
-                    <?php if ($video !== ''): ?>href="<?php echo esc_url($video); ?>" data-jlb-video="<?php echo esc_url($video); ?>" aria-label="<?php echo esc_attr(sprintf(__('Reproducir video: %s', 'boilerplate'), get_the_title())); ?>"<?php endif; ?>>
+                    data-gsap="<?php echo $video_vertical ? 'fade-left' : 'fade-up'; ?>"
+                    <?php if ($video !== ''): ?>href="<?php echo esc_url($video); ?>" data-jlb-video="<?php echo esc_url($video); ?>"<?php echo $video_vertical ? ' data-jlb-video-vertical' : ''; ?> aria-label="<?php echo esc_attr(sprintf(__('Reproducir video: %s', 'boilerplate'), get_the_title())); ?>"<?php endif; ?>>
                     <img src="<?php echo esc_url($poster['url']); ?>" alt="<?php echo esc_attr($poster['alt'] ?? ''); ?>" loading="lazy" decoding="async">
                     <?php if ($video !== ''): ?><img class="jlb-taller-video__play" src="<?php echo esc_url($play_svg); ?>" alt="" aria-hidden="true" width="110" height="110"><?php endif; ?>
                 </<?php echo $vtag; ?>>
@@ -127,7 +198,7 @@ $tq = (string) get_field('testi_quote');
     <?php endif; ?>
 
     <?php if ($obj_titulo || $puntos): ?>
-        <section class="jlb-taller-obj" aria-labelledby="jlb-detalle-obj-t">
+        <section class="jlb-taller-obj" id="objetivos" aria-labelledby="jlb-detalle-obj-t">
             <div class="jlb-container jlb-taller-obj__inner">
                 <div class="jlb-taller-obj__main" data-gsap="fade-right">
                     <img class="jlb-taller-obj__deco" src="<?php echo esc_url(get_template_directory_uri() . '/assets/figma-home/blog/scribble.svg'); ?>" alt="" aria-hidden="true" width="88" height="88">

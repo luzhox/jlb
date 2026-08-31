@@ -9,7 +9,7 @@
 get_header('jlb');
 
 get_template_part('template-parts/molecules/jlb-page-hero', null, array(
-    'title'    => 'Blog JLB',
+    'title' => 'Biblioteca JLB',
     'subtitle' => __('Descubre las últimas novedades y noticias', 'boilerplate'),
 ));
 ?>
@@ -18,18 +18,19 @@ get_template_part('template-parts/molecules/jlb-page-hero', null, array(
     <div class="jlb-blog__container">
         <?php if (have_posts()): ?>
             <div class="jlb-blog__grid">
-                <?php while (have_posts()): the_post(); ?>
+                <?php while (have_posts()):
+                    the_post(); ?>
                     <?php get_template_part('template-parts/molecules/jlb-post-card'); ?>
                 <?php endwhile; ?>
             </div>
 
             <?php
             the_posts_pagination(array(
-                'mid_size'           => 1,
-                'prev_text'          => __('Anteriores', 'boilerplate'),
-                'next_text'          => __('Siguientes', 'boilerplate'),
+                'mid_size' => 1,
+                'prev_text' => __('Anteriores', 'boilerplate'),
+                'next_text' => __('Siguientes', 'boilerplate'),
                 'screen_reader_text' => __('Navegación de entradas', 'boilerplate'),
-                'class'              => 'jlb-blog__pagination',
+                'class' => 'jlb-blog__pagination',
             ));
             ?>
         <?php else: ?>

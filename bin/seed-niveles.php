@@ -106,8 +106,8 @@ foreach ($niveles as $n) {
     update_field('hero_subtitulo', $n['sub'], $pid);
     update_field('hero_imagen', $i0, $pid);
     update_field('hero_botones', array(
-        array('texto' => 'Contáctanos', 'url' => '#contacto'),
-        array('texto' => 'Más información', 'url' => '#info'),
+        array('texto' => 'Contáctanos', 'url' => '/admision/#admision-form'),
+        array('texto' => 'Más información', 'url' => '#objetivos'),
     ), $pid);
 
     update_field('plan_eyebrow', 'Plan de estudios', $pid);

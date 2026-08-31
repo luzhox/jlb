@@ -25,6 +25,8 @@ import './jlbProceso'          // Stepper/tabs (modules/jlb-proceso) — página
 import './jlbCuota'            // Calculadora de cuota (modules/jlb-cuota) — página Admisión
 import './jlbFaq'              // Acordeón FAQ (modules/jlb-faq) — página Admisión
 import './jlbOpenDayForm'      // Formulario Open Day → HubSpot (modules/jlb-open-day-form)
+import './jlbAdmisionForm'     // Formulario de admisión → CPT + email (modules/jlb-admision-form)
+import './jlbAnchorFix'        // Re-scroll al ancla tras load (imágenes tardías desplazan el destino)
 import './menuMobile'
 import './jlbMobileNav'  // Drawer mobile específico del template JLB (header-jlb.php).
 import './acordeon'

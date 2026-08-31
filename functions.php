@@ -14,6 +14,7 @@ require_once('inc/seo.php');
 require_once('inc/acf-modules.php');
 require_once('inc/schema.php');
 require_once('inc/hubspot.php');
+require_once('inc/admision-form.php');
 require_once('inc/cpt-taller.php');
 require_once('inc/cpt-nivel.php');
 require_once('inc/etc.php');

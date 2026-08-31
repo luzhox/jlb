@@ -103,8 +103,8 @@ foreach ($talleres as $w) {
     update_field('hero_subtitulo', $w['sub'], $pid);
     update_field('hero_imagen', $img0, $pid);
     update_field('hero_botones', array(
-        array('texto' => 'Contáctanos', 'url' => '#contacto'),
-        array('texto' => 'Más información', 'url' => '#info'),
+        array('texto' => 'Contáctanos', 'url' => '/admision/#admision-form'),
+        array('texto' => 'Más información', 'url' => '#objetivos'),
     ), $pid);
 
     update_field('plan_eyebrow', 'Plan de estudios', $pid);
@@ -112,8 +112,9 @@ foreach ($talleres as $w) {
     update_field('plan_etiqueta', 'Sílabo del taller', $pid);
     update_field('cursos', array_map(function ($c) { return array('nombre' => $c); }, $w['cursos']), $pid);
 
-    update_field('video_url', $video, $pid);
-    update_field('video_poster', $img1, $pid);
+    // Sin video dummy: la sección de video se oculta sola cuando no hay poster
+    // (decisión 2026-08-30). El video REAL lo pone bin/seed-talleres-material.php
+    // solo en los talleres que lo tienen (Arte y Robótica).
 
     update_field('obj_eyebrow', 'Objetivos', $pid);
     update_field('obj_titulo', $w['obj_t'], $pid);

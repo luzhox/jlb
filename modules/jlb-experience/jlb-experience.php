@@ -6,6 +6,7 @@
  *   hero_imagen        array{url,alt}
  *   hero_video_url     string  (URL YouTube/Vimeo/MP4 → lightbox)
  *   hero_titulo        string
+ *   stories            array of array{ etiqueta, video_url, poster{url,alt} }
  *   propuesta_titulo   string
  *   propuesta_texto    string (parrafo)
  *   items              array of array{ titulo, imagen{url,alt}, video_url }
@@ -23,6 +24,7 @@ $get     = function ($key, $default = '') use ($in_flex, $args) {
 $hero_imagen      = $get('hero_imagen', null);
 $hero_video       = $get('hero_video_url');
 $hero_titulo      = $get('hero_titulo');
+$stories          = $get('stories', array());
 $propuesta_titulo = $get('propuesta_titulo');
 $propuesta_texto  = $get('propuesta_texto');
 $items            = $get('items', array());
@@ -46,7 +48,13 @@ $svg_allowed = array(
 );
 ?>
 <section class="jlb-experience" id="experiencias" aria-labelledby="jlb-experience-title">
-    <?php if ($hero_titulo || !empty($hero_imagen)): ?>
+    <?php if (empty($hero_imagen['url']) && $hero_titulo): ?>
+        <?php // Sin imagen de hero: solo el título como encabezado de sección
+              // (mismo estilo que "Nuestros niveles educativos") + stories debajo. ?>
+        <div class="jlb-container">
+            <h2 class="jlb-experience__title" id="jlb-experience-title" data-gsap="fade-right"><?php echo esc_html($hero_titulo); ?></h2>
+        </div>
+    <?php elseif ($hero_titulo || !empty($hero_imagen)): ?>
         <div class="jlb-experience__hero" data-gsap="fade" data-gsap-duration="1.2">
             <?php if (!empty($hero_imagen['url'])): ?>
                 <img src="<?php echo esc_url($hero_imagen['url']); ?>"
@@ -68,6 +76,46 @@ $svg_allowed = array(
                     data-jlb-video="<?php echo esc_url($hero_video); ?>"
                     aria-label="<?php echo esc_attr(sprintf(__('Reproducir video: %s', 'boilerplate'), $hero_titulo ?: __('Experiencia JLB', 'boilerplate'))); ?>"></a>
             <?php endif; ?>
+        </div>
+    <?php endif; ?>
+
+    <?php if (!empty($stories) && is_array($stories)): ?>
+        <div class="jlb-container jlb-stories" data-gsap="fade-up">
+            <h3 class="sr-text"><?php esc_html_e('Testimonios en video', 'boilerplate'); ?></h3>
+            <ul class="jlb-stories__track" role="list">
+                <?php foreach ($stories as $story):
+                    $st_label  = (string) ($story['etiqueta'] ?? '');
+                    $st_video  = (string) ($story['video_url'] ?? '');
+                    $st_poster = $story['poster'] ?? null;
+                    if ($st_video === '' && empty($st_poster['url'])) {
+                        continue;
+                    }
+                ?>
+                    <li class="jlb-story">
+                        <?php if (!empty($st_poster['url'])): ?>
+                            <img src="<?php echo esc_url($st_poster['url']); ?>"
+                                alt="<?php echo esc_attr($st_poster['alt'] ?? $st_label); ?>"
+                                loading="lazy" decoding="async">
+                        <?php endif; ?>
+
+                        <?php if ($svg_play): ?>
+                            <span class="jlb-story__play" aria-hidden="true"><?php echo wp_kses($svg_play, $svg_allowed); ?></span>
+                        <?php endif; ?>
+
+                        <?php if ($st_label): ?>
+                            <span class="jlb-story__label"><?php echo esc_html($st_label); ?></span>
+                        <?php endif; ?>
+
+                        <?php if ($st_video): ?>
+                            <a class="jlb-story__overlay"
+                                href="<?php echo esc_url($st_video); ?>"
+                                data-jlb-video="<?php echo esc_url($st_video); ?>"
+                                data-jlb-video-vertical
+                                aria-label="<?php echo esc_attr(sprintf(__('Reproducir video: %s', 'boilerplate'), $st_label ?: __('Testimonio', 'boilerplate'))); ?>"></a>
+                        <?php endif; ?>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
         </div>
     <?php endif; ?>
 

@@ -101,9 +101,72 @@
 }
 
 // ── Video ────────────────────────────────────────────────────────────────────
+// Dos layouts según orientación del poster (detectada en PHP):
+//   · horizontal (default): copy opcional arriba + frame full-width 1147/418.
+//   · `--vertical`: grid 2-col — copy al costado izq + frame 9:16 a la derecha
+//     (evita que el video vertical flote solo en una banda vacía).
 .jlb-taller-video {
     padding: clamp(24px, 4vw, 48px) 0;
     background: #fff;
+}
+
+.jlb-taller-video__copy {
+    max-width: 560px;
+    margin-bottom: clamp(20px, 3vw, 32px);
+}
+
+.jlb-taller-video__title {
+    margin: 0 0 12px;
+    font-family: "DM Sans", var(--font-sans);
+    font-weight: 700;
+    font-size: clamp(24px, 3vw, 34px);
+    line-height: 1.15;
+    color: #14111f;
+    max-width: 22ch;
+}
+
+.jlb-taller-video__text {
+    margin: 0;
+    font-family: "DM Sans", var(--font-sans);
+    font-size: 17px; // pisa el `p` global tablet de _typo (gotcha #3)
+    line-height: 1.6;
+    color: #4a4556;
+    max-width: 46ch;
+}
+
+.jlb-taller-video--vertical {
+    .jlb-taller-video__inner {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(280px, 400px);
+        gap: clamp(28px, 5vw, 72px);
+        align-items: center;
+    }
+
+    .jlb-taller-video__copy {
+        margin-bottom: 0;
+    }
+
+    .jlb-taller-video__frame {
+        aspect-ratio: 9 / 16;
+        width: 100%;
+        max-width: 400px;
+        justify-self: center;
+    }
+
+    @media (max-width: 900px) {
+        .jlb-taller-video__inner {
+            grid-template-columns: 1fr;
+        }
+
+        .jlb-taller-video__copy {
+            max-width: none;
+        }
+
+        .jlb-taller-video__frame {
+            max-width: min(400px, 78vw);
+            margin-inline: auto;
+        }
+    }
 }
 
 .jlb-taller-video__frame {
@@ -187,6 +250,13 @@
 .jlb-taller-obj {
     padding: clamp(48px, 7vw, 88px) 0;
     background: #fff;
+    // Header sticky (~96px, 72px ≤1180px; +32px admin-bar): destino del ancla
+    // #objetivos ("Más información" del hero) — sin esto queda tapada.
+    scroll-margin-top: 132px;
+
+    @media (max-width: 1180px) {
+        scroll-margin-top: 108px;
+    }
 }
 
 .jlb-taller-obj__inner {
@@ -328,5 +398,95 @@ a.jlb-taller-obj__cta-btn,
 @media (prefers-reduced-motion: reduce) {
     .jlb-taller-video__frame img:not(.jlb-taller-video__play) {
         transition: none;
+    }
+}
+// ── Destacado (bloque informativo opcional, p.ej. Programa del Diploma IB) ───
+// 2-col: texto (eyebrow + título + párrafo + lista con dots gradiente) +
+// imagen con radio asimétrico de marca. Solo lo registran los niveles.
+.jlb-taller-destacado {
+    padding: clamp(32px, 5vw, 64px) 0;
+    background: #fff;
+}
+
+.jlb-taller-destacado__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(280px, 1fr);
+    gap: clamp(28px, 5vw, 72px);
+    align-items: center;
+
+    @media (max-width: 900px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.jlb-taller-destacado__title {
+    margin: 0 0 16px;
+    font-family: "DM Sans", var(--font-sans);
+    font-weight: 700;
+    font-size: clamp(26px, 3.2vw, 38px);
+    line-height: 1.12;
+    color: var(--jlb-purple, #614794);
+    max-width: 18ch;
+}
+
+.jlb-taller-destacado__text {
+    margin: 0 0 20px;
+    font-family: "DM Sans", var(--font-sans);
+    font-size: 17px; // pisa el `p` global tablet de _typo (gotcha #3)
+    line-height: 1.65;
+    color: #4a4556;
+    max-width: 54ch;
+
+    strong {
+        color: #14111f;
+    }
+}
+
+.jlb-taller-destacado__list-title {
+    margin: 0 0 12px;
+    font-family: "DM Sans", var(--font-sans);
+    font-size: 17px;
+    font-weight: 700;
+    color: #14111f;
+}
+
+.jlb-taller-destacado__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 12px;
+
+    li {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        font-family: "DM Sans", var(--font-sans);
+        font-size: 16px;
+        line-height: 1.5;
+        color: #231f20;
+
+        .jlb-taller-plan__dot {
+            margin-top: 4px;
+        }
+    }
+}
+
+.jlb-taller-destacado__media {
+    margin: 0;
+    border-radius: 55px 32px 55px 32px; // radio asimétrico de marca
+    overflow: hidden;
+    box-shadow: 0 12px 36px rgb(20 17 31 / 0.14);
+
+    img {
+        width: 100%;
+        height: 100%;
+        aspect-ratio: 4 / 3.4;
+        object-fit: cover;
+        display: block;
+    }
+
+    @media (max-width: 900px) {
+        max-width: 480px;
     }
 }

@@ -74,6 +74,20 @@ add_action('acf/init', function () {
                 ),
             ),
 
+            // ── Destacado (bloque informativo opcional, p.ej. Programa IB) ──
+            array('key' => 'field_jlb_n_tab_dest', 'label' => __('Destacado', 'boilerplate'), 'name' => '', 'type' => 'tab'),
+            array('key' => 'field_jlb_n_dest_eyebrow', 'label' => 'Eyebrow', 'name' => 'destacado_eyebrow', 'type' => 'text', 'placeholder' => 'IB para secundaria'),
+            array('key' => 'field_jlb_n_dest_titulo', 'label' => 'Título', 'name' => 'destacado_titulo', 'type' => 'text', 'instructions' => 'Vacío = la sección no se muestra.'),
+            array('key' => 'field_jlb_n_dest_texto', 'label' => 'Texto', 'name' => 'destacado_texto', 'type' => 'textarea', 'rows' => 4, 'new_lines' => 'br'),
+            array('key' => 'field_jlb_n_dest_lista_titulo', 'label' => 'Título de la lista', 'name' => 'destacado_lista_titulo', 'type' => 'text', 'placeholder' => 'El programa ofrece los siguientes beneficios:'),
+            array(
+                'key' => 'field_jlb_n_dest_puntos', 'label' => 'Puntos', 'name' => 'destacado_puntos', 'type' => 'repeater', 'button_label' => __('Agregar punto', 'boilerplate'),
+                'sub_fields' => array(
+                    array('key' => 'field_jlb_n_dest_punto', 'label' => 'Texto', 'name' => 'texto', 'type' => 'text'),
+                ),
+            ),
+            array('key' => 'field_jlb_n_dest_imagen', 'label' => 'Imagen', 'name' => 'destacado_imagen', 'type' => 'image', 'return_format' => 'array'),
+
             // ── Objetivos ──
             array('key' => 'field_jlb_n_tab_obj', 'label' => __('Objetivos', 'boilerplate'), 'name' => '', 'type' => 'tab'),
             array('key' => 'field_jlb_n_obj_eyebrow', 'label' => 'Eyebrow', 'name' => 'obj_eyebrow', 'type' => 'text', 'default_value' => 'Objetivos'),

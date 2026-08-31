@@ -3,6 +3,13 @@
 .jlb-openday {
     padding: clamp(40px, 6vw, 80px) 0 clamp(56px, 8vw, 96px);
     background: #fff;
+    // El header JLB es sticky (~96px, 72px ≤1180px; +32px con admin-bar):
+    // sin esto, el ancla #open-day-form ("Inscríbete ahora") queda tapada.
+    scroll-margin-top: 132px;
+
+    @media (max-width: 1180px) {
+        scroll-margin-top: 108px;
+    }
 }
 
 // Hero de Open Day: el botón "Inscríbete ahora" va en rojo (Figma #c32529).

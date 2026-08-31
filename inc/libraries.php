@@ -36,6 +36,67 @@ add_filter('wp_resource_hints', function ($urls, $relation_type) {
 //   3) Parsear el CSS de Google Fonts en runtime y extraer las URLs activas
 //      (frágil, costoso en TTFB).
 
+// ── Fuente self-hosted: "KG Second Chances Solid" (principal del cliente) ─────
+// NO está en Google Fonts y requiere licencia comercial (Kimberly Geswein), por
+// eso se self-hostea desde /fonts/. Los 16 parciales SCSS la nombran con
+//   font-family: "KG Second Chances Solid", "Caveat", cursive
+// así que mientras el archivo no exista cae a Caveat (sí cargada por GFonts) y
+// NO se rompe nada. En cuanto sueltes el .woff2 en /fonts/ (ver fonts/README.md)
+// este bloque lo detecta, declara el @font-face con font-display:swap y precarga
+// el woff2 para evitar el flash a Caveat. Se hace en PHP (no en el bundle Vite)
+// para que: (1) el build nunca falle por un url() a un archivo ausente, (2) la
+// URL sea siempre correcta vía get_template_directory_uri(), (3) se auto-active
+// sin recompilar. Antes solo se veía en local porque la fuente estaba instalada
+// en el SO del diseñador; en producción nadie la tiene → caía a Caveat/cursive.
+add_action('wp_head', function () {
+    $dir = get_template_directory() . '/fonts';
+    $uri = get_template_directory_uri() . '/fonts';
+
+    // Variantes soportadas, en orden de preferencia. format() según extensión.
+    $variants = array(
+        'KGSecondChancesSolid.woff2' => 'woff2',
+        'KGSecondChancesSolid.woff'  => 'woff',
+        'KGSecondChancesSolid.ttf'   => 'truetype',
+        'KGSecondChancesSolid.otf'   => 'opentype',
+    );
+
+    $sources = array();   // format => url
+    foreach ($variants as $filename => $format) {
+        $path = $dir . '/' . $filename;
+        if (file_exists($path)) {
+            // ?v=filemtime → cache-busting estable (cambia solo si cambia el archivo)
+            $sources[$format] = esc_url($uri . '/' . $filename . '?v=' . filemtime($path));
+        }
+    }
+
+    if (empty($sources)) {
+        return; // archivo aún no subido → fallback a Caveat, sin romper nada
+    }
+
+    // Preload del woff2 para que el kicker no parpadee (KG aparece en todo el sitio).
+    // crossorigin obligatorio: las fuentes se descargan siempre en modo CORS.
+    if (isset($sources['woff2'])) {
+        printf(
+            '<link rel="preload" href="%s" as="font" type="font/woff2" crossorigin>' . "\n",
+            $sources['woff2']
+        );
+    }
+
+    // src: woff2 → woff → ttf → otf (lo que exista, en ese orden).
+    $src_parts = array();
+    foreach (array('woff2', 'woff', 'truetype', 'opentype') as $format) {
+        if (isset($sources[$format])) {
+            $src_parts[] = "url('" . $sources[$format] . "') format('" . $format . "')";
+        }
+    }
+
+    echo '<style id="jlb-kg-font">';
+    echo "@font-face{font-family:'KG Second Chances Solid';";
+    echo 'src:' . implode(',', $src_parts) . ';';
+    echo 'font-weight:400;font-style:normal;font-display:swap;}';
+    echo "</style>\n";
+}, 2);
+
 // ── @vite/client en dev mode ──────────────────────────────────────────────────
 // MUY IMPORTANTE: este add_action debe estar al top-level del archivo, NO
 // anidado dentro de un callback de wp_enqueue_scripts. Si se registra desde

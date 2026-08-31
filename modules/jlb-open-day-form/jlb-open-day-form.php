@@ -28,7 +28,9 @@ $endpoint     = esc_url_raw(rest_url('jlb/v1/open-day'));
 // Site key: constante (wp-config) u opción administrable (Ajustes del sitio › Integraciones).
 $recaptcha_kp = function_exists('jlb_hubspot_cfg') ? jlb_hubspot_cfg('recaptcha_site') : '';
 
-$anios = array('2026', '2027', '2028');
+// Años de admisión: siempre a futuro (nunca el año en curso).
+$anio_base = (int) current_time('Y');
+$anios     = array((string) ($anio_base + 1), (string) ($anio_base + 2));
 $horas = array(
     '9 a 10am'  => '9 a 10am',
     '10 a 11am' => '10 a 11am',

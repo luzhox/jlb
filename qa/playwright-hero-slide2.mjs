@@ -1,0 +1,10 @@
+import { chromium } from 'playwright-core';
+import fs from 'node:fs';
+const env = Object.fromEntries(fs.readFileSync('qa/.env','utf8').split('\n').filter(l=>l.includes('=')&&!l.trim().startsWith('#')).map(l=>[l.slice(0,l.indexOf('=')).trim(), l.slice(l.indexOf('=')+1).trim()]));
+const browser = await chromium.launch({ executablePath: env.PLAYWRIGHT_CHROMIUM });
+const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
+await page.goto('http://jlb-school.local/', { waitUntil: 'networkidle' });
+await page.click('.jlb-hero .swiper-button-next');
+await page.waitForTimeout(1200);
+await page.screenshot({ path: 'qa/live/hero-height-slide2-1440.png' });
+await browser.close();

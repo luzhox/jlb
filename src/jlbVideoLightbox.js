@@ -70,9 +70,14 @@ function initJlbVideoLightbox() {
     const frame = overlay.querySelector('.jlb-video-lightbox__frame')
     const closeBtn = overlay.querySelector('.jlb-video-lightbox__close')
 
-    function open(url) {
+    function open(url, vertical) {
         const v = resolveVideo(url)
         if (!v) return
+
+        // Video vertical (trigger con data-jlb-video-vertical o YouTube Short):
+        // el dialog pasa a 9:16 angosto en vez del 16:9 default.
+        const isVertical = vertical || /youtube\.com\/shorts\//i.test(url)
+        overlay.classList.toggle('is-vertical', isVertical)
 
         if (v.type === 'iframe') {
             frame.innerHTML = `<iframe src="${v.src}" title="Video" frameborder="0"
@@ -114,7 +119,7 @@ function initJlbVideoLightbox() {
             const url = trigger.getAttribute('data-jlb-video') || trigger.getAttribute('href')
             if (url && url !== '#') {
                 e.preventDefault()
-                open(url)
+                open(url, trigger.hasAttribute('data-jlb-video-vertical'))
             }
             return
         }

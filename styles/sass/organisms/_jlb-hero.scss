@@ -1,29 +1,49 @@
-// Jean Le Boulch — Hero "Admisión".
-// Grid 2-col con texto sobre gradient y media con esquina radio.
-// Conforma el módulo ACF `jlb_hero` (modules/jlb-hero/jlb-hero.php).
+// Jean Le Boulch — Hero "Admisión" (CARRUSEL).
+// Swiper: cada .jlb-hero__slide es un grid 2-col (texto sobre gradient + media
+// con esquina radio). Conforma el módulo ACF `jlb_hero` (modules/jlb-hero/).
 
 .jlb-hero {
     position: relative;
-    min-height: clamp(560px, 58vw, 636px);
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(420px, 1fr);
-    align-items: stretch;
     overflow: hidden;
     background: var(--jlb-gradient);
     isolation: isolate;
 
-    // Pseudo-ondulación inferior que enlaza con la siguiente sección.
-    &::after {
-        content: "";
-        position: absolute;
-        left: -6vw;
-        right: -6vw;
-        bottom: -72px;
-        height: 150px;
-        z-index: 2;
-        background: #fff;
-        border-radius: 50% 50% 0 0 / 100% 100% 0 0;
-    }
+    // Theming de Swiper vía CSS vars (las consume el CSS de vendor sin pelea de
+    // capas/especificidad — ver gotcha @layer del proyecto).
+    --swiper-theme-color: #fff; // bullet activo (dots)
+    // Color de las flechas: la regla vendor sin capa lee --swiper-navigation-color
+    // y gana a cualquier `color` dentro de @layer; lo fijamos aquí (no por
+    // selector) para que el chevron (currentColor) salga morado de marca.
+    --swiper-navigation-color: var(--jlb-purple);
+    --swiper-navigation-sides-offset: clamp(12px, 3vw, 28px);
+    --swiper-pagination-bottom: clamp(72px, 8vw, 104px); // por encima del wave
+    --swiper-pagination-bullet-size: 10px;
+    --swiper-pagination-bullet-inactive-color: #fff;
+    --swiper-pagination-bullet-inactive-opacity: 0.4;
+    --swiper-pagination-bullet-horizontal-gap: 5px;
+}
+
+.jlb-hero__carousel {
+    width: 100%;
+}
+
+// Cada slide es el grid 2-col. Swiper lo trata como flex-item del wrapper;
+// forzamos `grid` con !important porque el CSS de vendor (sin capa) gana a las
+// capas (gotcha del proyecto: si no, el slide colapsa a block y la columna de
+// la imagen queda a height:0).
+// Slides con distinto largo de texto ⇒ alturas distintas ⇒ banda blanca bajo
+// el slide corto (el wrapper mide como el más alto). Stretch los iguala.
+.jlb-hero__carousel .swiper-wrapper {
+    align-items: stretch;
+}
+
+.jlb-hero__slide {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) minmax(420px, 1fr);
+    align-items: stretch;
+    min-height: clamp(560px, 58vw, 636px);
+    height: auto !important; // vendor pone height fija; auto deja que stretch mande
+    box-sizing: border-box;
 }
 
 .jlb-hero__content {
@@ -32,7 +52,7 @@
     padding-block: clamp(92px, 10vw, 148px) 132px;
     color: #fff;
     position: relative;
-    z-index: 3;
+    z-index: 2;
 }
 
 // Eyebrow como píldora blanca DEBAJO del título (Figma): el <span> es la
@@ -53,24 +73,23 @@
     }
 }
 
-.jlb-hero h1 {
-    margin: 0 0 16px;
+// Título: h1 en el 1er slide, h2 en el resto (uno por página). Mismo aspecto.
+.jlb-hero__title {
+    margin: 0 0 24px;
     font-family: "KG Second Chances Solid", "Caveat", cursive;
     font-size: clamp(56px, 6vw, 86px);
     font-weight: 700;
     line-height: 0.95;
     letter-spacing: 0;
-    margin-bottom: 24px;
 }
 
-.jlb-hero p {
+.jlb-hero__text {
     max-width: 430px;
-    margin: 0;
+    margin: 24px 0 0;
     font-family: "DM Sans", var(--font-sans);
     font-size: 17px;
     font-weight: 400;
     line-height: 1.5;
-    margin-top: 24px;
 }
 
 .jlb-hero__actions {
@@ -88,7 +107,12 @@
     border-bottom-left-radius: clamp(120px, 19vw, 276px);
     z-index: 1;
 
+    // Absoluta para que la proporción de la foto que suba el cliente NUNCA
+    // participe en el alto del slide (mismo fix que .jlb-adm-hero): el alto
+    // lo fija el min-height del slide + contenido; la foto solo recorta (cover).
     img {
+        position: absolute;
+        inset: 0;
         width: 100%;
         height: 100%;
         display: block;
@@ -96,8 +120,64 @@
     }
 }
 
+// Wave blanco de transición al pie (homologado con .jlb-adm-hero__wave).
+// Vive dentro del .swiper: z-index:2 lo deja sobre el wrapper de imágenes y
+// bajo los controles de Swiper (z-index:10).
+.jlb-hero__wave {
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    width: 100%;
+    height: clamp(32px, 4vw, 64px);
+    display: block;
+    z-index: 2;
+    pointer-events: none;
+}
+
+// ── Controles Swiper (flechas: círculo blanco sólido + chevron de marca) ─────
+.jlb-hero {
+    .swiper-button-prev,
+    .swiper-button-next {
+        // Caja 48px: vendor sin capa gana en width/height/margin → !important.
+        width: 48px !important;
+        height: 48px !important;
+        margin-top: -24px !important;
+        border-radius: 999px;
+        background: #fff;
+        color: var(--jlb-purple); // el chevron SVG hereda vía currentColor
+        box-shadow: 0 6px 16px rgb(22 31 51 / 0.18);
+        transition: transform 180ms ease, box-shadow 180ms ease;
+
+        // Oculta el glifo de la fuente swiper-icons (usamos SVG propio en el markup).
+        &::after {
+            content: none !important;
+        }
+
+        &:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgb(22 31 51 / 0.26);
+        }
+
+        &:focus-visible {
+            outline: 2px solid #fff;
+            outline-offset: 2px;
+        }
+    }
+
+    // Chevron SVG dentro del botón (hereda currentColor = morado de marca).
+    // !important: el vendor de Swiper (sin capa) trae `.swiper-button-* svg
+    // { width:100%; height:100%; fill:currentColor }` — estiraba el chevron a
+    // los 48px del botón y lo rellenaba (triángulo sólido en vez de trazo).
+    .jlb-hero__chev {
+        width: 22px !important;
+        height: 22px !important;
+        fill: none !important;
+        display: block;
+    }
+}
+
 @media (max-width: 1180px) {
-    .jlb-hero {
+    .jlb-hero__slide {
         grid-template-columns: 1fr;
     }
 
@@ -106,7 +186,7 @@
         text-align: center;
     }
 
-    .jlb-hero p,
+    .jlb-hero__text,
     .jlb-hero__actions {
         justify-content: center;
         margin-inline: auto;
@@ -115,6 +195,12 @@
     .jlb-hero__media {
         min-height: 360px;
         border-bottom-left-radius: 0;
+    }
+
+    // En 1 columna las flechas estorban sobre el contenido; dejamos solo dots.
+    .jlb-hero .swiper-button-prev,
+    .jlb-hero .swiper-button-next {
+        display: none !important;
     }
 }
 

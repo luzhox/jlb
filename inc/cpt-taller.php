@@ -73,7 +73,10 @@ add_action('acf/init', function () {
             // ── Video ─────────────────────────────────────────────────────
             array('key' => 'field_jlb_t_tab_video', 'label' => __('Video', 'boilerplate'), 'name' => '', 'type' => 'tab'),
             array('key' => 'field_jlb_t_video_url', 'label' => 'URL del video', 'name' => 'video_url', 'type' => 'url', 'instructions' => 'YouTube / Vimeo / MP4. Vacío = sin play.'),
-            array('key' => 'field_jlb_t_video_poster', 'label' => 'Poster', 'name' => 'video_poster', 'type' => 'image', 'return_format' => 'array'),
+            array('key' => 'field_jlb_t_video_poster', 'label' => 'Poster', 'name' => 'video_poster', 'type' => 'image', 'return_format' => 'array', 'instructions' => 'Si el poster es VERTICAL (más alto que ancho), la sección cambia a layout vertical: video 9:16 con el copy al costado.'),
+            array('key' => 'field_jlb_t_video_eyebrow', 'label' => 'Eyebrow del copy', 'name' => 'video_eyebrow', 'type' => 'text', 'placeholder' => 'Video'),
+            array('key' => 'field_jlb_t_video_titulo', 'label' => 'Título del copy', 'name' => 'video_titulo', 'type' => 'text', 'instructions' => 'Copy que acompaña al video (al costado si es vertical, arriba si es horizontal). Opcional.'),
+            array('key' => 'field_jlb_t_video_texto', 'label' => 'Texto del copy', 'name' => 'video_texto', 'type' => 'textarea', 'rows' => 3, 'new_lines' => 'br'),
 
             // ── Objetivos ─────────────────────────────────────────────────
             array('key' => 'field_jlb_t_tab_obj', 'label' => __('Objetivos', 'boilerplate'), 'name' => '', 'type' => 'tab'),

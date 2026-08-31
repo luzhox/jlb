@@ -187,15 +187,27 @@ WP_CLI::log('==> 3/5 Poblando módulos ACF...');
 
 $modules = array(
 
-    // ── 1. JLB Hero ─────────────────────────────────────────────────────────
+    // ── 1. JLB Hero (carrusel: repeater `slides`) ────────────────────────────
     array(
-        'acf_fc_layout'    => 'jlb_hero',
-        'eyebrow'          => '2025 - 2026',
-        'titulo'           => 'Admisión',
-        'texto'            => 'Asumimos con honestidad la responsabilidad de la formación integral de nuestros estudiantes y los acompañamos desde la curiosidad.',
-        'boton_principal'  => array('title' => 'Propuesta educativa', 'url' => '#propuesta', 'target' => '_self'),
-        'boton_secundario' => array('title' => 'Más información',     'url' => '#contacto',  'target' => '_self'),
-        'imagen'           => $imgs['hero'],
+        'acf_fc_layout' => 'jlb_hero',
+        'slides'        => array(
+            array(
+                'eyebrow'          => '2025 - 2026',
+                'titulo'           => 'Admisión',
+                'texto'            => 'Asumimos con honestidad la responsabilidad de la formación integral de nuestros estudiantes y los acompañamos desde la curiosidad.',
+                'boton_principal'  => array('title' => 'Propuesta educativa', 'url' => '#propuesta', 'target' => '_self'),
+                'boton_secundario' => array('title' => 'Más información',     'url' => '#contacto',  'target' => '_self'),
+                'imagen'           => $imgs['hero'],
+            ),
+            array(
+                'eyebrow'          => 'Comunidad',
+                'titulo'           => 'Aprender jugando',
+                'texto'            => 'Cada experiencia despierta la curiosidad: exploramos, creamos y convivimos para que el aprendizaje tenga sentido.',
+                'boton_principal'  => array('title' => 'Conoce el método',  'url' => '#propuesta', 'target' => '_self'),
+                'boton_secundario' => array('title' => 'Agenda una visita', 'url' => '#contacto',  'target' => '_self'),
+                'imagen'           => $imgs['level-wide'],
+            ),
+        ),
     ),
 
     // ── 2. JLB Niveles ──────────────────────────────────────────────────────
