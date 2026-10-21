@@ -1,8 +1,8 @@
 <?php
 /**
  * Seeder de la página "Nosotros" (bienvenida + historia/línea de tiempo).
- * Reutiliza jlb_admision_hero (hero) + jlb_manifesto (bienvenida) + jlb_timeline (nuevo).
- * Contenido de la historia: "40 años de historia" (Word del cliente).
+ * Reutiliza jlb_admision_hero (hero) + jlb_manifesto (bienvenida) + jlb_principios + jlb_timeline
+ * + jlb_experiencias (infraestructura). Textos: Word del cliente corregido 2026-10-08.
  *
  * Uso: wp eval-file bin/seed-nosotros.php  (vía Open site shell de Local)
  */
@@ -46,42 +46,70 @@ if ($page) {
     if (is_wp_error($pid)) { WP_CLI::error('No pude crear la página: ' . $pid->get_error_message()); }
 }
 
-// Bienvenida (basada en la propuesta educativa de jlb.edu.pe/conocenos).
-$manifiesto = '<p>El <strong>Colegio Jean Le Boulch</strong> forma personas a través del <strong>movimiento</strong> y el <strong>desarrollo integral</strong>. Inspirados en la pedagogía del educador francés Jean Le Boulch, buscamos que cada estudiante <strong>construya su propio aprendizaje</strong> mediante la experimentación, la exploración, la reflexión, la investigación y el <strong>trabajo en equipo</strong>, en un ambiente <strong>democrático, creativo y saludable</strong>.</p>';
+// Textos corregidos por el cliente ("Página Web 2026 (textos corregidos 8-10-26).docx").
+$manifiesto = '<p>En el <strong>Colegio Jean Le Boulch</strong> formamos desde la <strong>Educación por el Movimiento</strong>, la filosofía y metodología del educador y médico francés Jean Le Boulch. Esta propuesta busca el <strong>desarrollo integral</strong> de la persona en todas sus dimensiones: motriz, cognitiva, social, emocional y ética.</p>'
+    . '<p>Nuestros estudiantes <strong>construyen su propio aprendizaje</strong> mediante la experimentación, la exploración, la reflexión, la investigación y el <strong>trabajo en equipo</strong>, en un ambiente <strong>democrático, creativo y saludable</strong>. A lo largo de estas décadas hemos adaptado esta propuesta a nuestro contexto con una construcción propia, para formar personas capaces de elaborar y comunicar sus propios argumentos y opiniones.</p>';
+
+$principios = array(
+    array('titulo' => 'Desarrollo integral',
+        'texto' => 'Entendemos a la persona como una unidad indivisible. Por eso, en cada actividad atendemos por igual sus dimensiones motriz, cognitiva, social, emocional y ética. Incluso en el trabajo académico, cada aprendizaje parte de la experiencia, despierta la motivación, invita a la reflexión y se construye en equipo.'),
+    array('titulo' => 'Aprendizaje vivencial',
+        'texto' => 'Aprendemos haciendo. Nuestros estudiantes construyen conocimiento explorando su entorno, experimentando e investigando.'),
+    array('titulo' => 'Convivencia y democracia',
+        'texto' => 'La escuela es un espacio de convivencia donde las voces de niños y adolescentes son escuchadas. En las reuniones de convivencia en el aula, el consejo estudiantil y las asambleas, los estudiantes plantean propuestas y problemas, los dialogan y acuerdan soluciones, y así viven la democracia en lo cotidiano.'),
+    array('titulo' => 'Psicomotricidad',
+        'texto' => 'El movimiento es el punto de partida del aprendizaje. Al moverse e interactuar con su entorno y con los demás, cada estudiante conoce su cuerpo, aprende a controlarlo y desarrolla la capacidad de actuar sobre el mundo, integrando lo motriz, lo emocional, lo social y lo cognitivo.'),
+    array('titulo' => 'Arte',
+        'texto' => 'Los estudiantes exploran y participan en diversas manifestaciones artísticas, como forma de expresar su sensibilidad y desarrollar su creatividad.'),
+    array('titulo' => 'Filosofía con niños',
+        'texto' => 'Desde Inicial hasta el último año de Secundaria, dialogamos, reflexionamos e investigamos con nuestros estudiantes sobre las preguntas que les interesan y el mundo que los rodea.'),
+);
 
 $hitos = array(
-    array('anio' => '1983', 'titulo' => 'Fundación', 'imagen' => $h[1],
-        'texto' => 'Se crea oficialmente el Colegio Jean Le Boulch, fundado por la profesora Silvia Bravo Heredia, inspirado en la propuesta del educador francés Jean Le Boulch: la educación por el movimiento y el desarrollo integral del estudiante.'),
-    array('anio' => '1984', 'titulo' => 'Inicio de actividades', 'imagen' => $h[2],
-        'texto' => 'El colegio inicia clases en un local pequeño en el distrito de Lince, ofreciendo educación inicial y los primeros grados de primaria.'),
-    array('anio' => '1987', 'titulo' => 'Consolidación del nivel primario', 'imagen' => 0,
-        'texto' => 'El Ministerio de Educación autoriza el funcionamiento completo del nivel de educación primaria.'),
-    array('anio' => '1990', 'titulo' => 'Expansión educativa', 'imagen' => $h[3],
-        'texto' => 'Se autoriza el funcionamiento del nivel secundario, completando la oferta de educación básica.'),
+    array('anio' => '1984', 'titulo' => 'Fundación', 'imagen' => $h[1],
+        'texto' => 'La profesora Silvia Bravo Heredia funda el Colegio Jean Le Boulch, que inicia clases en un pequeño local en Lince con Inicial y los primeros grados de Primaria.'),
+    array('anio' => '1987', 'titulo' => 'Consolidación de Primaria', 'imagen' => 0,
+        'texto' => 'El Ministerio de Educación autoriza el funcionamiento completo del nivel de Primaria.'),
+    array('anio' => '1990', 'titulo' => 'Inicio de Secundaria', 'imagen' => $h[3],
+        'texto' => 'Se autoriza el nivel de Secundaria, con lo que el colegio completa la Educación Básica Regular.'),
     array('anio' => '1993', 'titulo' => 'Nuevo campus en La Molina', 'imagen' => $h[4],
-        'texto' => 'El colegio se traslada a su local propio en el distrito de La Molina, donde continúa funcionando hasta la actualidad.'),
+        'texto' => 'El colegio se traslada a su local propio en La Molina, donde funciona hasta hoy.'),
     array('anio' => '1994', 'titulo' => 'Primera promoción', 'imagen' => 0,
-        'texto' => 'Egresa la primera promoción de 5to año de secundaria.'),
-    array('anio' => '1995', 'titulo' => 'Desarrollo de infraestructura', 'imagen' => $h[5],
-        'texto' => 'Se adquieren los campos deportivos frente al colegio, fortaleciendo el enfoque en la psicomotricidad, el deporte y el desarrollo integral, y consolidando una propuesta basada en aprendizaje vivencial, arte y convivencia democrática.'),
-    array('anio' => '1995–1998', 'titulo' => 'Visitas del Dr. Jean Le Boulch', 'imagen' => $img_dr,
-        'texto' => 'El Dr. Jean Le Boulch realiza tres visitas al Perú: dicta talleres de formación con nuestros docentes y niños, y una serie de conferencias magistrales en distintas universidades y para el público en general.'),
-    array('anio' => '2007', 'titulo' => 'Cambio de Dirección', 'imagen' => $h[6],
-        'texto' => 'Asume la Dirección General el Sr. José Taramona Bravo, quien participó en el proyecto desde los primeros años.'),
-    array('anio' => '2010', 'titulo' => 'Innovación pedagógica', 'imagen' => 0,
-        'texto' => 'Se crea el Área de Investigación y Desarrollo, impulsando la actualización docente y el intercambio de experiencias educativas con otros países.'),
-    array('anio' => '2024', 'titulo' => '40 años formando personas', 'imagen' => $h[7],
-        'texto' => 'El Colegio Jean Le Boulch celebra 40 años de trayectoria, reafirmando su compromiso con la formación integral, la innovación pedagógica y el desarrollo humano.'),
+        'texto' => 'Egresa la primera promoción de quinto año de Secundaria.'),
+    array('anio' => '1995', 'titulo' => 'Campos deportivos', 'imagen' => $h[5],
+        'texto' => 'Se adquieren los campos deportivos frente al colegio, que fortalecen el trabajo en psicomotricidad, deporte y vida al aire libre.'),
+    array('anio' => '1995, 1996 y 1998', 'titulo' => 'Jean Le Boulch en el Perú', 'imagen' => $img_dr,
+        'texto' => 'Invitado por el colegio, Jean Le Boulch visita el Perú en tres ocasiones. Dicta talleres para nuestros docentes, trabaja con nuestros estudiantes y ofrece seminarios para padres de familia y público en general, además de conferencias en la Universidad Ricardo Palma, la PUCP y La Cantuta. Visita también Cusco, Pisco y Huaraz, estas dos últimas como sedes de formación e intercambio para nuestros directivos y docentes.'),
+    array('anio' => '2007', 'titulo' => 'Nueva Dirección General', 'imagen' => $h[6],
+        'texto' => 'Asume la Dirección General José Taramona Bravo, sociólogo de la educación, quien participó en el proyecto desde sus primeros años.'),
+    array('anio' => '2010', 'titulo' => 'Área de Investigación y Desarrollo', 'imagen' => 0,
+        'texto' => 'Se crea el Área de Investigación y Desarrollo, que impulsa la actualización docente y el intercambio de experiencias educativas con otros países.'),
+    array('anio' => '2024', 'titulo' => '40 años', 'imagen' => $h[7],
+        'texto' => 'El colegio celebra 40 años de trayectoria y reafirma su compromiso con la formación integral, la innovación pedagógica y el desarrollo humano.'),
     array('anio' => '2025', 'titulo' => 'Camino al Bachillerato Internacional', 'imagen' => $h[8],
-        'texto' => 'El colegio inicia la gestión para acceder al Bachillerato Internacional (IB), proyectando su incorporación para el 2028.'),
+        'texto' => 'El colegio inicia su candidatura como Colegio Solicitante* del Programa del Diploma del Bachillerato Internacional (IB), con el objetivo de ofrecerlo a partir de 2028.'),
 );
+
+$nota_ib = '<p>El Colegio Jean Le Boulch ha adquirido la categoría de colegio solicitante para impartir el Programa del Diploma (PD) y desea obtener la autorización para convertirse en Colegio del Mundo del IB. Estos son colegios que comparten una filosofía común: un compromiso con una educación internacional rigurosa y de calidad que el Colegio Jean Le Boulch considera que es importante para el alumnado.</p>'
+    . '<p>*Solo los colegios autorizados por la Organización del IB pueden ofrecer cualquiera de sus cuatro programas académicos: el Programa de la Escuela Primaria (PEP), el Programa de los Años Intermedios (PAI), el Programa del Diploma (PD) o el Programa de Orientación Profesional (POP). La categoría de colegio solicitante no garantiza que el colegio obtenga la autorización. Para obtener más información sobre el IB y sus programas, visite <a href="https://www.ibo.org/es/" target="_blank" rel="noopener">www.ibo.org/es</a></p>';
+
+// Infraestructura: reutiliza la foto y el recorrido virtual del hero de Open Day.
+$tour_img = 0; $tour_url = 'https://www.youtube.com/watch?v=ScMzIvxBSi4';
+$openday  = get_page_by_path('open-day', OBJECT, 'page');
+foreach ($openday ? (array) get_field('modules', $openday->ID) : array() as $row) {
+    if (($row['acf_fc_layout'] ?? '') === 'jlb_admision_hero') {
+        $tour_img = (int) ($row['imagen']['ID'] ?? 0);
+        if (!empty($row['video_url'])) { $tour_url = $row['video_url']; }
+        break;
+    }
+}
 
 $modules = array(
     array(
         'acf_fc_layout' => 'jlb_admision_hero',
         'eyebrow'       => 'Nosotros',
         'titulo'        => 'Conócenos',
-        'subtitulo'     => 'Más de 40 años formando niños y jóvenes autónomos, empáticos y críticos, a través del movimiento y el desarrollo integral.',
+        'subtitulo'     => 'Más de 42 años formando niños y jóvenes autónomos, empáticos y críticos.',
         'imagen'        => $img_bienvenida,
         'botones'       => array(
             array('texto' => 'Ver nuestra historia', 'url' => '#historia', 'target' => '_self'),
@@ -93,12 +121,30 @@ $modules = array(
         'texto'         => $manifiesto,
     ),
     array(
+        'acf_fc_layout' => 'jlb_principios',
+        'titulo'        => 'Principios educativos',
+        'principios'    => $principios,
+    ),
+    array(
         'acf_fc_layout' => 'jlb_timeline',
         'eyebrow'       => 'Nuestra historia',
         'titulo'        => '42 años de historia',
-        'hitos'         => array_map(function ($x) {
-            return array('anio' => $x['anio'], 'titulo' => $x['titulo'], 'texto' => $x['texto'], 'imagen' => $x['imagen']);
-        }, $hitos),
+        'intro'         => 'El Colegio Jean Le Boulch nació en 1984 como una propuesta alternativa a la educación tradicional, inspirada en la Educación por el Movimiento del educador francés Jean Le Boulch. Desde entonces, hemos construido un proyecto propio centrado en el desarrollo integral de cada estudiante.',
+        'hitos'         => $hitos,
+        'nota'          => $nota_ib,
+    ),
+    array(
+        'acf_fc_layout'  => 'jlb_experiencias',
+        'titulo_seccion' => 'Infraestructura',
+        'intro_seccion'  => 'Diseñamos nuestros espacios de modo que nuestros alumnos logran aprender en un ambiente cómodo y agradable.',
+        'experiencias'   => array(
+            array(
+                'titulo'    => 'Arquitectura',
+                'texto'     => 'Nuestra propuesta educativa dialoga con nuestras instalaciones, por eso, cada espacio ha sido construido pensando en nuestros principios y, sobre todo, en nuestros niños y niñas. Como escuela, buscamos generar un ambiente acogedor para toda nuestra comunidad, donde se promueva el aprendizaje y nuestros alumnos y alumnas se sientan a gusto; por ende, el espacio físico juega un rol muy importante en esta misión. Nuestro diseño arquitectónico busca generar una atmósfera acogedora y cálida con entornos lúdicos que faciliten el trabajo en equipo, la exploración y el intercambio entre todos los miembros. En el Jean Le Boulch, nos preocupamos por brindar un espacio en donde nuestros alumnos se sientan cómodos y seguros. ¡Conoce más sobre nuestras instalaciones en el Tour Virtual!',
+                'video_url' => $tour_url,
+                'imagen'    => $tour_img,
+            ),
+        ),
     ),
 );
 

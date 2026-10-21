@@ -9,7 +9,9 @@
  * Datos (dual-mode flex/$args):
  *   eyebrow  string
  *   titulo   string
+ *   intro    string (opcional, párrafo bajo el título)
  *   hitos    repeater de { anio, titulo, texto, imagen{url,alt} }
+ *   nota     string html (opcional, nota al pie bajo la lista)
  */
 
 $args    = isset($args) && is_array($args) ? $args : array();
@@ -20,6 +22,8 @@ $get     = function ($key, $default = '') use ($in_flex, $args) {
 
 $eyebrow = (string) $get('eyebrow');
 $titulo  = (string) $get('titulo');
+$intro   = (string) $get('intro');
+$nota    = (string) $get('nota');
 
 $hitos = array();
 if ($in_flex) {
@@ -64,6 +68,9 @@ $uid = wp_unique_id('jlb-timeline-');
         <?php if ($titulo): ?>
             <h2 class="jlb-timeline__title" id="<?php echo esc_attr($uid); ?>-t"><?php echo esc_html($titulo); ?></h2>
         <?php endif; ?>
+        <?php if ($intro): ?>
+            <p class="jlb-timeline__intro"><?php echo esc_html($intro); ?></p>
+        <?php endif; ?>
 
         <ol class="jlb-timeline__list">
             <?php foreach ($hitos as $h): ?>
@@ -91,5 +98,9 @@ $uid = wp_unique_id('jlb-timeline-');
                 </li>
             <?php endforeach; ?>
         </ol>
+
+        <?php if ($nota): ?>
+            <div class="jlb-timeline__nota"><?php echo wp_kses_post(wpautop($nota)); ?></div>
+        <?php endif; ?>
     </div>
 </section>

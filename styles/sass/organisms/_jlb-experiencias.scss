@@ -205,3 +205,26 @@ a.jlb-link-external--gradient {
         border-bottom-left-radius: clamp(40px, 5vw, 73px);
     }
 }
+
+// Encabezado de sección opcional (ej. Infraestructura en Nosotros).
+.jlb-experiencias__header {
+    margin-bottom: clamp(32px, 5vw, 56px);
+}
+
+.jlb-experiencias__section-title {
+    margin: 0;
+    font-family: "KG Second Chances Solid", "Caveat", cursive;
+    font-weight: 400;
+    font-size: clamp(30px, 4vw, 48px);
+    line-height: 1.08;
+    color: var(--jlb-purple, #614794);
+}
+
+.jlb-experiencias__section-intro {
+    margin: 12px 0 0;
+    max-width: 60ch;
+    font-family: "DM Sans", var(--font-sans);
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--jlb-copy, #374059);
+}

@@ -157,3 +157,41 @@
         top: 4px;
     }
 }
+
+// Intro bajo el título y nota al pie (ej. aviso IB) — opcionales.
+.jlb-timeline__intro {
+    margin: calc(-1 * clamp(16px, 3vw, 32px)) 0 clamp(32px, 5vw, 56px);
+    max-width: 70ch;
+    font-family: "DM Sans", var(--font-sans);
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--jlb-copy, #374059);
+}
+
+.jlb-timeline__nota {
+    margin-top: clamp(40px, 5vw, 64px);
+    padding: clamp(20px, 2.4vw, 32px);
+    max-width: 80ch;
+    border-left: 4px solid var(--jlb-purple, #614794);
+    border-radius: 0 13px 13px 0;
+    background: var(--jlb-soft, #f6f1fb);
+    font-family: "DM Sans", var(--font-sans);
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--jlb-copy, #374059);
+
+    p {
+        margin: 0;
+        font-size: inherit; // _typo.scss tiene p{font-size} global en tablet
+        line-height: inherit;
+
+        & + p {
+            margin-top: 12px;
+        }
+    }
+
+    a {
+        color: var(--jlb-purple, #614794);
+        text-decoration: underline;
+    }
+}

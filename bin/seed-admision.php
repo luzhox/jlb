@@ -35,6 +35,8 @@ function jlb_adm_upload($filename, $alt = '') {
     return (int) $id;
 }
 
+require_once __DIR__ . '/inc-admision.php';
+
 $hero_img = jlb_adm_upload('hero.jpg', 'Niños en el aula del colegio Jean Le Boulch');
 $gal_w    = jlb_adm_upload('galeria-ancha.jpg', 'Estudiantes en actividad escolar');
 $gal_n    = jlb_adm_upload('galeria-angosta.png', 'Estudiante del colegio Jean Le Boulch');
@@ -61,50 +63,8 @@ $modules = array(
             array('texto' => 'Proceso de admisión', 'url' => '#proceso', 'target' => '_self'),
         ),
     ),
-    array(
-        'acf_fc_layout' => 'jlb_proceso',
-        'eyebrow' => 'Proceso de admisión',
-        'titulo'  => 'Conoce cómo postular en 3 simples pasos',
-        'pasos'   => array(
-            array(
-                'etiqueta' => '1. Recepción',
-                'intro'    => 'Presentar la solicitud de vacante con los datos correspondientes cumpliendo los requisitos:',
-                'requisitos' => array(
-                    array('texto' => 'DNI del postulante (copia simple)'),
-                    array('texto' => 'DNI de los padres (copia simple)'),
-                    array('texto' => 'Partida de nacimiento del postulante'),
-                    array('texto' => 'Informe académico (libreta de notas) del año anterior'),
-                ),
-            ),
-            array(
-                'etiqueta' => '2. Entrevistas',
-                'intro'    => 'Entrevista personal con el equipo psicopedagógico y evaluación del postulante según su nivel.',
-                'requisitos' => array(
-                    array('texto' => 'Entrevista con los padres de familia'),
-                    array('texto' => 'Evaluación del postulante según el grado'),
-                ),
-            ),
-            array(
-                'etiqueta' => '3. Resultados',
-                'intro'    => 'Comunicación de resultados y reserva de vacante del postulante admitido.',
-                'requisitos' => array(
-                    array('texto' => 'Comunicación de resultados por correo'),
-                    array('texto' => 'Reserva de vacante y matrícula'),
-                ),
-            ),
-        ),
-    ),
-    array(
-        'acf_fc_layout' => 'jlb_cuota',
-        'eyebrow' => 'Cuota de ingreso',
-        'titulo'  => 'Conoce cuál sería la cuota de ingreso',
-        'ver_condiciones' => array('title' => 'Ver condiciones', 'url' => '#condiciones', 'target' => '_self'),
-        'niveles' => array(
-            array('nombre' => 'Inicial',    'cuota_contado' => 'US$3500', 'cuota_cuotas' => 'US$5000', 'ahorro' => '$1500'),
-            array('nombre' => 'Primaria',   'cuota_contado' => 'US$4000', 'cuota_cuotas' => 'US$5500', 'ahorro' => '$1500'),
-            array('nombre' => 'Secundaria', 'cuota_contado' => 'US$4500', 'cuota_cuotas' => 'US$6000', 'ahorro' => '$1500'),
-        ),
-    ),
+    jlb_adm_proceso(),
+    jlb_adm_cuota(),
     array(
         'acf_fc_layout' => 'jlb_galeria',
         'imagen_ancha'   => $gal_w,

@@ -583,6 +583,14 @@ add_action('acf/init', function () {
                                     ),
                                 ),
                             ),
+                            array(
+                                'key' => 'field_bp_jlb_proc_descargas', 'label' => 'Descargas (opcional)', 'name' => 'descargas', 'type' => 'repeater', 'button_label' => 'Agregar descarga',
+                                'instructions' => 'Botones bajo los pasos (ej. solicitud de vacante, información económica). Sin archivo = no se muestra.',
+                                'sub_fields' => array(
+                                    array('key' => 'field_bp_jlb_proc_dl_texto', 'label' => 'Texto del botón', 'name' => 'texto', 'type' => 'text'),
+                                    array('key' => 'field_bp_jlb_proc_dl_archivo', 'label' => 'Archivo', 'name' => 'archivo', 'type' => 'file', 'return_format' => 'array', 'mime_types' => 'pdf,doc,docx'),
+                                ),
+                            ),
                         ),
                     ),
 
@@ -645,6 +653,8 @@ add_action('acf/init', function () {
                         'label' => 'JLB · Experiencias (filas media/texto)',
                         'display' => 'block',
                         'sub_fields' => array(
+                            array('key' => 'field_bp_jlb_exps_sec_titulo', 'label' => 'Título de sección (opcional)', 'name' => 'titulo_seccion', 'type' => 'text'),
+                            array('key' => 'field_bp_jlb_exps_sec_intro', 'label' => 'Intro de sección (opcional)', 'name' => 'intro_seccion', 'type' => 'textarea', 'rows' => 2, 'new_lines' => ''),
                             array(
                                 'key' => 'field_bp_jlb_exps_items', 'label' => 'Experiencias', 'name' => 'experiencias', 'type' => 'repeater', 'button_label' => 'Agregar experiencia',
                                 'sub_fields' => array(
@@ -690,6 +700,7 @@ add_action('acf/init', function () {
                         'sub_fields' => array(
                             array('key' => 'field_bp_jlb_tl_eyebrow', 'label' => 'Eyebrow', 'name' => 'eyebrow', 'type' => 'text', 'default_value' => 'Nuestra historia'),
                             array('key' => 'field_bp_jlb_tl_titulo', 'label' => 'Título', 'name' => 'titulo', 'type' => 'text'),
+                            array('key' => 'field_bp_jlb_tl_intro', 'label' => 'Intro (opcional)', 'name' => 'intro', 'type' => 'textarea', 'rows' => 3, 'new_lines' => ''),
                             array(
                                 'key' => 'field_bp_jlb_tl_hitos', 'label' => 'Hitos', 'name' => 'hitos', 'type' => 'repeater', 'button_label' => 'Agregar hito',
                                 'sub_fields' => array(
@@ -697,6 +708,26 @@ add_action('acf/init', function () {
                                     array('key' => 'field_bp_jlb_tl_h_titulo', 'label' => 'Título del hito', 'name' => 'titulo', 'type' => 'text'),
                                     array('key' => 'field_bp_jlb_tl_texto', 'label' => 'Texto', 'name' => 'texto', 'type' => 'textarea', 'rows' => 3, 'new_lines' => ''),
                                     array('key' => 'field_bp_jlb_tl_img', 'label' => 'Imagen (opcional)', 'name' => 'imagen', 'type' => 'image', 'return_format' => 'array'),
+                                ),
+                            ),
+                            array('key' => 'field_bp_jlb_tl_nota', 'label' => 'Nota al pie (opcional)', 'name' => 'nota', 'type' => 'wysiwyg', 'toolbar' => 'basic', 'media_upload' => 0, 'instructions' => 'Texto aclaratorio bajo la línea de tiempo (ej. aviso del IB).'),
+                        ),
+                    ),
+
+                    // ── Página Nosotros: principios educativos (grid) ─────────
+                    'jlb_principios' => array(
+                        'key' => 'layout_bp_jlb_principios',
+                        'name' => 'jlb_principios',
+                        'label' => 'JLB · Principios (grid de tarjetas)',
+                        'display' => 'block',
+                        'sub_fields' => array(
+                            array('key' => 'field_bp_jlb_pri_eyebrow', 'label' => 'Eyebrow', 'name' => 'eyebrow', 'type' => 'text'),
+                            array('key' => 'field_bp_jlb_pri_titulo', 'label' => 'Título', 'name' => 'titulo', 'type' => 'text', 'default_value' => 'Principios educativos'),
+                            array(
+                                'key' => 'field_bp_jlb_pri_items', 'label' => 'Principios', 'name' => 'principios', 'type' => 'repeater', 'button_label' => 'Agregar principio', 'layout' => 'block',
+                                'sub_fields' => array(
+                                    array('key' => 'field_bp_jlb_pri_i_titulo', 'label' => 'Título', 'name' => 'titulo', 'type' => 'text'),
+                                    array('key' => 'field_bp_jlb_pri_i_texto', 'label' => 'Texto', 'name' => 'texto', 'type' => 'textarea', 'rows' => 4, 'new_lines' => ''),
                                 ),
                             ),
                         ),

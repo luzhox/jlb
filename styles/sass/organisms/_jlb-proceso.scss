@@ -165,3 +165,12 @@
         animation: none;
     }
 }
+
+// Botones de descarga bajo el stepper (opcionales).
+.jlb-proceso__descargas {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 40px;
+}

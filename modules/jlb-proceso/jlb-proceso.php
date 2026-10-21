@@ -10,6 +10,7 @@
  *   eyebrow    string  ("Proceso de admisión")
  *   titulo     string  ("Conoce cómo postular en 3 simples pasos")
  *   pasos      repeater de { etiqueta, intro (wysiwyg/html), requisitos[] }
+ *   descargas  repeater de { texto, archivo{url} }  (opcional, botones bajo el stepper)
  */
 
 $args    = isset($args) && is_array($args) ? $args : array();
@@ -53,6 +54,17 @@ if ($in_flex) {
 
 if (empty($pasos)) {
     return;
+}
+
+$descargas = array();
+$dl_rows   = $in_flex ? (array) get_sub_field('descargas') : (array) ($args['descargas'] ?? array());
+foreach ($dl_rows as $d) {
+    $url = is_array($d['archivo'] ?? null) ? (string) ($d['archivo']['url'] ?? '') : (string) ($d['archivo'] ?? '');
+    if ($url === '') continue;
+    $descargas[] = array(
+        'texto' => (string) ($d['texto'] ?? '') ?: __('Descargar', 'boilerplate'),
+        'url'   => $url,
+    );
 }
 
 $uid = wp_unique_id('jlb-proceso-');
@@ -111,5 +123,15 @@ $uid = wp_unique_id('jlb-proceso-');
                 <?php endforeach; ?>
             </div>
         </div>
+
+        <?php if ($descargas): ?>
+            <div class="jlb-proceso__descargas">
+                <?php foreach ($descargas as $d): ?>
+                    <a class="jlb-link-external jlb-link-external--gradient" href="<?php echo esc_url($d['url']); ?>" target="_blank" rel="noopener" download>
+                        <span><?php echo esc_html($d['texto']); ?></span>
+                    </a>
+                <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
     </div>
 </section>
