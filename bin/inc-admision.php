@@ -4,6 +4,8 @@
  * (docx "textos corregidos 8-10-26" + "Proceso de admisión y económica 2027-2028").
  * Compartido por bin/seed-admision.php y bin/seed-admision-textos.php.
  */
+if (!defined('WP_CLI') || !WP_CLI) { return; }
+
 if (!function_exists('jlb_adm_proceso')) {
 function jlb_adm_proceso() {
     return array(

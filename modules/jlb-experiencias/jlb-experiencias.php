@@ -24,6 +24,7 @@ $in_flex = function_exists('get_row_layout') && get_row_layout();
 $titulo_seccion = (string) ($in_flex ? get_sub_field('titulo_seccion') : ($args['titulo_seccion'] ?? ''));
 $intro_seccion  = (string) ($in_flex ? get_sub_field('intro_seccion') : ($args['intro_seccion'] ?? ''));
 $row_tag        = $titulo_seccion !== '' ? 'h3' : 'h2';
+$base_id        = wp_unique_id('jlb-exp-'); // ids únicos aunque el módulo se repita en la página
 
 $experiencias = array();
 if ($in_flex) {
@@ -81,11 +82,11 @@ $svg_allowed = array(
 $ext_icon = '<svg class="jlb-link-external__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">'
     . '<path d="M8 16L16 8M16 8H9.5M16 8V14.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 ?>
-<section class="jlb-experiencias" aria-label="<?php echo esc_attr($titulo_seccion ?: __('Experiencias', 'boilerplate')); ?>">
+<section class="jlb-experiencias" <?php if ($titulo_seccion): ?>aria-labelledby="<?php echo esc_attr($base_id); ?>-t"<?php else: ?>aria-label="<?php echo esc_attr__('Experiencias', 'boilerplate'); ?>"<?php endif; ?>>
     <div class="jlb-container">
         <?php if ($titulo_seccion): ?>
-            <header class="jlb-experiencias__header">
-                <h2 class="jlb-experiencias__section-title"><?php echo esc_html($titulo_seccion); ?></h2>
+            <header class="jlb-experiencias__header" data-gsap="fade-up">
+                <h2 class="jlb-experiencias__section-title" id="<?php echo esc_attr($base_id); ?>-t"><?php echo esc_html($titulo_seccion); ?></h2>
                 <?php if ($intro_seccion): ?>
                     <p class="jlb-experiencias__section-intro"><?php echo esc_html($intro_seccion); ?></p>
                 <?php endif; ?>
@@ -93,7 +94,7 @@ $ext_icon = '<svg class="jlb-link-external__icon" width="24" height="24" viewBox
         <?php endif; ?>
         <?php foreach ($experiencias as $i => $e):
             $reverse = ($i % 2 === 1); // impar: imagen izquierda, texto derecha
-            $uid     = 'jlb-exp-' . $i;
+            $uid     = $base_id . '-' . $i;
             $has_vid = $e['video_url'] !== '';
             $blank   = !empty($e['boton']['target']) && $e['boton']['target'] === '_blank';
         ?>
@@ -121,7 +122,7 @@ $ext_icon = '<svg class="jlb-link-external__icon" width="24" height="24" viewBox
 
                 <div class="jlb-experiencias__body">
                     <?php if ($e['titulo']): ?>
-                        <<?php echo $row_tag; ?> class="jlb-experiencias__title" id="<?php echo esc_attr($uid); ?>"><?php echo esc_html($e['titulo']); ?></<?php echo $row_tag; ?>>
+                        <<?php echo tag_escape($row_tag); ?> class="jlb-experiencias__title" id="<?php echo esc_attr($uid); ?>"><?php echo esc_html($e['titulo']); ?></<?php echo tag_escape($row_tag); ?>>
                     <?php endif; ?>
                     <?php if ($e['texto']): ?>
                         <p class="jlb-experiencias__text"><?php echo esc_html($e['texto']); ?></p>

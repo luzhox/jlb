@@ -61,6 +61,9 @@ $dl_rows   = $in_flex ? (array) get_sub_field('descargas') : (array) ($args['des
 foreach ($dl_rows as $d) {
     $url = is_array($d['archivo'] ?? null) ? (string) ($d['archivo']['url'] ?? '') : (string) ($d['archivo'] ?? '');
     if ($url === '') continue;
+    // El file field ya limita la subida; se revalida al pintar (defensa en profundidad).
+    $ft = wp_check_filetype(strtok($url, '?'));
+    if (!in_array($ft['ext'], array('pdf', 'doc', 'docx'), true)) continue;
     $descargas[] = array(
         'texto' => (string) ($d['texto'] ?? '') ?: __('Descargar', 'boilerplate'),
         'url'   => $url,
@@ -125,10 +128,11 @@ $uid = wp_unique_id('jlb-proceso-');
         </div>
 
         <?php if ($descargas): ?>
-            <div class="jlb-proceso__descargas">
+            <div class="jlb-proceso__descargas" data-gsap="fade-up">
                 <?php foreach ($descargas as $d): ?>
-                    <a class="jlb-link-external jlb-link-external--gradient" href="<?php echo esc_url($d['url']); ?>" target="_blank" rel="noopener" download>
+                    <a class="jlb-link-external jlb-link-external--gradient" href="<?php echo esc_url($d['url']); ?>" target="_blank" rel="noopener">
                         <span><?php echo esc_html($d['texto']); ?></span>
+                        <span class="sr-text"><?php esc_html_e('(se abre en una pestaña nueva)', 'boilerplate'); ?></span>
                     </a>
                 <?php endforeach; ?>
             </div>

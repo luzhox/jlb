@@ -50,7 +50,7 @@ if (empty($items)) {
 
 $uid = wp_unique_id('jlb-principios-');
 ?>
-<section class="jlb-principios" id="principios" aria-labelledby="<?php echo esc_attr($uid); ?>-t">
+<section class="jlb-principios" id="principios" <?php if ($titulo): ?>aria-labelledby="<?php echo esc_attr($uid); ?>-t"<?php else: ?>aria-label="<?php echo esc_attr__('Principios educativos', 'boilerplate'); ?>"<?php endif; ?>>
     <div class="jlb-container">
         <?php if ($eyebrow): ?>
             <p class="jlb-principios__eyebrow"><?php echo esc_html($eyebrow); ?></p>
